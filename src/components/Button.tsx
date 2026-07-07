@@ -5,7 +5,7 @@ export type ButtonProps = JSX.ButtonHTMLAttributes<HTMLButtonElement>;
 
 /**
  * High-level wrapper around the global `.zylem-button` style. First component
- * of the @zylem/styles component library; future components (Toolbar,
+ * of the @zylem/ui component library; future components (Toolbar,
  * Accordion, Panel, ...) should follow this same pattern: a thin Solid
  * component over the token-driven global styles.
  */

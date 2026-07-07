@@ -145,7 +145,7 @@ const visual = defineProperties({
  *
  * Usage:
  * ```ts
- * import { sprinkles } from '@zylem/styles';
+ * import { sprinkles } from '@zylem/ui';
  *
  * const card = style([
  *   sprinkles({ padding: 'lg', borderRadius: 'default', color: 'text' }),

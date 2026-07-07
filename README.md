@@ -1,4 +1,4 @@
-# @zylem/styles
+# @zylem/ui
 
 Design tokens, global styles, and Solid components for Zylem, built with
 [vanilla-extract](https://vanilla-extract.style/) and [Kobalte](https://kobalte.dev/).
@@ -7,13 +7,13 @@ Design tokens, global styles, and Solid components for Zylem, built with
 
 ```ts
 // Typed design tokens and atomic utilities
-import { vars, sprinkles } from '@zylem/styles';
+import { vars, sprinkles } from '@zylem/ui';
 
 // CSS bundle (import once at app entry)
-import '@zylem/styles/styles.css';
+import '@zylem/ui/styles.css';
 
 // Solid components (compiled by the consuming app's bundler)
-import { Button } from '@zylem/styles/components';
+import { Button } from '@zylem/ui/components';
 ```
 
 ## Development

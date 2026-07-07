@@ -34,7 +34,7 @@ const navLinks = [
 export function App() {
   return (
     <div class="showcase">
-      <h1>Zylem Styles Showcase</h1>
+      <h1>Zylem UI Showcase</h1>
       <nav class="showcase-nav">
         <For each={navLinks}>{(link) => <a href={link.href}>{link.label}</a>}</For>
       </nav>

@@ -1,6 +1,26 @@
 {
   "name": "@zylem/ui",
   "version": "0.1.0",
+  "description": "Design tokens, global styles, and Solid components for Zylem, built with vanilla-extract",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zylem-game-lib/ui.git"
+  },
+  "homepage": "https://github.com/zylem-game-lib/ui#readme",
+  "bugs": {
+    "url": "https://github.com/zylem-game-lib/ui/issues"
+  },
+  "keywords": [
+    "zylem",
+    "design-tokens",
+    "vanilla-extract",
+    "solid-js",
+    "ui"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -22,6 +42,7 @@
   ],
   "scripts": {
     "build": "tsup",
+    "prepublishOnly": "NODE_ENV=production tsup",
     "dev": "tsup --watch",
     "showcase": "vite --host",
     "lint": "biome check ."

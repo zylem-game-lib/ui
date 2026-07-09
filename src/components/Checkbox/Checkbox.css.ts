@@ -1,10 +1,10 @@
 import { globalStyle } from '@vanilla-extract/css';
-import { vars } from '../theme.css';
+import { vars } from '../../theme.css';
 
 globalStyle('.zylem-checkbox-root', {
   display: 'inline-flex',
   alignItems: 'center',
-  gap: vars.spacing.md,
+  gap: vars.spacing.sm,
   cursor: 'pointer',
   userSelect: 'none',
 });
@@ -26,41 +26,41 @@ globalStyle('.zylem-checkbox-input', {
   border: 0,
 });
 
+// Square glass toggle: beveled jewel that fills with blue glass when checked.
 globalStyle('.zylem-checkbox-control', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  width: '20px',
-  height: '20px',
-  border: `${vars.borders.width} solid ${vars.colors.primary}`,
-  borderRadius: `calc(${vars.borders.radius} / 3)`,
-  background: 'transparent',
-  transition: 'background-color 0.15s ease, border-color 0.15s ease',
+  width: '18px',
+  height: '18px',
+  borderRadius: vars.radii.control,
+  border: '1px solid rgba(97, 166, 232, 0.5)',
+  background: vars.material.fieldGlass,
+  boxShadow: vars.effects.shadowInset,
+  transition: `background ${vars.motion.fast} ${vars.motion.easeOut}, box-shadow ${vars.motion.fast} ${vars.motion.easeOut}, border-color ${vars.motion.fast} ${vars.motion.easeOut}`,
 });
 
 globalStyle('.zylem-checkbox-root:hover .zylem-checkbox-control', {
-  borderColor: vars.colors.primaryHover,
-  background: 'rgba(97, 166, 232, 0.1)',
+  borderColor: 'rgba(150, 210, 255, 0.7)',
+  boxShadow: `${vars.effects.shadowInset}, ${vars.effects.glowPrimary}`,
 });
 
 globalStyle('.zylem-checkbox-root[data-checked] .zylem-checkbox-control', {
-  background: vars.colors.primary,
-  borderColor: vars.colors.primary,
+  background: vars.material.buttonGlass,
+  border: '1px solid rgba(150, 210, 255, 0.65)',
+  boxShadow: vars.effects.shadowButton,
 });
 
-globalStyle(
-  '.zylem-checkbox-root[data-checked]:hover .zylem-checkbox-control',
-  {
-    background: vars.colors.primaryHover,
-    borderColor: vars.colors.primaryHover,
-  },
-);
+globalStyle('.zylem-checkbox-root:focus-within .zylem-checkbox-control', {
+  boxShadow: `${vars.effects.shadowInset}, ${vars.effects.focusRing}`,
+});
 
 globalStyle('.zylem-checkbox-icon', {
-  width: '14px',
-  height: '14px',
-  color: vars.colors.background,
-  strokeWidth: 3,
+  width: '12px',
+  height: '12px',
+  color: '#F4FAFF',
+  strokeWidth: 3.5,
+  filter: 'drop-shadow(0 1px 1px rgba(0,0,0,0.6))',
 });
 
 globalStyle('.zylem-checkbox-label', {

@@ -8,28 +8,31 @@ importers:
 
   .:
     dependencies:
+      '@kobalte/core':
+        specifier: ^0.13.11
+        version: 0.13.12(solid-js@1.9.14)
       '@vanilla-extract/css':
         specifier: ^1.20.1
         version: 1.21.1
+      '@vanilla-extract/recipes':
+        specifier: ^0.5.7
+        version: 0.5.7(@vanilla-extract/css@1.21.1)
       '@vanilla-extract/sprinkles':
         specifier: ^1.6.5
         version: 1.7.0(@vanilla-extract/css@1.21.1)
+      lucide-solid:
+        specifier: ^0.511.0
+        version: 0.511.0(solid-js@1.9.14)
     devDependencies:
       '@biomejs/biome':
         specifier: ^2.3.7
         version: 2.5.2
-      '@kobalte/core':
-        specifier: ^0.13.11
-        version: 0.13.12(solid-js@1.9.14)
       '@vanilla-extract/esbuild-plugin':
         specifier: ^2.3.22
         version: 2.3.22(esbuild@0.27.7)
       '@vanilla-extract/vite-plugin':
         specifier: ^5.2.2
         version: 5.2.4(@types/node@26.1.0)(esbuild@0.27.7)(lightningcss@1.32.0)(vite@7.0.4(@types/node@26.1.0)(lightningcss@1.32.0))
-      lucide-solid:
-        specifier: ^0.511.0
-        version: 0.511.0(solid-js@1.9.14)
       solid-js:
         specifier: ^1.9.9
         version: 1.9.14
@@ -1042,6 +1045,11 @@ packages:
 
   '@vanilla-extract/private@1.0.9':
     resolution: {integrity: sha512-gT2jbfZuaaCLrAxwXbRgIhGhcXbRZCG3v4TTUnjw0EJ7ArdBRxkq4msNJkbuRkCgfIK5ATmprB5t9ljvLeFDEA==}
+
+  '@vanilla-extract/recipes@0.5.7':
+    resolution: {integrity: sha512-Fvr+htdyb6LVUu+PhH61UFPhwkjgDEk8L4Zq9oIdte42sntpKrgFy90MyTRtGwjVALmrJ0pwRUVr8UoByYeW8A==}
+    peerDependencies:
+      '@vanilla-extract/css': ^1.0.0
 
   '@vanilla-extract/sprinkles@1.7.0':
     resolution: {integrity: sha512-7I8rt3m1OIEMJRtpMTnPwMy+C1DHpgvenNF1P7lgFFXGzxAoW57+Qk439cJFqONaqsLsTiYOAOVnP4QigCWa1A==}
@@ -2437,6 +2445,10 @@ snapshots:
       - supports-color
 
   '@vanilla-extract/private@1.0.9': {}
+
+  '@vanilla-extract/recipes@0.5.7(@vanilla-extract/css@1.21.1)':
+    dependencies:
+      '@vanilla-extract/css': 1.21.1
 
   '@vanilla-extract/sprinkles@1.7.0(@vanilla-extract/css@1.21.1)':
     dependencies:

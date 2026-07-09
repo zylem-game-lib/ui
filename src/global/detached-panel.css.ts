@@ -12,15 +12,38 @@ globalStyle('.detached-panel', {
   position: 'fixed',
   display: 'flex',
   flexDirection: 'column',
+  borderRadius: vars.radii.panel,
+  border: '1px solid rgba(97, 166, 232, 0.38)',
+  background: vars.material.glassPanelDark,
+  boxShadow: vars.effects.shadowPanel,
+  backdropFilter: `blur(${vars.effects.blurSm}) saturate(1.14)`,
+  overflow: 'hidden',
+  '@supports': {
+    'not (backdrop-filter: blur(1px))': {
+      background: vars.colors.surface,
+    },
+  },
 });
 
 globalStyle('.detached-panel-titlebar', {
-  padding: `${vars.spacing.sm} ${vars.spacing.md}`,
+  boxSizing: 'border-box',
+  minHeight: '32px',
+  padding: `0 ${vars.spacing.md}`,
   cursor: 'grab',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
+  gap: vars.spacing.sm,
   userSelect: 'none',
+  background: vars.material.glossyBar,
+  borderBottom: '1px solid rgba(5, 18, 32, 0.85)',
+  boxShadow:
+    'inset 0 1px 0 rgba(255,255,255,0.62), inset 0 -1px 0 rgba(255,255,255,0.08)',
+  color: '#F4FAFF',
+  fontFamily: vars.typography.fontFamily,
+  fontWeight: 700,
+  fontSize: '12px',
+  textShadow: '0 1px 1px rgba(0,0,0,0.65)',
 });
 
 globalStyle('.detached-panel-titlebar:active', {
@@ -28,7 +51,7 @@ globalStyle('.detached-panel-titlebar:active', {
 });
 
 globalStyle('.detached-panel-content', {
-  background: vars.colors.backgroundTranslucent,
+  background: 'transparent',
   flex: 1,
   overflow: 'auto',
   display: 'flex',
@@ -43,13 +66,13 @@ globalStyle('.accordion-drag-ghost', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  background: vars.colors.backgroundTranslucent,
-  border: `2px dotted ${vars.colors.accent}`,
-  borderRadius: vars.borders.radius,
-  color: vars.colors.primary,
+  background: vars.material.glassPanelDark,
+  border: '2px dotted rgba(230, 69, 52, 0.8)',
+  borderRadius: vars.radii.panel,
+  color: vars.colors.text,
   fontFamily: vars.typography.fontFamily,
-  backdropFilter: `blur(${vars.spacing.sm})`,
-  boxShadow: `0 8px 24px rgba(0, 0, 0, 0.5), 0 0 0 1px ${vars.colors.accent}`,
+  backdropFilter: `blur(${vars.effects.blurSm})`,
+  boxShadow: `0 8px 24px rgba(0, 0, 0, 0.5), ${vars.effects.glowDanger}`,
   position: 'fixed',
   zIndex: 9999,
   pointerEvents: 'none',

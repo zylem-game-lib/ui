@@ -33,10 +33,10 @@ export function GamePanelContent() {
         <PropertyRow label="Resolution" value="640x360" />
       </section>
       <section class="zylem-toolbar">
-        <button type="button" class="zylem-toolbar-btn zylem-button">
+        <button type="button" class="zylem-button" data-size="sm">
           Print Global State
         </button>
-        <button type="button" class="zylem-toolbar-btn zylem-button">
+        <button type="button" class="zylem-button" data-size="sm">
           Print All
         </button>
       </section>
@@ -54,7 +54,7 @@ export function StagePanelContent() {
         <PropertyRow label="Variables" value="3 defined" />
       </section>
       <section class="zylem-toolbar">
-        <button type="button" class="zylem-toolbar-btn zylem-button">
+        <button type="button" class="zylem-button" data-size="sm">
           Print Stage State
         </button>
       </section>

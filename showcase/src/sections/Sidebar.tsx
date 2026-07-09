@@ -1,30 +1,27 @@
-import { For } from 'solid-js';
+import { createSignal, For } from 'solid-js';
+import { Sidebar as UISidebar } from '../../../src/components';
 
-const items = [
-  { label: 'Dashboard', active: false },
-  { label: 'Game Editor', active: true },
-  { label: 'Settings', active: false },
-  { label: 'Help', active: false },
-];
+const items = ['Dashboard', 'Game Editor', 'Settings', 'Help'];
 
 export function Sidebar() {
+  const [active, setActive] = createSignal('Game Editor');
+
   return (
     <div class="section" id="sidebar">
       <h2>Sidebar</h2>
-      <h3>.sidebar + .sidebar-item</h3>
-      <div style={{ width: '250px' }}>
-        <div class="sidebar" style={{ padding: 'var(--zylem-spacing-sm)' }}>
-          <For each={items}>
-            {(item) => (
-              <div
-                class={item.active ? 'sidebar-item active' : 'sidebar-item'}
-                style={{ padding: 'var(--zylem-spacing-sm)', cursor: 'pointer' }}
-              >
-                {item.label}
-              </div>
-            )}
-          </For>
-        </div>
+      <h3>Sidebar / Sidebar.Section / Sidebar.Item</h3>
+      <div style={{ width: '250px', height: '280px' }}>
+        <UISidebar>
+          <UISidebar.Section title="Navigation">
+            <For each={items}>
+              {(item) => (
+                <UISidebar.Item active={active() === item} onClick={() => setActive(item)}>
+                  {item}
+                </UISidebar.Item>
+              )}
+            </For>
+          </UISidebar.Section>
+        </UISidebar>
       </div>
     </div>
   );

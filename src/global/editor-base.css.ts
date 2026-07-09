@@ -1,7 +1,9 @@
 import { globalStyle } from '@vanilla-extract/css';
 import { vars } from '../theme.css';
 
-globalStyle('button', {
+// :where() keeps this shadow-DOM reset at zero specificity so consuming
+// apps' own button rules (and universal box-sizing rules) still win.
+globalStyle(':where(button)', {
   all: 'unset',
 });
 
@@ -25,6 +27,7 @@ globalStyle('#zylem-editor-toggle', {
   cursor: 'grab',
   zIndex: 1,
   pointerEvents: 'auto',
+  filter: 'drop-shadow(0 0 10px rgba(97, 166, 232, 0.35))',
 });
 
 globalStyle('.zylem-exo-2', {
@@ -42,12 +45,12 @@ globalStyle('.scrollable-y', {
 
 globalStyle('.scroll-thin', {
   scrollbarWidth: 'thin',
-  scrollbarColor: `${vars.colors.primary} transparent`,
+  scrollbarColor: 'rgba(97,166,232,0.55) rgba(10,20,30,0.5)',
 });
 
 globalStyle('.scroll-thin::-webkit-scrollbar', {
-  width: '3px',
-  height: '3px',
+  width: '6px',
+  height: '6px',
 });
 
 globalStyle('.scroll-thin::-webkit-scrollbar-track', {
@@ -55,88 +58,78 @@ globalStyle('.scroll-thin::-webkit-scrollbar-track', {
 });
 
 globalStyle('.scroll-thin::-webkit-scrollbar-thumb', {
-  backgroundColor: vars.colors.primary,
-  borderRadius: `calc(${vars.borders.radius} / 4)`,
+  borderRadius: '999px',
+  background:
+    'linear-gradient(90deg, rgba(220,242,255,0.4), rgba(97,166,232,0.65) 42%, rgba(19,62,102,0.9))',
 });
 
 globalStyle('.scroll-thin::-webkit-scrollbar-thumb:hover', {
-  backgroundColor: vars.colors.primaryActive,
+  background:
+    'linear-gradient(90deg, rgba(240,250,255,0.6), rgba(97,166,232,0.9) 42%, rgba(21,76,130,0.98))',
 });
 
-globalStyle('.zylem-button', {
-  background: 'none',
-  color: vars.colors.primary,
-  border: `${vars.borders.width} solid ${vars.colors.primary}`,
-  borderRadius: vars.borders.radius,
-  fontFamily: vars.typography.fontFamily,
-  cursor: 'pointer',
-  padding: `${vars.spacing.sm} ${vars.spacing.md}`,
-  fontSize: vars.typography.fontSize,
-  transition: 'background-color 0.2s ease, color 0.2s ease',
+// Icon default for toolbar/editor icons.
+globalStyle('.zylem-icon', {
+  width: '18px',
+  height: '18px',
+  stroke: 'currentColor',
+  filter: 'drop-shadow(0 1px 1px rgba(0,0,0,0.55))',
 });
 
-globalStyle('.zylem-button:hover', {
-  background: vars.colors.primary,
-  color: vars.colors.backgroundTranslucent,
-});
-
-globalStyle('.zylem-button:active', {
-  background: vars.colors.active,
-  color: vars.colors.backgroundTranslucent,
-});
-
+/**
+ * Floating panel chrome (editor main panel). Glass window with a glossy
+ * molded title bar.
+ */
 globalStyle('.floating-panel', {
-  background: vars.colors.backgroundTranslucent,
-  border: `${vars.borders.width} solid ${vars.colors.primary}`,
-  borderRadius: vars.borders.radius,
-  boxShadow: `0 ${vars.spacing.sm} 32px rgba(0, 0, 0, 0.4)`,
-  backdropFilter: `blur(${vars.spacing.sm})`,
+  borderRadius: vars.radii.window,
+  border: '1px solid rgba(146, 205, 255, 0.54)',
+  background: vars.material.glassPanelDark,
+  boxShadow: vars.effects.shadowPanel,
+  backdropFilter: `blur(${vars.effects.blurMd}) saturate(1.22)`,
+  overflow: 'hidden',
   pointerEvents: 'auto',
+  '@supports': {
+    'not (backdrop-filter: blur(1px))': {
+      background: vars.colors.surface,
+    },
+  },
 });
 
 globalStyle('.floating-panel-titlebar', {
-  padding: `${vars.spacing.sm} ${vars.spacing.md}`,
-  background: vars.colors.accent,
-  border: `1px solid ${vars.colors.background}`,
-  borderRadius: `calc(${vars.borders.radius} - 1px) calc(${vars.borders.radius} - 1px) 0 0`,
+  minHeight: '34px',
+  boxSizing: 'border-box',
+  display: 'flex',
+  alignItems: 'center',
+  padding: `0 ${vars.spacing.md}`,
+  background: vars.material.glossyBar,
+  borderBottom: '1px solid rgba(5, 18, 32, 0.85)',
+  boxShadow:
+    'inset 0 1px 0 rgba(255,255,255,0.62), inset 0 -1px 0 rgba(255,255,255,0.08)',
   fontFamily: vars.typography.fontFamily,
-  fontWeight: 600,
-  transition: 'background-color 0.15s ease',
+  fontWeight: 700,
+  cursor: 'grab',
+  userSelect: 'none',
+  transition: `filter ${vars.motion.fast} ${vars.motion.easeOut}`,
 });
 
 globalStyle('.floating-panel-titlebar:hover', {
-  background: vars.colors.accentHover,
+  filter: 'brightness(1.08)',
 });
 
 globalStyle('.floating-panel-titlebar:active', {
-  background: vars.colors.accentActive,
+  filter: 'brightness(0.95)',
   cursor: 'grabbing',
 });
 
 globalStyle('.floating-panel-title', {
-  fontSize: vars.typography.fontSize,
-  color: vars.colors.background,
-  textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)',
+  fontSize: '13px',
+  letterSpacing: '0.02em',
+  color: '#F4FAFF',
+  textShadow: '0 1px 1px rgba(0,0,0,0.65)',
 });
 
-globalStyle('.floating-panel-button', {
-  all: 'unset',
-  cursor: 'pointer',
-  padding: '2px 6px',
-  fontSize: '10px',
-  lineHeight: 1,
-  color: vars.colors.background,
-  borderRadius: `calc(${vars.borders.radius} / 3)`,
-  transition: 'background-color 0.15s ease',
-});
-
-globalStyle('.floating-panel-button:hover', {
-  background: 'rgba(0, 0, 0, 0.2)',
-});
-
-globalStyle('.floating-panel-button:active', {
-  background: 'rgba(0, 0, 0, 0.3)',
-});
+// `.floating-panel-button` styles live in WindowControls.css.ts, shared
+// with `.zylem-window-control`.
 
 globalStyle('.floating-panel-content', {
   background: 'transparent',
@@ -145,53 +138,7 @@ globalStyle('.floating-panel-content', {
 globalStyle('.floating-panel-controls', {
   display: 'flex',
   alignItems: 'center',
-  gap: vars.spacing.xs,
-});
-
-globalStyle('.zylem-property-list', {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: vars.spacing.xs,
-  padding: vars.spacing.sm,
-  background: vars.colors.consoleBackground,
-  borderRadius: `calc(${vars.borders.radius} / 2)`,
-});
-
-globalStyle('.zylem-property-row', {
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  padding: `${vars.spacing.xs} ${vars.spacing.sm}`,
-  borderBottom: `1px solid ${vars.colors.border}`,
-});
-
-globalStyle('.zylem-property-row:last-child', {
-  borderBottom: 'none',
-});
-
-globalStyle('.zylem-property-label', {
-  color: vars.colors.textSecondary,
-  fontSize: `calc(${vars.typography.fontSize} - 1px)`,
-  fontFamily: vars.typography.fontFamily,
-});
-
-globalStyle('.zylem-property-value', {
-  color: vars.colors.primary,
-  fontSize: vars.typography.fontSize,
-  fontFamily: vars.typography.fontFamily,
-  fontWeight: 500,
-});
-
-globalStyle('.zylem-property-value--clickable', {
-  cursor: 'pointer',
-  textDecoration: 'underline',
-  textDecorationStyle: 'dotted',
-  textUnderlineOffset: '2px',
-});
-
-globalStyle('.zylem-property-value--clickable:hover', {
-  textDecorationStyle: 'solid',
-  color: vars.colors.active,
+  gap: '7px',
 });
 
 globalStyle('.zylem-section', {
@@ -200,12 +147,15 @@ globalStyle('.zylem-section', {
 
 globalStyle('.zylem-section-title', {
   margin: `0 0 ${vars.spacing.sm} 0`,
-  fontSize: vars.typography.fontSize,
+  fontSize: '11px',
   fontFamily: vars.typography.fontFamily,
   color: vars.colors.textSecondary,
-  fontWeight: 600,
+  fontWeight: 700,
+  letterSpacing: '0.09em',
+  textTransform: 'uppercase',
 });
 
+/** Entity grid: index-card jewel tiles. */
 globalStyle('.entity-grid', {
   display: 'grid',
   gridTemplateColumns: 'repeat(auto-fill, minmax(40px, 1fr))',
@@ -217,21 +167,24 @@ globalStyle('.entity-grid-item', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  background: vars.colors.consoleBackground,
-  border: `1px solid ${vars.colors.border}`,
-  borderRadius: `calc(${vars.borders.radius} / 2)`,
+  background: vars.material.glassPanelDark,
+  border: '1px solid rgba(97, 166, 232, 0.32)',
+  borderRadius: vars.radii.control,
+  boxShadow:
+    'inset 0 1px 0 rgba(255,255,255,0.1), 0 2px 6px rgba(0,0,0,0.3)',
   cursor: 'pointer',
-  transition: 'background 0.15s, border-color 0.15s, transform 0.1s',
+  transition: `background ${vars.motion.fast} ${vars.motion.easeOut}, border-color ${vars.motion.fast} ${vars.motion.easeOut}, transform ${vars.motion.fast} ${vars.motion.easeOut}, box-shadow ${vars.motion.fast} ${vars.motion.easeOut}`,
 });
 
 globalStyle('.entity-grid-item:hover', {
-  background: vars.colors.accent,
-  borderColor: vars.colors.primary,
-  transform: 'scale(1.05)',
+  background: vars.material.buttonGlassHover,
+  borderColor: 'rgba(150, 210, 255, 0.6)',
+  boxShadow: `inset 0 1px 0 rgba(255,255,255,0.3), ${vars.effects.glowPrimary}`,
+  transform: 'translateY(-1px)',
 });
 
 globalStyle('.entity-grid-item:active', {
-  transform: 'scale(0.95)',
+  transform: 'translateY(1px)',
 });
 
 globalStyle('.entity-icon', {
@@ -241,5 +194,5 @@ globalStyle('.entity-icon', {
 });
 
 globalStyle('.entity-grid-item:hover .entity-icon', {
-  color: vars.colors.background,
+  color: '#F4FAFF',
 });

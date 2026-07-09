@@ -1,4 +1,4 @@
-import X from 'lucide-solid/icons/x';
+import { WindowControls } from '../../../src/components';
 import { StagePanelContent } from '../demos/panels';
 
 /**
@@ -20,9 +20,7 @@ export function DetachedPanel() {
             style={{ 'border-radius': '12px 12px 0 0' }}
           >
             <span class="floating-panel-title">Stage</span>
-            <button class="floating-panel-button zylem-button" title="Reattach panel" type="button">
-              <X size={12} />
-            </button>
+            <WindowControls onClose={() => {}} closeLabel="Reattach panel" />
           </div>
           <div class="detached-panel-content floating-panel-content">
             <StagePanelContent />

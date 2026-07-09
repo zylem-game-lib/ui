@@ -38,6 +38,11 @@ const radiusScale = {
   lg: '16px',
   xl: '20px',
   pill: '999px',
+  window: vars.radii.window,
+  panel: vars.radii.panel,
+  button: vars.radii.button,
+  control: vars.radii.control,
+  card: vars.radii.card,
 } as const;
 
 const responsive = defineProperties({
@@ -120,6 +125,23 @@ const color = defineProperties({
 const visual = defineProperties({
   properties: {
     borderRadius: radiusScale,
+    boxShadow: {
+      none: 'none',
+      panel: vars.effects.shadowPanel,
+      button: vars.effects.shadowButton,
+      inset: vars.effects.shadowInset,
+      glowPrimary: vars.effects.glowPrimary,
+      glowActive: vars.effects.glowActive,
+      glowDanger: vars.effects.glowDanger,
+      focusRing: vars.effects.focusRing,
+    },
+    transitionDuration: {
+      fast: vars.motion.fast,
+      normal: vars.motion.normal,
+    },
+    transitionTimingFunction: {
+      easeOut: vars.motion.easeOut,
+    },
     borderWidth: {
       none: '0',
       hairline: '1px',

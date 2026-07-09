@@ -1,8 +1,13 @@
 import { globalStyle } from '@vanilla-extract/css';
 import { vars } from '../theme.css';
 
+/**
+ * HyperGlass accordion: flat minimal section headers over glass content
+ * regions. Shared by the editor's AccordionMenu markup and the library's
+ * Accordion component.
+ */
 globalStyle('.zylem-accordion', {
-  color: vars.colors.primary,
+  color: vars.colors.text,
   display: 'flex',
   flexDirection: 'column',
   height: '100%',
@@ -13,16 +18,12 @@ globalStyle('.accordion-header', {
   position: 'sticky',
   top: 0,
   zIndex: 1,
-  transition: 'background-color 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)',
-});
-
-globalStyle('.accordion-header[data-expanded]', {
-  backgroundColor: vars.colors.primaryActive,
+  display: 'flex',
 });
 
 globalStyle('.accordion-item', {
   position: 'relative',
-  borderBottom: `1px solid ${vars.colors.primary}`,
+  borderBottom: '1px solid rgba(97, 166, 232, 0.22)',
   display: 'flex',
   flexDirection: 'column',
   minHeight: 0,
@@ -40,24 +41,37 @@ globalStyle('.accordion-item[data-expanded]', {
 });
 
 globalStyle('.accordion-trigger', {
+  boxSizing: 'border-box',
   width: '100%',
-  padding: vars.spacing.md,
+  flex: 1,
+  padding: `${vars.spacing.sm} ${vars.spacing.md}`,
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  background: 'none',
+  gap: vars.spacing.sm,
   border: 'none',
-  color: vars.colors.primary,
+  background: 'transparent',
+  color: vars.colors.text,
+  fontFamily: vars.typography.fontFamily,
+  fontSize: vars.typography.fontSize,
+  fontWeight: 600,
+  letterSpacing: '0.03em',
   cursor: 'pointer',
-  transition: 'background-color 0.2s ease',
+  outline: 'none',
+  transition: `background ${vars.motion.fast} ${vars.motion.easeOut}`,
 });
 
 globalStyle('.accordion-trigger:hover', {
-  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+  background: 'rgba(97, 166, 232, 0.08)',
 });
 
 globalStyle('.accordion-trigger[data-expanded]', {
-  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+  background: 'rgba(97, 166, 232, 0.12)',
+  color: '#F4FAFF',
+});
+
+globalStyle('.accordion-trigger:focus-visible', {
+  boxShadow: vars.effects.focusRing,
 });
 
 globalStyle('.accordion-content', {
@@ -69,15 +83,15 @@ globalStyle('.accordion-content', {
 
 globalStyle('.accordion-trigger::after', {
   content: "'\\25BC'",
-  right: vars.spacing.lg,
   position: 'relative',
-  color: vars.colors.primary,
-  fontSize: '12px',
-  transition: 'transform 0.3s ease',
+  color: vars.colors.textSecondary,
+  fontSize: '10px',
+  transition: `transform ${vars.motion.normal} ${vars.motion.easeOut}`,
 });
 
 globalStyle('.accordion-trigger[data-expanded]::after', {
   transform: 'rotate(180deg)',
+  color: '#F4FAFF',
 });
 
 globalStyle('.panel-content', {
@@ -85,5 +99,5 @@ globalStyle('.panel-content', {
   flexDirection: 'column',
   gap: vars.spacing.md,
   padding: vars.spacing.md,
-  color: vars.colors.primary,
+  color: vars.colors.text,
 });

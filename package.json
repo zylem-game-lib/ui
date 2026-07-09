@@ -1,6 +1,6 @@
 {
   "name": "@zylem/ui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Design tokens, global styles, and Solid components for Zylem, built with vanilla-extract",
   "license": "MIT",
   "repository": {
@@ -41,6 +41,7 @@
     "src"
   ],
   "scripts": {
+    "zylem": "node --experimental-strip-types ./scripts/zylem-runner.ts",
     "build": "tsup",
     "prepublishOnly": "NODE_ENV=production tsup",
     "dev": "tsup --watch",
@@ -57,6 +58,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3.7",
+    "@clack/prompts": "^1.6.0",
     "@vanilla-extract/esbuild-plugin": "^2.3.22",
     "@vanilla-extract/vite-plugin": "^5.2.2",
     "solid-js": "^1.9.9",

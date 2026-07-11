@@ -3,15 +3,24 @@
  * sections (GameSection.tsx, StageSection.tsx, EntitiesSection.tsx).
  */
 import Box from 'lucide-solid/icons/box';
+import CloudFog from 'lucide-solid/icons/cloud-fog';
+import Cone from 'lucide-solid/icons/cone';
+import Cylinder from 'lucide-solid/icons/cylinder';
 import GhostIcon from 'lucide-solid/icons/ghost';
 import Globe from 'lucide-solid/icons/globe';
 import Grid3x3 from 'lucide-solid/icons/grid-3x3';
 import PersonStanding from 'lucide-solid/icons/person-standing';
+import Pill from 'lucide-solid/icons/pill';
+import Pyramid from 'lucide-solid/icons/pyramid';
+import Sparkles from 'lucide-solid/icons/sparkles';
+import Spline from 'lucide-solid/icons/spline';
 import Square from 'lucide-solid/icons/square';
 import SquareDashed from 'lucide-solid/icons/square-dashed';
+import Sun from 'lucide-solid/icons/sun';
 import Torus from 'lucide-solid/icons/torus';
 import Type from 'lucide-solid/icons/type';
 import { For, type Component } from 'solid-js';
+import { Tooltip } from '../../../src/components';
 
 function PropertyRow(props: { label: string; value: string }) {
   return (
@@ -62,7 +71,11 @@ export function StagePanelContent() {
   );
 }
 
-/** Same type-to-icon mapping as the editor's EntityIcon. */
+/**
+ * Type-to-icon mapping aligned with the engine `EntityTypeMap`
+ * (Sprite, Sphere, Rect, Text, Box, Plane, Zone, Actor, Disk, Cone, Pyramid,
+ * Cylinder, Pill, ParticleSystem, Light, Fog, Line).
+ */
 export const ENTITY_ICONS: Array<{ type: string; icon: Component<{ class?: string }> }> = [
   { type: 'Box', icon: Box },
   { type: 'Sphere', icon: Globe },
@@ -73,6 +86,14 @@ export const ENTITY_ICONS: Array<{ type: string; icon: Component<{ class?: strin
   { type: 'Rect', icon: Square },
   { type: 'Plane', icon: Grid3x3 },
   { type: 'Zone', icon: SquareDashed },
+  { type: 'Cone', icon: Cone },
+  { type: 'Pyramid', icon: Pyramid },
+  { type: 'Cylinder', icon: Cylinder },
+  { type: 'Pill', icon: Pill },
+  { type: 'ParticleSystem', icon: Sparkles },
+  { type: 'Light', icon: Sun },
+  { type: 'Fog', icon: CloudFog },
+  { type: 'Line', icon: Spline },
 ];
 
 export function EntitiesPanelContent() {
@@ -83,9 +104,15 @@ export function EntitiesPanelContent() {
         <div class="entity-grid">
           <For each={ENTITY_ICONS}>
             {(entity) => (
-              <button type="button" class="entity-grid-item" title={entity.type}>
-                <entity.icon class="entity-icon" />
-              </button>
+              <Tooltip content={entity.type} placement="top" openDelay={200}>
+                <button
+                  type="button"
+                  class="entity-grid-item"
+                  aria-label={entity.type}
+                >
+                  <entity.icon class="entity-icon" />
+                </button>
+              </Tooltip>
             )}
           </For>
         </div>

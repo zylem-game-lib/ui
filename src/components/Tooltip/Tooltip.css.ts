@@ -7,7 +7,8 @@ const enter = keyframes({
 });
 
 globalStyle('.zylem-tooltip', {
-  zIndex: 10000,
+  position: 'relative',
+  zIndex: 10050,
   maxWidth: '260px',
   padding: `${vars.spacing.xs} ${vars.spacing.sm}`,
   borderRadius: vars.radii.control,
@@ -19,6 +20,8 @@ globalStyle('.zylem-tooltip', {
   color: vars.colors.text,
   fontFamily: vars.typography.fontFamily,
   fontSize: `calc(${vars.typography.fontSize} - 1px)`,
+  fontWeight: 600,
+  letterSpacing: '0.02em',
   pointerEvents: 'none',
   '@supports': {
     'not (backdrop-filter: blur(1px))': {

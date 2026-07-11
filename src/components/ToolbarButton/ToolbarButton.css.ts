@@ -38,6 +38,9 @@ globalStyle('.zylem-toolbar-btn:hover', {
 globalStyle('.zylem-toolbar-btn:active', {
   transform: 'translateY(1px)',
   filter: 'brightness(0.92)',
+  // CodePen-inspired press: compressed drop shadow + bright bottom rim flash.
+  boxShadow:
+    'inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(255,255,255,0.55), inset 0 2px 3px rgba(0,0,0,0.28), 0 1px 3px rgba(0,0,0,0.28)',
 });
 
 globalStyle('.zylem-toolbar-btn:focus-visible', {

@@ -56,8 +56,10 @@ globalStyle('.zylem-console-actions', {
   zIndex: 1,
 });
 
-// Legacy hook used by the editor's clear button.
-globalStyle('.zylem-console-clear', {
+// Legacy hook used by the editor's clear button. Keep specificity above the
+// HyperGlass sheen host rule (`.zylem-hyperglass-root .zylem-button`) so the
+// overlay stays absolutely positioned in the console wrapper.
+globalStyle('.zylem-console-clear.zylem-button, .zylem-console-clear', {
   position: 'absolute',
   top: vars.spacing.sm,
   right: vars.spacing.sm,

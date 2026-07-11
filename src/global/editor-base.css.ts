@@ -155,42 +155,64 @@ globalStyle('.zylem-section-title', {
   textTransform: 'uppercase',
 });
 
-/** Entity grid: index-card jewel tiles. */
+/** Entity grid: glossy glass icon tiles. Type names use portaled `.zylem-tooltip`. */
 globalStyle('.entity-grid', {
   display: 'grid',
   gridTemplateColumns: 'repeat(auto-fill, minmax(40px, 1fr))',
   gap: vars.spacing.xs,
 });
 
-globalStyle('.entity-grid-item', {
+/** Tooltip/trigger wrappers must fill the cell so the icon button keeps a square. */
+globalStyle('.entity-grid > *', {
+  display: 'flex',
+  minWidth: 0,
   aspectRatio: '1',
+});
+
+globalStyle('.entity-grid-item', {
+  position: 'relative',
+  flex: 1,
+  width: '100%',
+  height: '100%',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  background: vars.material.glassPanelDark,
-  border: '1px solid rgba(97, 166, 232, 0.32)',
+  background: vars.material.buttonGlass,
+  border: '1px solid rgba(150, 210, 255, 0.5)',
   borderRadius: vars.radii.control,
-  boxShadow:
-    'inset 0 1px 0 rgba(255,255,255,0.1), 0 2px 6px rgba(0,0,0,0.3)',
+  boxShadow: vars.effects.shadowButton,
   cursor: 'pointer',
-  transition: `background ${vars.motion.fast} ${vars.motion.easeOut}, border-color ${vars.motion.fast} ${vars.motion.easeOut}, transform ${vars.motion.fast} ${vars.motion.easeOut}, box-shadow ${vars.motion.fast} ${vars.motion.easeOut}`,
+  color: vars.colors.textSecondary,
+  transition: `background ${vars.motion.fast} ${vars.motion.easeOut}, border-color ${vars.motion.fast} ${vars.motion.easeOut}, transform ${vars.motion.fast} ${vars.motion.easeOut}, box-shadow ${vars.motion.fast} ${vars.motion.easeOut}, filter ${vars.motion.fast} ${vars.motion.easeOut}`,
 });
 
 globalStyle('.entity-grid-item:hover', {
   background: vars.material.buttonGlassHover,
-  borderColor: 'rgba(150, 210, 255, 0.6)',
-  boxShadow: `inset 0 1px 0 rgba(255,255,255,0.3), ${vars.effects.glowPrimary}`,
+  borderColor: 'rgba(150, 210, 255, 0.75)',
+  boxShadow: `${vars.effects.shadowButton}, ${vars.effects.glowPrimary}`,
   transform: 'translateY(-1px)',
+  color: '#F4FAFF',
 });
 
 globalStyle('.entity-grid-item:active', {
   transform: 'translateY(1px)',
+  filter: 'brightness(0.92)',
+  boxShadow:
+    'inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(255,255,255,0.55), inset 0 2px 3px rgba(0,0,0,0.28), 0 1px 3px rgba(0,0,0,0.28)',
+});
+
+globalStyle('.entity-grid-item:focus-visible', {
+  outline: 'none',
+  boxShadow: `${vars.effects.shadowButton}, ${vars.effects.focusRing}`,
 });
 
 globalStyle('.entity-icon', {
   width: '20px',
   height: '20px',
-  color: vars.colors.textSecondary,
+  color: 'currentColor',
+  position: 'relative',
+  zIndex: 1,
+  filter: 'drop-shadow(0 1px 1px rgba(0,0,0,0.55))',
 });
 
 globalStyle('.entity-grid-item:hover .entity-icon', {

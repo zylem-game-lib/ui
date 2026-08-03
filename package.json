@@ -1,6 +1,6 @@
 {
   "name": "@zylem/ui",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Design tokens, global styles, and Solid components for Zylem, built with vanilla-extract",
   "license": "MIT",
   "repository": {
@@ -41,7 +41,6 @@
     "src"
   ],
   "scripts": {
-    "zylem": "node --experimental-strip-types ./scripts/zylem-runner.ts",
     "build": "tsup",
     "prepublishOnly": "NODE_ENV=production tsup",
     "dev": "tsup --watch",

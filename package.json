@@ -1,6 +1,6 @@
 {
   "name": "@zylem/ui",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Design tokens, global styles, and Solid components for Zylem, built with vanilla-extract",
   "license": "MIT",
   "repository": {
@@ -45,6 +45,8 @@
     "prepublishOnly": "NODE_ENV=production tsup",
     "dev": "tsup --watch",
     "showcase": "vite --host",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "lint": "biome check ."
   },
   "peerDependencies": {
@@ -58,13 +60,16 @@
   "devDependencies": {
     "@biomejs/biome": "^2.3.7",
     "@clack/prompts": "^1.6.0",
+    "@solidjs/testing-library": "^0.8.10",
     "@vanilla-extract/esbuild-plugin": "^2.3.22",
     "@vanilla-extract/vite-plugin": "^5.2.2",
+    "happy-dom": "^20.11.2",
     "solid-js": "^1.9.9",
     "tsup": "^8.5.1",
     "typescript": "6.0.3",
     "vite": "7.0.4",
-    "vite-plugin-solid": "^2.11.8"
+    "vite-plugin-solid": "^2.11.8",
+    "vitest": "^4.1.10"
   },
   "dependencies": {
     "@kobalte/core": "^0.13.11",
@@ -72,5 +77,10 @@
     "@vanilla-extract/recipes": "^0.5.7",
     "@vanilla-extract/sprinkles": "^1.6.5",
     "lucide-solid": "^0.511.0"
-  }
+  },
+  "engines": {
+    "node": ">=22.12.0",
+    "pnpm": ">=10.32.1"
+  },
+  "packageManager": "pnpm@10.33.0"
 }

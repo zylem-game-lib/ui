@@ -14,7 +14,7 @@ const contentEnter = keyframes({
 globalStyle('.zylem-dialog-overlay', {
   position: 'fixed',
   inset: 0,
-  zIndex: 10000,
+  zIndex: vars.layers.modal,
   background: 'rgba(5, 10, 18, 0.6)',
   backdropFilter: 'blur(3px)',
   animation: `${overlayEnter} 0.15s ${vars.motion.easeOut}`,
@@ -23,7 +23,8 @@ globalStyle('.zylem-dialog-overlay', {
 globalStyle('.zylem-dialog-positioner', {
   position: 'fixed',
   inset: 0,
-  zIndex: 10001,
+  // One above the backdrop it shares a tier with.
+  zIndex: `calc(${vars.layers.modal} + 1)`,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',

@@ -7,7 +7,7 @@ const enter = keyframes({
 });
 
 globalStyle('.zylem-dropdown-content', {
-  zIndex: 10000,
+  zIndex: vars.layers.menu,
   minWidth: '180px',
   padding: vars.spacing.xs,
   borderRadius: vars.radii.control,

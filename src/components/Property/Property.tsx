@@ -25,17 +25,19 @@ export function PropertyList(props: PropertyListProps) {
 
 export interface PropertyRowProps {
   label: string;
+  // Optional props accept an explicit `undefined` so callers compiled with
+  // `exactOptionalPropertyTypes` can forward their own optional props directly.
   /** The value to display. Can be a string, number, or JSX element. */
-  value?: string | number | JSX.Element;
+  value?: string | number | JSX.Element | undefined;
   /** If true, treat string values as paths and truncate long ones. */
-  isPath?: boolean;
+  isPath?: boolean | undefined;
   /** Maximum path segments to show (default: 3). */
-  maxPathSegments?: number;
+  maxPathSegments?: number | undefined;
   /** Called with the full value when a truncated path is clicked. */
-  onPathClick?: (fullValue: string) => void;
-  valueClass?: string;
+  onPathClick?: ((fullValue: string) => void) | undefined;
+  valueClass?: string | undefined;
   /** Children can be used instead of value for complex content. */
-  children?: JSX.Element;
+  children?: JSX.Element | undefined;
 }
 
 function truncatePath(

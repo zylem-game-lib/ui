@@ -7,6 +7,7 @@
  */
 import './fonts.css';
 import './theme.css';
+import './layers/layer-tokens.css';
 import './global/logo.css';
 import './global/hyperglass-base.css';
 import './global/common.css';
@@ -44,5 +45,7 @@ import './components/Console/Console.css';
 import './components/Sidebar/Sidebar.css';
 import './components/Card/Card.css';
 import './components/SearchInput/SearchInput.css';
+import './components/MenuButton/MenuButton.css';
+import './components/ItemPicker/ItemPicker.css';
 import './components/EmptyState/EmptyState.css';
 import './components/Kbd/Kbd.css';

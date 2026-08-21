@@ -1,5 +1,6 @@
 import { Button as KButton, Tooltip as KTooltip } from '@kobalte/core';
-import type { JSX } from 'solid-js';
+import { Show, type JSX } from 'solid-js';
+import { useLayer } from '../../layers';
 
 export interface ToolbarButtonProps {
   label: string;
@@ -13,11 +14,16 @@ export interface ToolbarButtonProps {
 /**
  * HyperGlass toolbar button: square glass icon button with a tooltip.
  * Selected state renders as a live-green jewel.
+ *
+ * The tooltip portals into the layer container for its own tree, so it stays
+ * styled when the toolbar lives inside a web component's shadow root.
  */
 export function ToolbarButton(props: ToolbarButtonProps) {
+  const layer = useLayer('tooltip');
+
   return (
     <KTooltip.Root openDelay={400}>
-      <KTooltip.Trigger as="span">
+      <KTooltip.Trigger as="span" ref={layer.anchorRef}>
         <KButton.Root
           aria-label={props.label}
           onClick={props.onClick}
@@ -32,11 +38,15 @@ export function ToolbarButton(props: ToolbarButtonProps) {
           {props.children}
         </KButton.Root>
       </KTooltip.Trigger>
-      <KTooltip.Portal>
-        <KTooltip.Content class="zylem-tooltip">
-          {props.label}
-        </KTooltip.Content>
-      </KTooltip.Portal>
+      <Show when={layer.mount()} keyed>
+        {(mount) => (
+          <KTooltip.Portal mount={mount}>
+            <KTooltip.Content class="zylem-tooltip">
+              {props.label}
+            </KTooltip.Content>
+          </KTooltip.Portal>
+        )}
+      </Show>
     </KTooltip.Root>
   );
 }

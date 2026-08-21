@@ -31,7 +31,7 @@ globalStyle('.zylem-select-trigger[data-expanded] .zylem-select-icon', {
 });
 
 globalStyle('.zylem-select-content', {
-  zIndex: 10000,
+  zIndex: vars.layers.menu,
   borderRadius: vars.radii.control,
   border: '1px solid rgba(97, 166, 232, 0.45)',
   background: vars.material.glassPanelDark,

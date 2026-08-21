@@ -74,7 +74,10 @@ globalStyle('.accordion-drag-ghost', {
   backdropFilter: `blur(${vars.effects.blurSm})`,
   boxShadow: `0 8px 24px rgba(0, 0, 0, 0.5), ${vars.effects.glowDanger}`,
   position: 'fixed',
-  zIndex: 9999,
+  // Top of the panel tier: the ghost follows the cursor over every panel,
+  // including the one it was torn from, but is still page furniture rather than
+  // an overlay, so it stays under modals and menus.
+  zIndex: `calc(${vars.layers.panel} + 900)`,
   pointerEvents: 'none',
 });
 

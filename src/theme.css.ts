@@ -2,6 +2,7 @@ import {
 	createGlobalTheme,
 	createGlobalThemeContract,
 } from '@vanilla-extract/css';
+import { layerTierValues, layerTierVarNames } from './layers/tiers';
 
 /**
  * Concrete design-token values for the Zylem UI.
@@ -111,6 +112,11 @@ const tokens = {
 		normal: '160ms',
 		easeOut: 'cubic-bezier(.2,.8,.2,1)',
 	},
+	/**
+	 * Stacking tiers. Declared in `layers/tiers.ts` because the runtime side of
+	 * the layer system reads the same ladder without loading this file.
+	 */
+	layers: layerTierValues,
 } as const;
 
 /**
@@ -206,6 +212,7 @@ const varNames = {
 		normal: 'zylem-motion-normal',
 		easeOut: 'zylem-motion-ease-out',
 	},
+	layers: layerTierVarNames,
 } as const;
 
 /**

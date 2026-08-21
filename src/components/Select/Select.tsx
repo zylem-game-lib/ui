@@ -1,5 +1,6 @@
 import { Select as KSelect } from '@kobalte/core';
 import { Show } from 'solid-js';
+import { createDismissGuard, useLayer } from '../../layers';
 
 export interface SelectOption {
   value: string;
@@ -22,6 +23,8 @@ export interface SelectProps {
  * HyperGlass select: inset glass trigger opening a floating glass sheet.
  */
 export function Select(props: SelectProps) {
+  const layer = useLayer('menu');
+  const dismiss = createDismissGuard();
   const selected = () =>
     props.options.find((option) => option.value === props.value) ?? null;
 
@@ -50,6 +53,7 @@ export function Select(props: SelectProps) {
         <KSelect.Label class="zylem-field-label">{props.label}</KSelect.Label>
       </Show>
       <KSelect.Trigger
+        ref={layer.anchorRef}
         class="zylem-field zylem-select-trigger"
         aria-label={props.label}
       >
@@ -58,11 +62,19 @@ export function Select(props: SelectProps) {
         </KSelect.Value>
         <KSelect.Icon class="zylem-select-icon">▼</KSelect.Icon>
       </KSelect.Trigger>
-      <KSelect.Portal>
-        <KSelect.Content class="zylem-select-content">
-          <KSelect.Listbox class="zylem-select-listbox zylem-scroll" />
-        </KSelect.Content>
-      </KSelect.Portal>
+      <Show when={layer.mount()} keyed>
+        {(mount) => (
+          <KSelect.Portal mount={mount}>
+            <KSelect.Content
+              ref={dismiss.ref}
+              class="zylem-select-content"
+              onInteractOutside={dismiss.onInteractOutside}
+            >
+              <KSelect.Listbox class="zylem-select-listbox zylem-scroll" />
+            </KSelect.Content>
+          </KSelect.Portal>
+        )}
+      </Show>
     </KSelect.Root>
   );
 }

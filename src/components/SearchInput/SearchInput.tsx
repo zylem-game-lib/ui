@@ -8,6 +8,8 @@ export interface SearchInputProps {
   class?: string;
   'aria-label'?: string;
   onKeyDown?: JSX.EventHandlerUnion<HTMLInputElement, KeyboardEvent>;
+  /** Handle on the input itself, for callers that need to focus it. */
+  ref?: (element: HTMLInputElement) => void;
 }
 
 /**
@@ -19,6 +21,7 @@ export function SearchInput(props: SearchInputProps) {
       <Search class="zylem-search-icon" />
       <input
         type="search"
+        ref={props.ref}
         class="zylem-field zylem-search-input"
         value={props.value ?? ''}
         placeholder={props.placeholder ?? 'Search...'}

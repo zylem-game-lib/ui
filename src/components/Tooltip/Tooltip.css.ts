@@ -8,7 +8,7 @@ const enter = keyframes({
 
 globalStyle('.zylem-tooltip', {
   position: 'relative',
-  zIndex: 10050,
+  zIndex: vars.layers.tooltip,
   maxWidth: '260px',
   padding: `${vars.spacing.xs} ${vars.spacing.sm}`,
   borderRadius: vars.radii.control,

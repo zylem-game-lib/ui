@@ -4,14 +4,16 @@ import PanelBottomOpen from 'lucide-solid/icons/panel-bottom-open';
 import X from 'lucide-solid/icons/x';
 
 export interface WindowControlsProps {
-  onClose?: () => void;
-  onCollapse?: () => void;
+  // Optional props accept an explicit `undefined` so callers compiled with
+  // `exactOptionalPropertyTypes` can forward their own optional props directly.
+  onClose?: (() => void) | undefined;
+  onCollapse?: (() => void) | undefined;
   /** Show the "expand" collapse icon when the panel is collapsed. */
-  collapsed?: boolean;
+  collapsed?: boolean | undefined;
   /** Accessible label/title for the close button (default "Close panel"). */
-  closeLabel?: string;
+  closeLabel?: string | undefined;
   /** Forwarded as data-testid on the close button. */
-  closeTestId?: string;
+  closeTestId?: string | undefined;
 }
 
 /**

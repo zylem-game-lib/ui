@@ -5,6 +5,24 @@
  * vanilla-extract recipes/styles driven by the Zylem token system.
  */
 
+// Layering. Overlays here use it by default; consumers need it only to scope a
+// subtree (a modal) or to layer their own chrome on the same ladder.
+export {
+  LayerProvider,
+  LayerScope,
+  useLayer,
+  resolveLayerRoot,
+  ensureLayerContainer,
+  createDismissGuard,
+  LAYER_PORTAL_CLASS,
+  type DismissalEvent,
+  type DismissGuard,
+  type LayerProviderProps,
+  type LayerScopeProps,
+  type LayerTier,
+  type ResolvedLayer,
+} from '../layers';
+
 // Primitives
 export { Button, type ButtonProps, type ButtonVariant, type ButtonSize } from './Button/Button';
 export { ToolbarButton, type ToolbarButtonProps } from './ToolbarButton/ToolbarButton';
@@ -64,6 +82,15 @@ export {
   type SidebarItemProps,
 } from './Sidebar/Sidebar';
 export { Card, type CardProps } from './Card/Card';
+export { MenuButton, type MenuButtonProps } from './MenuButton/MenuButton';
+export { ItemPicker, type ItemPickerProps } from './ItemPicker/ItemPicker';
+export {
+  filterItems,
+  groupItems,
+  UNGROUPED_LABEL,
+  type PickerItem,
+  type PickerGroup,
+} from './ItemPicker/filter-items';
 export { SearchInput, type SearchInputProps } from './SearchInput/SearchInput';
 export { EmptyState, type EmptyStateProps } from './EmptyState/EmptyState';
 export { ScrollArea, type ScrollAreaProps } from './ScrollArea/ScrollArea';

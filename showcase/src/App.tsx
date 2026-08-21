@@ -9,6 +9,7 @@ import { Entities } from './sections/Entities';
 import { FloatingPanel } from './sections/FloatingPanel';
 import { HyperGlass } from './sections/HyperGlass';
 import { Inputs } from './sections/Inputs';
+import { Layering } from './sections/Layering';
 import { Menu } from './sections/Menu';
 import { Overlays } from './sections/Overlays';
 import { PanelsCards } from './sections/PanelsCards';
@@ -28,6 +29,7 @@ const navLinks = [
   { href: '#toggles', label: 'Toggles & Sliders' },
   { href: '#tabs-badges', label: 'Tabs & Badges' },
   { href: '#overlays', label: 'Overlays' },
+  { href: '#layering', label: 'Layering & Portals' },
   { href: '#panels-cards', label: 'Panels & Cards' },
   { href: '#toolbar', label: 'Toolbar' },
   { href: '#floating-panel', label: 'Floating Panel' },
@@ -58,6 +60,7 @@ export function App() {
         <Toggles />
         <TabsBadges />
         <Overlays />
+        <Layering />
         <PanelsCards />
         <Toolbar />
         <FloatingPanel />

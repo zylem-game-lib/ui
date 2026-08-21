@@ -94,6 +94,30 @@ body {
   margin-top: 4px;
 }
 
+.showcase-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.showcase-table th {
+  text-align: left;
+  padding: 6px 10px;
+  color: var(--zylem-color-text-secondary);
+  border-bottom: 1px solid var(--zylem-color-border);
+  font-weight: 600;
+}
+
+.showcase-table td {
+  padding: 6px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.showcase-table code {
+  color: var(--zylem-color-primary);
+  font-family: 'Courier New', monospace;
+}
+
 .color-token {
   min-width: 280px;
   height: 48px;

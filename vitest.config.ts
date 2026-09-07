@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite';
 import solid from 'vite-plugin-solid';
+import { defineConfig } from 'vitest/config';
 
 /**
  * Tests for the parts of the package that carry logic rather than looks: the

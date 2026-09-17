@@ -34,11 +34,20 @@
       "types": "./src/components/index.ts",
       "import": "./src/components/index.ts"
     },
+    "./build-label": {
+      "types": "./src/components/BuildLabel/mount-build-label.ts",
+      "import": "./src/components/BuildLabel/mount-build-label.ts"
+    },
+    "./vite": {
+      "types": "./vite/index.ts",
+      "import": "./vite/index.ts"
+    },
     "./styles.css": "./dist/styles.css"
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "vite"
   ],
   "scripts": {
     "build": "tsup",

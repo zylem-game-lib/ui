@@ -95,3 +95,16 @@ export { SearchInput, type SearchInputProps } from './SearchInput/SearchInput';
 export { EmptyState, type EmptyStateProps } from './EmptyState/EmptyState';
 export { ScrollArea, type ScrollAreaProps } from './ScrollArea/ScrollArea';
 export { Kbd, type KbdProps } from './Kbd/Kbd';
+export {
+  BuildLabel,
+  type BuildLabelProps,
+} from './BuildLabel/BuildLabel';
+export {
+  mountBuildLabel,
+  BUILD_LABEL_ID,
+  type BuildLabelModel,
+} from './BuildLabel/mount-build-label';
+export {
+  formatBuildLabel,
+  resolveBuildVersion,
+} from './BuildLabel/resolve-build-version';

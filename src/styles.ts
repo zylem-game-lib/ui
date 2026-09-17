@@ -49,3 +49,4 @@ import './components/MenuButton/MenuButton.css';
 import './components/ItemPicker/ItemPicker.css';
 import './components/EmptyState/EmptyState.css';
 import './components/Kbd/Kbd.css';
+import './components/BuildLabel/BuildLabel.css';

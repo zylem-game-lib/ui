@@ -1,4 +1,6 @@
 import { For } from 'solid-js';
+import { BuildLabel } from '../../src/components';
+import { ZYLEM_PACKAGE_VERSIONS } from 'virtual:zylem-versions';
 import { Accordion } from './sections/Accordion';
 import { Buttons } from './sections/Buttons';
 import { Checkbox } from './sections/Checkbox';
@@ -48,6 +50,7 @@ const navLinks = [
 export function App() {
   return (
     <div class="zylem-hyperglass-root">
+      <BuildLabel packages={ZYLEM_PACKAGE_VERSIONS} />
       <div class="showcase">
         <h1>Zylem UI Showcase — HyperGlass</h1>
         <nav class="showcase-nav">

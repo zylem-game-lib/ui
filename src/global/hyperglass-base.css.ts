@@ -46,12 +46,15 @@ globalStyle(
 // containing block for the sheen — don't override them to `relative` or they
 // stretch in flex parents. `.entity-grid-item` already sets `relative` in
 // editor-base.
-globalStyle('.zylem-button:not(.zylem-console-clear), .zylem-toolbar-btn', {
-  position: 'relative',
-});
+globalStyle(
+  '.zylem-button:not(.zylem-console-clear), .zylem-toolbar-btn, .zylem-toolbox-btn',
+  {
+    position: 'relative',
+  },
+);
 
 globalStyle(
-  '.zylem-button::before, .zylem-toolbar-btn::before, .entity-grid-item::before',
+  '.zylem-button::before, .zylem-toolbar-btn::before, .zylem-toolbox-btn::before, .entity-grid-item::before',
   {
     content: '""',
     position: 'absolute',
@@ -81,7 +84,7 @@ globalStyle(
 );
 
 globalStyle(
-  '.zylem-button:hover:not([disabled])::before, .zylem-toolbar-btn:hover:not([disabled])::before, .entity-grid-item:hover::before',
+  '.zylem-button:hover:not([disabled])::before, .zylem-toolbar-btn:hover:not([disabled])::before, .zylem-toolbox-btn:hover:not([disabled])::before, .entity-grid-item:hover::before',
   {
     backgroundPosition: '25% 50%',
     opacity: 0.5,
@@ -94,7 +97,7 @@ globalStyle(
 );
 
 globalStyle(
-  '.zylem-button:active:not([disabled])::before, .zylem-toolbar-btn:active:not([disabled])::before, .entity-grid-item:active::before',
+  '.zylem-button:active:not([disabled])::before, .zylem-toolbar-btn:active:not([disabled])::before, .zylem-toolbox-btn:active:not([disabled])::before, .entity-grid-item:active::before',
   {
     backgroundPosition: '50% 15%',
     opacity: 0.58,

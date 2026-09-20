@@ -140,3 +140,75 @@ body {
   padding: 4px 8px;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
+
+/* Sprite editor / director / toolbox demos */
+.sprite-new-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--zylem-spacing-md);
+  width: 360px;
+}
+
+.sprite-new-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--zylem-spacing-sm);
+}
+
+.sprite-new-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--zylem-spacing-sm);
+}
+
+.sprite-canvas-stage {
+  display: inline-flex;
+  padding: var(--zylem-spacing-xl);
+  background: #0a1420;
+}
+
+.sprite-rail {
+  flex-wrap: wrap;
+  gap: var(--zylem-spacing-xl);
+}
+
+.sprite-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--zylem-spacing-md);
+  width: 420px;
+}
+
+.director-panel {
+  width: 520px;
+  padding: var(--zylem-spacing-sm);
+}
+
+.director-viewport {
+  height: 160px;
+  margin-bottom: var(--zylem-spacing-sm);
+  border-radius: var(--zylem-radius-control);
+  background:
+    radial-gradient(circle at 35% 45%, rgba(190, 120, 70, 0.55), transparent 28%),
+    radial-gradient(circle at 70% 55%, rgba(150, 90, 60, 0.5), transparent 22%),
+    #060b12;
+}
+
+.director-transport .zylem-playback {
+  width: 100%;
+}
+
+.director-track {
+  width: 520px;
+}
+
+.toolbox-rail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--zylem-spacing-lg);
+  width: 240px;
+}
+
+.toolbox-rail--wide {
+  width: 360px;
+}

@@ -7,6 +7,7 @@ import { Checkbox } from './sections/Checkbox';
 import { Colors } from './sections/Colors';
 import { Console } from './sections/Console';
 import { DetachedPanel } from './sections/DetachedPanel';
+import { Director } from './sections/Director';
 import { Entities } from './sections/Entities';
 import { FloatingPanel } from './sections/FloatingPanel';
 import { HyperGlass } from './sections/HyperGlass';
@@ -18,9 +19,11 @@ import { PanelsCards } from './sections/PanelsCards';
 import { PropertyList } from './sections/PropertyList';
 import { Sidebar } from './sections/Sidebar';
 import { SpacingSizing } from './sections/SpacingSizing';
+import { SpriteEditor } from './sections/SpriteEditor';
 import { TabsBadges } from './sections/TabsBadges';
 import { Toggles } from './sections/Toggles';
 import { Toolbar } from './sections/Toolbar';
+import { Toolbox } from './sections/Toolbox';
 import { Typography } from './sections/Typography';
 
 const navLinks = [
@@ -43,6 +46,9 @@ const navLinks = [
   { href: '#entities', label: 'Entities' },
   { href: '#checkbox', label: 'Checkbox' },
   { href: '#sidebar', label: 'Sidebar' },
+  { href: '#sprite-editor', label: 'Sprite Editor' },
+  { href: '#director', label: 'Director' },
+  { href: '#toolbox', label: 'Toolbox' },
   { href: '#typography', label: 'Typography' },
   { href: '#spacing-sizing', label: 'Spacing & Sizing' },
 ];
@@ -75,6 +81,9 @@ export function App() {
         <Entities />
         <Checkbox />
         <Sidebar />
+        <SpriteEditor />
+        <Director />
+        <Toolbox />
         <Typography />
         <SpacingSizing />
       </div>

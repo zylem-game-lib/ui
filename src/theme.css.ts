@@ -113,6 +113,16 @@ const tokens = {
 		easeOut: 'cubic-bezier(.2,.8,.2,1)',
 	},
 	/**
+	 * Art / pixel-editor surfaces. The checker pair reads as "transparent"
+	 * behind sprite pixels, so it sits lighter than the panel palette; canvas
+	 * renderers can draw the same values from `tokenValues.art`.
+	 */
+	art: {
+		checkerLight: '#4F5C72',
+		checkerDark: '#3C4759',
+		canvasBorder: 'rgba(150, 210, 255, 0.5)',
+	},
+	/**
 	 * Stacking tiers. Declared in `layers/tiers.ts` because the runtime side of
 	 * the layer system reads the same ladder without loading this file.
 	 */
@@ -211,6 +221,11 @@ const varNames = {
 		fast: 'zylem-motion-fast',
 		normal: 'zylem-motion-normal',
 		easeOut: 'zylem-motion-ease-out',
+	},
+	art: {
+		checkerLight: 'zylem-art-checker-light',
+		checkerDark: 'zylem-art-checker-dark',
+		canvasBorder: 'zylem-art-canvas-border',
 	},
 	layers: layerTierVarNames,
 } as const;

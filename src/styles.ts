@@ -50,3 +50,14 @@ import './components/ItemPicker/ItemPicker.css';
 import './components/EmptyState/EmptyState.css';
 import './components/Kbd/Kbd.css';
 import './components/BuildLabel/BuildLabel.css';
+
+// Art / Director surfaces (Creator sprite editor, director, toolbox).
+import './components/PixelGrid/PixelGrid.css';
+import './components/SpriteSizePicker/SpriteSizePicker.css';
+import './components/ToolGroup/ToolGroup.css';
+import './components/AddTile/AddTile.css';
+import './components/ColorPalette/ColorPalette.css';
+import './components/FrameStrip/FrameStrip.css';
+import './components/PlaybackControls/PlaybackControls.css';
+import './components/TimelineTrack/TimelineTrack.css';
+import './components/ToolboxButton/ToolboxButton.css';

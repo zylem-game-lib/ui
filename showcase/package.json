@@ -1,0 +1,10 @@
+{
+  "name": "@zylem/ui-showcase",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Solid showcase app for @zylem/ui; a zylem-workspace dev process beside the library watcher",
+  "scripts": {
+    "dev": "pnpm --dir .. run showcase"
+  }
+}

@@ -27,3 +27,12 @@ globalStyle('.zylem-empty-state-message', {
   lineHeight: 1.45,
   maxWidth: '360px',
 });
+
+// One or several actions side by side, wrapping on narrow hosts.
+globalStyle('.zylem-empty-state-actions', {
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'center',
+  gap: vars.spacing.sm,
+  marginTop: vars.spacing.xs,
+});

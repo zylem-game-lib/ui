@@ -1,3 +1,5 @@
+import ArrowLeftToLine from 'lucide-solid/icons/arrow-left-to-line';
+import ArrowRightToLine from 'lucide-solid/icons/arrow-right-to-line';
 import ChevronLeft from 'lucide-solid/icons/chevron-left';
 import ChevronRight from 'lucide-solid/icons/chevron-right';
 import Copy from 'lucide-solid/icons/copy';
@@ -67,18 +69,24 @@ export function FrameThumb(props: FrameThumbProps) {
 export interface FrameActionsProps {
   onDuplicate?: () => void;
   onDelete?: () => void;
+  /** Reorder: swap the selected frame with its left neighbour. Shown when set. */
+  onMoveLeft?: () => void;
+  /** Reorder: swap the selected frame with its right neighbour. Shown when set. */
+  onMoveRight?: () => void;
   onPrev?: () => void;
   onNext?: () => void;
   canDuplicate?: boolean;
   canDelete?: boolean;
+  canMoveLeft?: boolean;
+  canMoveRight?: boolean;
   canPrev?: boolean;
   canNext?: boolean;
   class?: string;
 }
 
 /**
- * Frame commands under the strip: Duplicate and Delete, then step arrows
- * whose chevrons are centered in square toolbar buttons.
+ * Frame commands under the strip: Duplicate and Delete, the optional reorder
+ * pair, then step arrows whose chevrons are centered in square toolbar buttons.
  */
 export function FrameActions(props: FrameActionsProps) {
   return (
@@ -96,6 +104,26 @@ export function FrameActions(props: FrameActionsProps) {
         <Trash2 class="zylem-icon" aria-hidden="true" />
         Delete
       </Button>
+      <Show when={props.onMoveLeft || props.onMoveRight}>
+        <span class="zylem-frame-actions-group" role="group" aria-label="Reorder frame">
+          <ToolbarButton
+            label="Move frame left"
+            disabled={props.canMoveLeft === false}
+            onClick={() => props.onMoveLeft?.()}
+            class="zylem-frame-actions-step"
+          >
+            <ArrowLeftToLine class="zylem-icon" />
+          </ToolbarButton>
+          <ToolbarButton
+            label="Move frame right"
+            disabled={props.canMoveRight === false}
+            onClick={() => props.onMoveRight?.()}
+            class="zylem-frame-actions-step"
+          >
+            <ArrowRightToLine class="zylem-icon" />
+          </ToolbarButton>
+        </span>
+      </Show>
       <span class="zylem-frame-actions-spacer" />
       <ToolbarButton
         label="Previous frame"

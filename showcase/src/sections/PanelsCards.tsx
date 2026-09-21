@@ -1,4 +1,5 @@
 import {
+  AddTile,
   Button,
   Card,
   EmptyState,
@@ -39,6 +40,18 @@ export function PanelsCards() {
         <Card title="PlayerShip" description="Entity card" interactive style={{ width: '160px' }} />
         <Card title="EnemyDrone" description="Selected" interactive selected style={{ width: '160px' }} />
         <Card title="Static card" description="Non-interactive" style={{ width: '160px' }} />
+      </div>
+      <h3>Card grid with a fill AddTile</h3>
+      <div
+        style={{
+          display: 'grid',
+          'grid-template-columns': 'repeat(3, 160px)',
+          gap: 'var(--zylem-spacing-md)',
+        }}
+      >
+        <AddTile variant="fill" label="New project" onClick={() => {}} />
+        <Card title="Asteroids" description="updated today" interactive />
+        <Card title="Invaders" description="updated yesterday" interactive />
       </div>
       <h3>EmptyState</h3>
       <div style={{ 'max-width': '420px' }}>

@@ -3,6 +3,12 @@ import type { JSX } from 'solid-js';
 
 export interface SidebarProps extends JSX.HTMLAttributes<HTMLElement> {
   children?: JSX.Element;
+  /**
+   * Drop the glass surface and trailing border so the list sits inside a
+   * panel that already draws them (an inspector rail, a dialog column).
+   * It also stops filling its container, so it stacks with siblings.
+   */
+  borderless?: boolean;
 }
 
 /**
@@ -10,10 +16,12 @@ export interface SidebarProps extends JSX.HTMLAttributes<HTMLElement> {
  * and `SidebarItem`.
  */
 export function Sidebar(props: SidebarProps) {
-  const [local, rest] = splitProps(props, ['children', 'class']);
+  const [local, rest] = splitProps(props, ['children', 'class', 'borderless']);
   return (
     <aside
-      class={local.class ? `sidebar zylem-scroll ${local.class}` : 'sidebar zylem-scroll'}
+      class={['sidebar', 'zylem-scroll', local.borderless ? 'sidebar--borderless' : '', local.class ?? '']
+        .filter(Boolean)
+        .join(' ')}
       {...rest}
     >
       {local.children}

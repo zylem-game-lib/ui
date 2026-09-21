@@ -23,6 +23,28 @@ export function Sidebar() {
           </UISidebar.Section>
         </UISidebar>
       </div>
+
+      <h3>borderless — inside a panel that already draws the glass</h3>
+      <div
+        style={{
+          width: '250px',
+          padding: '8px',
+          border: '1px solid rgba(97, 166, 232, 0.38)',
+          'border-radius': '10px',
+        }}
+      >
+        <UISidebar borderless aria-label="Embedded navigation">
+          <UISidebar.Section title="Files">
+            <For each={['src/game.ts', 'README.md']}>
+              {(item) => (
+                <UISidebar.Item active={active() === item} onClick={() => setActive(item)}>
+                  {item}
+                </UISidebar.Item>
+              )}
+            </For>
+          </UISidebar.Section>
+        </UISidebar>
+      </div>
     </div>
   );
 }

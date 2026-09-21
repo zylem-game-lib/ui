@@ -19,6 +19,14 @@ globalStyle('.sidebar', {
   },
 });
 
+globalStyle('.sidebar--borderless', {
+  height: 'auto',
+  overflow: 'visible',
+  background: 'none',
+  borderRight: 'none',
+  backdropFilter: 'none',
+});
+
 globalStyle('.sidebar-section', {
   display: 'flex',
   flexDirection: 'column',

@@ -174,7 +174,13 @@ export function HyperGlass() {
                     gap: 'var(--zylem-spacing-sm)',
                   }}
                 >
-                  <Card title="PlayerShip" interactive selected />
+                  <Card
+                    title="PlayerShip"
+                    description="Player-controlled ship"
+                    media={<div style={{ width: '100%', height: '64px', background: 'linear-gradient(135deg, #1e5e94, #61a6e8)' }} />}
+                    interactive
+                    selected
+                  />
                   <Card title="EnemyDrone" interactive />
                   <Card title="Asteroid" interactive />
                   <Card title="PowerUp" interactive />

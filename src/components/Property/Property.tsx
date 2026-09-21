@@ -4,6 +4,8 @@ import type { JSX } from 'solid-js';
 export interface PropertyListProps {
   children: JSX.Element;
   class?: string;
+  /** Width of the label column (default `112px`); narrow it for slim inspectors. */
+  labelWidth?: string;
 }
 
 /**
@@ -17,6 +19,7 @@ export function PropertyList(props: PropertyListProps) {
           ? `zylem-property-list ${props.class}`
           : 'zylem-property-list'
       }
+      style={props.labelWidth ? { '--zylem-property-label-width': props.labelWidth } : undefined}
     >
       {props.children}
     </div>

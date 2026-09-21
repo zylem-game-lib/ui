@@ -5,6 +5,11 @@ export interface SliderProps {
   label?: string;
   value?: number;
   onChange?: (value: number) => void;
+  /**
+   * Fires once when a drag or key press finishes, with the final value. Lets
+   * an editor record one undo step per gesture while `onChange` previews.
+   */
+  onCommit?: (value: number) => void;
   minValue?: number;
   maxValue?: number;
   step?: number;
@@ -23,6 +28,7 @@ export function Slider(props: SliderProps) {
       class={props.class ? `zylem-slider-root ${props.class}` : 'zylem-slider-root'}
       value={props.value !== undefined ? [props.value] : undefined}
       onChange={(values) => props.onChange?.(values[0])}
+      onChangeEnd={(values) => props.onCommit?.(values[0])}
       minValue={props.minValue}
       maxValue={props.maxValue}
       step={props.step}

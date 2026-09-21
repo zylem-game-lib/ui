@@ -61,6 +61,28 @@ globalStyle('.zylem-dropdown-item--danger[data-highlighted]', {
   color: '#FFD9D3',
 });
 
+globalStyle('.zylem-dropdown-label', {
+  flex: '1 1 auto',
+  minWidth: 0,
+});
+
+// Check column, reserved on every row of a menu that has a checkable item.
+globalStyle('.zylem-dropdown-check', {
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flex: 'none',
+  width: '14px',
+  height: '14px',
+  marginRight: `calc(${vars.spacing.xs} * -1)`,
+});
+
+globalStyle('.zylem-dropdown-check svg', {
+  width: '13px',
+  height: '13px',
+  stroke: 'currentColor',
+});
+
 globalStyle('.zylem-dropdown-shortcut', {
   fontSize: `calc(${vars.typography.fontSize} - 3px)`,
   color: vars.colors.textSecondary,

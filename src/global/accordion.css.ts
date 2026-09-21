@@ -81,6 +81,29 @@ globalStyle('.accordion-content', {
   transition: 'height 0.3s ease',
 });
 
+/**
+ * Stack layout: natural-height sections, no per-section scrolling. The
+ * accordion grows with its content and leaves scrolling to the parent.
+ */
+globalStyle('.zylem-accordion--stack', {
+  height: 'auto',
+  flex: 'none',
+});
+
+globalStyle('.zylem-accordion--stack .accordion-item[data-expanded]', {
+  flex: 'none',
+});
+
+// The parent scrolls, so headers must not pin over the sections above them.
+globalStyle('.zylem-accordion--stack .accordion-header', {
+  position: 'static',
+});
+
+globalStyle('.zylem-accordion--stack .accordion-content', {
+  flex: 'none',
+  overflow: 'visible',
+});
+
 globalStyle('.accordion-trigger::after', {
   content: "'\\25BC'",
   position: 'relative',

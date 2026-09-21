@@ -110,6 +110,15 @@ export function SpriteEditor() {
     setFrames(list);
     setCurrent(Math.min(current(), list.length - 1));
   };
+  const moveFrame = (delta: -1 | 1) => {
+    const from = current();
+    const to = from + delta;
+    if (to < 0 || to >= frames().length) return;
+    const list = [...frames()];
+    [list[from], list[to]] = [list[to]!, list[from]!];
+    setFrames(list);
+    setCurrent(to);
+  };
 
   return (
     <div class="section" id="sprite-editor">
@@ -217,6 +226,10 @@ export function SpriteEditor() {
             onDuplicate={duplicateFrame}
             onDelete={deleteFrame}
             canDelete={frames().length > 1}
+            onMoveLeft={() => moveFrame(-1)}
+            onMoveRight={() => moveFrame(1)}
+            canMoveLeft={current() > 0}
+            canMoveRight={current() < frames().length - 1}
             onPrev={() => setCurrent(Math.max(0, current() - 1))}
             onNext={() => setCurrent(Math.min(frames().length - 1, current() + 1))}
             canPrev={current() > 0}

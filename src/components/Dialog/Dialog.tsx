@@ -5,13 +5,29 @@ import { createDismissGuard, LayerScope, useLayer } from '../../layers';
 import { Button } from '../Button/Button';
 import { WindowControls } from '../WindowControls/WindowControls';
 
+/**
+ * Card width. `md` is the default 440px card, `lg` a 760px card for forms
+ * with two columns, and `fullscreen` fills the viewport (minus a margin) with
+ * the body taking the remaining height — the shell for browser-style pickers.
+ */
+export type DialogSize = 'md' | 'lg' | 'fullscreen';
+
 export interface DialogProps {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
   title?: JSX.Element;
+  /** Secondary line under the title. */
+  subtitle?: JSX.Element;
+  /** Content between the titles and the close control, e.g. a search field. */
+  headerExtra?: JSX.Element;
+  size?: DialogSize;
   children: JSX.Element;
   /** Optional footer content (e.g. action buttons). */
   footer?: JSX.Element;
+  /** Extra class on the card. */
+  class?: string;
+  /** Extra class on the body, e.g. to hand scrolling to the content's columns. */
+  bodyClass?: string;
 }
 
 /**
@@ -43,19 +59,31 @@ export function Dialog(props: DialogProps) {
             <div class="zylem-dialog-positioner">
               <KDialog.Content
                 ref={dismiss.ref}
-                class="zylem-dialog-content"
+                class={props.class ? `zylem-dialog-content ${props.class}` : 'zylem-dialog-content'}
+                data-size={props.size}
                 onInteractOutside={dismiss.onInteractOutside}
               >
                 <div class="zylem-dialog-header">
-                  <Show when={props.title}>
-                    <KDialog.Title class="zylem-dialog-title">
-                      {props.title}
-                    </KDialog.Title>
+                  <Show when={props.title || props.subtitle}>
+                    <div class="zylem-dialog-titles">
+                      <Show when={props.title}>
+                        <KDialog.Title class="zylem-dialog-title">{props.title}</KDialog.Title>
+                      </Show>
+                      <Show when={props.subtitle}>
+                        <p class="zylem-dialog-subtitle">{props.subtitle}</p>
+                      </Show>
+                    </div>
+                  </Show>
+                  <Show when={props.headerExtra}>
+                    <div class="zylem-dialog-header-extra">{props.headerExtra}</div>
                   </Show>
                   <WindowControls onClose={() => props.onOpenChange?.(false)} />
                 </div>
-                <KDialog.Description as="div" class="zylem-dialog-body">
-                  <LayerScope>{props.children}</LayerScope>
+                <KDialog.Description
+                  as="div"
+                  class={props.bodyClass ? `zylem-dialog-body ${props.bodyClass}` : 'zylem-dialog-body'}
+                >
+                  <LayerScope class="zylem-dialog-scope">{props.children}</LayerScope>
                 </KDialog.Description>
                 <Show when={props.footer}>
                   <div class="zylem-dialog-footer">{props.footer}</div>

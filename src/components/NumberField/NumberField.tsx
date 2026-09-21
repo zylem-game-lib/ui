@@ -23,8 +23,12 @@ export function NumberField(props: NumberFieldProps) {
     <KNumberField.Root
       class={props.class ? `zylem-field-root ${props.class}` : 'zylem-field-root'}
       rawValue={props.value}
+      // Kobalte reports the parsed value on mount and after each format pass;
+      // only real edits reach the owner, so a controlled form is not marked
+      // dirty just by rendering.
       onRawValueChange={(value) => {
-        if (props.onChange && !Number.isNaN(value)) props.onChange(value);
+        if (!props.onChange || Number.isNaN(value) || value === props.value) return;
+        props.onChange(value);
       }}
       minValue={props.minValue}
       maxValue={props.maxValue}

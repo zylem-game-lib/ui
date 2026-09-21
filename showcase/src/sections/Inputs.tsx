@@ -11,6 +11,7 @@ export function Inputs() {
   const [mass, setMass] = createSignal(1);
   const [body, setBody] = createSignal<string | null>('dynamic');
   const [search, setSearch] = createSignal('');
+  const [key, setKey] = createSignal('player-idle');
 
   return (
     <div class="section" id="inputs">
@@ -56,6 +57,13 @@ export function Inputs() {
               placeholder="Search entities..."
             />
           </div>
+        </div>
+        <div style={{ 'margin-top': 'var(--zylem-spacing-md)', 'max-width': '320px' }}>
+          <TextField
+            label="Clip key (commits on Enter / blur, slugified)"
+            value={key()}
+            onCommit={(next) => setKey(next.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || key())}
+          />
         </div>
         <div style={{ 'margin-top': 'var(--zylem-spacing-md)' }}>
           <TextField

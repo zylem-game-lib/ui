@@ -12,8 +12,15 @@ export interface SpriteSizePickerProps {
   presets?: readonly number[];
   /** Smallest dimension reachable by dragging or typing. */
   min?: number;
-  /** Largest dimension; also sets the size of the 1:1 preview stage. */
+  /** Largest dimension; also sets the size of the 1:1 preview stage unless `stageSize` is given. */
   max?: number;
+  /**
+   * Side of the square preview stage in pixels. Defaults to `max`, which is
+   * right when the limit is small; a picker allowing 1024px sprites sets this
+   * so the stage still fits a dialog. Sprites larger than the stage are shown
+   * cropped at 1:1 with the readout carrying the true size.
+   */
+  stageSize?: number;
   /** Drag increment in source pixels. */
   step?: number;
   /** Render Width / Height number fields under the preview. */
@@ -87,7 +94,11 @@ export function SpriteSizePicker(props: SpriteSizePickerProps) {
     event.preventDefault();
   };
 
-  const stageSize = () => `${max() + STAGE_GUTTER}px`;
+  const stage = () => props.stageSize ?? max();
+  const stageSize = () => `${stage() + STAGE_GUTTER}px`;
+  // The frame is the sprite at 1:1, cropped to the stage when it outgrows it.
+  const frameWidth = () => Math.min(props.width, stage());
+  const frameHeight = () => Math.min(props.height, stage());
 
   return (
     <div class={props.class ? `zylem-size-picker ${props.class}` : 'zylem-size-picker'}>
@@ -109,9 +120,9 @@ export function SpriteSizePicker(props: SpriteSizePickerProps) {
       <div class="zylem-size-picker-stage" style={{ width: stageSize(), height: stageSize() }}>
         <div
           class="zylem-size-picker-frame"
-          style={{ width: `${props.width}px`, height: `${props.height}px` }}
+          style={{ width: `${frameWidth()}px`, height: `${frameHeight()}px` }}
         >
-          <PixelGrid width={props.width} height={props.height} checkerCell={4} />
+          <PixelGrid width={frameWidth()} height={frameHeight()} checkerCell={4} />
           <div
             class="zylem-size-picker-handle"
             data-edge="right"

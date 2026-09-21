@@ -1,4 +1,6 @@
 import { Tabs as KTabs } from '@kobalte/core';
+import X from 'lucide-solid/icons/x';
+import { Show } from 'solid-js';
 import type { JSX } from 'solid-js';
 
 export interface TabsProps {
@@ -38,12 +40,29 @@ export function TabsList(props: { children: JSX.Element; class?: string }) {
   );
 }
 
-export function TabsTrigger(props: {
+export interface TabsTriggerProps {
   value: string;
   children: JSX.Element;
   disabled?: boolean;
   class?: string;
-}) {
+  /**
+   * Document-style tabs: shows a close affordance after the label. It is a
+   * `role="button"` span (a button may not nest in the trigger button) and
+   * closing does not select the tab.
+   */
+  onClose?: () => void;
+  /** Accessible name of the close affordance; defaults to `Close tab`. */
+  closeLabel?: string;
+  /** Unsaved-changes marker before the close affordance. */
+  dirty?: boolean;
+}
+
+export function TabsTrigger(props: TabsTriggerProps) {
+  const close = (event: Event) => {
+    event.stopPropagation();
+    event.preventDefault();
+    props.onClose?.();
+  };
   return (
     <KTabs.Trigger
       class={
@@ -52,7 +71,26 @@ export function TabsTrigger(props: {
       value={props.value}
       disabled={props.disabled}
     >
-      {props.children}
+      <span class="zylem-tabs-trigger-label">{props.children}</span>
+      <Show when={props.dirty}>
+        <span class="zylem-tabs-dirty" aria-label="Unsaved changes" title="Unsaved changes" />
+      </Show>
+      <Show when={props.onClose}>
+        <span
+          class="zylem-tabs-close"
+          role="button"
+          tabIndex={0}
+          aria-label={props.closeLabel ?? 'Close tab'}
+          title={props.closeLabel ?? 'Close tab'}
+          onClick={close}
+          onPointerDown={(event) => event.stopPropagation()}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter' || event.key === ' ') close(event);
+          }}
+        >
+          <X aria-hidden="true" />
+        </span>
+      </Show>
     </KTabs.Trigger>
   );
 }

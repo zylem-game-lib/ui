@@ -16,6 +16,8 @@ export interface PanelProps
    * inside an already-outlined region.
    */
   borderless?: boolean;
+  /** Class for the body element, for layouts the body's children need (a form's column, a grid). */
+  bodyClass?: string;
   children?: JSX.Element;
 }
 
@@ -30,6 +32,7 @@ export function Panel(props: PanelProps) {
     'window',
     'flush',
     'borderless',
+    'bodyClass',
     'children',
     'class',
   ]);
@@ -53,11 +56,9 @@ export function Panel(props: PanelProps) {
         </div>
       </Show>
       <div
-        class={
-          local.flush
-            ? 'zylem-panel-body zylem-panel-body--flush'
-            : 'zylem-panel-body'
-        }
+        class={['zylem-panel-body', local.flush ? 'zylem-panel-body--flush' : '', local.bodyClass ?? '']
+          .filter(Boolean)
+          .join(' ')}
       >
         {local.children}
       </div>

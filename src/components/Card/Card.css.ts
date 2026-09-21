@@ -45,6 +45,24 @@ globalStyle('.zylem-card--selected', {
   boxShadow: `0 8px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.08), ${vars.effects.glowActive}`,
 });
 
+// Artwork well: fills the card width, clips its content to the control radius.
+globalStyle('.zylem-card-media', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  minHeight: '64px',
+  borderRadius: vars.radii.control,
+  overflow: 'hidden',
+  color: 'rgba(255, 255, 255, 0.85)',
+});
+
+globalStyle('.zylem-card-media > img', {
+  display: 'block',
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+});
+
 globalStyle('.zylem-card-title', {
   fontSize: vars.typography.fontSize,
   fontWeight: 700,

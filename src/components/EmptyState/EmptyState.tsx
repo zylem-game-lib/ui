@@ -26,7 +26,9 @@ export function EmptyState(props: EmptyStateProps) {
       <Show when={props.children}>
         <div class="zylem-empty-state-message">{props.children}</div>
       </Show>
-      {props.action}
+      <Show when={props.action}>
+        <div class="zylem-empty-state-actions">{props.action}</div>
+      </Show>
     </div>
   );
 }

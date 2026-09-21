@@ -18,6 +18,13 @@ export interface AccordionProps {
   class?: string;
   /** Extra class applied to each content region (e.g. scroll helpers). */
   contentClass?: string;
+  /**
+   * Inspector layout: sections take their natural height and the accordion
+   * grows with them, so the surrounding panel scrolls as a whole. Without it
+   * the accordion fills its container and expanded sections share the space
+   * and scroll individually (the editor sidebar behaviour).
+   */
+  stack?: boolean;
 }
 
 /**
@@ -28,7 +35,9 @@ export interface AccordionProps {
 export function Accordion(props: AccordionProps) {
   return (
     <KAccordion.Root
-      class={props.class ? `zylem-accordion ${props.class}` : 'zylem-accordion'}
+      class={['zylem-accordion', props.stack ? 'zylem-accordion--stack' : '', props.class ?? '']
+        .filter(Boolean)
+        .join(' ')}
       multiple={props.multiple}
       collapsible={props.collapsible ?? true}
       value={props.value}

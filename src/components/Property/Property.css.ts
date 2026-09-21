@@ -17,7 +17,7 @@ globalStyle('.zylem-property-list', {
 globalStyle('.zylem-property-row', {
   minHeight: '30px',
   display: 'grid',
-  gridTemplateColumns: '112px 1fr',
+  gridTemplateColumns: 'var(--zylem-property-label-width, 112px) minmax(0, 1fr)',
   alignItems: 'center',
   gap: vars.spacing.sm,
   padding: `${vars.spacing.xs} ${vars.spacing.sm}`,

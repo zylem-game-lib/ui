@@ -126,6 +126,12 @@ globalStyle('.zylem-frame-actions-spacer', {
   flex: '1 1 auto',
 });
 
+globalStyle('.zylem-frame-actions-group', {
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: vars.spacing.xs,
+});
+
 globalStyle('.zylem-frame-actions-step', {
   width: '34px',
   padding: 0,

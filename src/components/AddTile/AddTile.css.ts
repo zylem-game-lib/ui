@@ -36,6 +36,14 @@ globalStyle('.zylem-add-tile[data-variant="tall"]', {
   height: `calc(${FRAME_SIZE} + 18px)`,
 });
 
+// Stands in for a card: fills its grid cell and rounds like one.
+globalStyle('.zylem-add-tile[data-variant="fill"]', {
+  width: '100%',
+  height: '100%',
+  minHeight: '110px',
+  borderRadius: vars.radii.card,
+});
+
 globalStyle('.zylem-add-tile:hover:not([disabled])', {
   color: '#E8F4FF',
   borderColor: 'rgba(178, 219, 255, 0.9)',
@@ -70,9 +78,18 @@ globalStyle('.zylem-add-tile[data-variant="tall"] .zylem-add-tile-icon', {
   height: '20px',
 });
 
+globalStyle('.zylem-add-tile[data-variant="fill"] .zylem-add-tile-icon', {
+  width: '24px',
+  height: '24px',
+});
+
 globalStyle('.zylem-add-tile-label', {
   fontSize: '11px',
   fontWeight: 600,
   lineHeight: 1,
   whiteSpace: 'nowrap',
+});
+
+globalStyle('.zylem-add-tile[data-variant="fill"] .zylem-add-tile-label', {
+  fontSize: '13px',
 });

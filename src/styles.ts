@@ -32,9 +32,12 @@ import './components/Slider/Slider.css';
 import './components/Tabs/Tabs.css';
 import './components/Tooltip/Tooltip.css';
 import './components/DropdownMenu/DropdownMenu.css';
+import './components/Menubar/Menubar.css';
 import './components/Dialog/Dialog.css';
 import './components/Progress/Progress.css';
 import './components/Badge/Badge.css';
+import './components/Callout/Callout.css';
+import './components/Toast/Toast.css';
 import './components/Separator/Separator.css';
 import './components/WindowControls/WindowControls.css';
 import './components/TitleBar/TitleBar.css';
@@ -61,3 +64,11 @@ import './components/FrameStrip/FrameStrip.css';
 import './components/PlaybackControls/PlaybackControls.css';
 import './components/TimelineTrack/TimelineTrack.css';
 import './components/ToolboxButton/ToolboxButton.css';
+
+// Timeline / Music surfaces (Creator director and music editors).
+import './components/TimelineLanes/TimelineLanes.css';
+import './components/TrackHeader/TrackHeader.css';
+import './components/PianoRoll/PianoRoll.css';
+import './components/Mixer/Mixer.css';
+import './components/Waveform/Waveform.css';
+import './components/TransportBar/TransportBar.css';

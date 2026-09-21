@@ -38,6 +38,7 @@ export {
   TabsTrigger,
   TabsContent,
   type TabsProps,
+  type TabsTriggerProps,
 } from './Tabs/Tabs';
 export {
   Accordion,
@@ -47,17 +48,22 @@ export {
 export { Tooltip, type TooltipProps } from './Tooltip/Tooltip';
 export {
   DropdownMenu,
+  MenuItems,
   type DropdownMenuProps,
   type DropdownMenuItemConfig,
 } from './DropdownMenu/DropdownMenu';
+export { Menubar, type MenubarProps, type MenubarMenuConfig } from './Menubar/Menubar';
 export {
   Dialog,
   ConfirmDialog,
   type DialogProps,
+  type DialogSize,
   type ConfirmDialogProps,
 } from './Dialog/Dialog';
 export { Progress, type ProgressProps } from './Progress/Progress';
 export { Badge, type BadgeProps, type BadgeTone } from './Badge/Badge';
+export { Callout, type CalloutProps, type CalloutTone } from './Callout/Callout';
+export { Toast, type ToastProps, type ToastTone } from './Toast/Toast';
 export { Separator, type SeparatorProps } from './Separator/Separator';
 
 // Composites
@@ -130,7 +136,7 @@ export {
   type ArtTool,
   type ToolButtonProps,
 } from './ToolButton/ToolButton';
-export { AddTile, type AddTileProps } from './AddTile/AddTile';
+export { AddTile, type AddTileProps, type AddTileVariant } from './AddTile/AddTile';
 export {
   ColorPalette,
   Swatch,
@@ -163,3 +169,51 @@ export {
   type ToolboxGridProps,
   type ToolboxSize,
 } from './ToolboxButton/ToolboxButton';
+
+// Timeline / Music (Creator director and music editors)
+export {
+  TimelineLanes,
+  TimelineLane,
+  TimelineLaneGroup,
+  TimelineClip,
+  KeyframeMarker,
+  useTimeline,
+  type TimelineLanesProps,
+  type TimelineLaneProps,
+  type TimelineLaneGroupProps,
+  type TimelineClipProps,
+  type TimelineClipChange,
+  type TimelineContextValue,
+  type TimelineRange,
+  type KeyframeMarkerProps,
+  type TimeScale,
+  type TimeUnit,
+  type RulerTick,
+  type ClipBounds,
+} from './TimelineLanes/TimelineLanes';
+export {
+  snapTime,
+  resolveClipDrag,
+  rulerTicks,
+  majorTickTimes,
+  formatClock,
+  formatBeats,
+} from './TimelineLanes/lanes-math';
+export { TrackHeader, type TrackHeaderProps } from './TrackHeader/TrackHeader';
+export { PianoRoll, type PianoRollProps, type PianoRollNote } from './PianoRoll/PianoRoll';
+export {
+  pitchName,
+  isBlackKey,
+  resolveNoteDrag,
+  cellStart,
+} from './PianoRoll/piano-roll-math';
+export { Knob, arcPath, type KnobProps } from './Mixer/Knob';
+export { MixerStrip, formatDb, formatPan, type MixerStripProps } from './Mixer/MixerStrip';
+export { Waveform, type WaveformProps, type WaveformRegion } from './Waveform/Waveform';
+export { computePeaks, peaksFromAudioBuffer, type PeakSource } from './Waveform/peaks';
+export {
+  TransportBar,
+  formatTransportTime,
+  type TransportBarProps,
+  type TransportTimeSignature,
+} from './TransportBar/TransportBar';

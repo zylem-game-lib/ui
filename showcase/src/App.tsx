@@ -14,6 +14,8 @@ import { HyperGlass } from './sections/HyperGlass';
 import { Inputs } from './sections/Inputs';
 import { Layering } from './sections/Layering';
 import { Menu } from './sections/Menu';
+import { MenubarSection } from './sections/Menubar';
+import { Music } from './sections/Music';
 import { Overlays } from './sections/Overlays';
 import { PanelsCards } from './sections/PanelsCards';
 import { PropertyList } from './sections/PropertyList';
@@ -22,6 +24,7 @@ import { SpacingSizing } from './sections/SpacingSizing';
 import { SpriteEditor } from './sections/SpriteEditor';
 import { TabsBadges } from './sections/TabsBadges';
 import { Toggles } from './sections/Toggles';
+import { Timeline } from './sections/Timeline';
 import { Toolbar } from './sections/Toolbar';
 import { Toolbox } from './sections/Toolbox';
 import { Typography } from './sections/Typography';
@@ -34,6 +37,7 @@ const navLinks = [
   { href: '#toggles', label: 'Toggles & Sliders' },
   { href: '#tabs-badges', label: 'Tabs & Badges' },
   { href: '#overlays', label: 'Overlays' },
+  { href: '#menubar', label: 'Menubar' },
   { href: '#layering', label: 'Layering & Portals' },
   { href: '#panels-cards', label: 'Panels & Cards' },
   { href: '#toolbar', label: 'Toolbar' },
@@ -48,6 +52,8 @@ const navLinks = [
   { href: '#sidebar', label: 'Sidebar' },
   { href: '#sprite-editor', label: 'Sprite Editor' },
   { href: '#director', label: 'Director' },
+  { href: '#timeline', label: 'Timeline' },
+  { href: '#music', label: 'Music' },
   { href: '#toolbox', label: 'Toolbox' },
   { href: '#typography', label: 'Typography' },
   { href: '#spacing-sizing', label: 'Spacing & Sizing' },
@@ -69,6 +75,7 @@ export function App() {
         <Toggles />
         <TabsBadges />
         <Overlays />
+        <MenubarSection />
         <Layering />
         <PanelsCards />
         <Toolbar />
@@ -83,6 +90,8 @@ export function App() {
         <Sidebar />
         <SpriteEditor />
         <Director />
+        <Timeline />
+        <Music />
         <Toolbox />
         <Typography />
         <SpacingSizing />

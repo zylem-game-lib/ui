@@ -14,6 +14,9 @@ import '@zylem/ui/styles.css';
 
 // Solid components (compiled by the consuming app's bundler)
 import { Button } from '@zylem/ui/components';
+
+// Camera icons (Lucide-shaped originals: currentColor stroke, 24×24)
+import { Perspective, GameCamera } from '@zylem/ui/icons';
 ```
 
 ## Development

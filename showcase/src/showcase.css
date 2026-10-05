@@ -258,3 +258,20 @@ body {
   width: 520px;
   max-width: 100%;
 }
+
+.icon-size-row {
+  align-items: stretch;
+}
+
+.icon-size-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--zylem-spacing-sm);
+}
+
+.icon-size-grid {
+  display: flex;
+  align-items: center;
+  gap: var(--zylem-spacing-md);
+  color: var(--zylem-color-text);
+}

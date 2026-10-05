@@ -3,6 +3,7 @@ import { BuildLabel } from '../../src/components';
 import { ZYLEM_PACKAGE_VERSIONS } from 'virtual:zylem-versions';
 import { Accordion } from './sections/Accordion';
 import { Buttons } from './sections/Buttons';
+import { Icons } from './sections/Icons';
 import { Checkbox } from './sections/Checkbox';
 import { Colors } from './sections/Colors';
 import { Console } from './sections/Console';
@@ -33,6 +34,7 @@ const navLinks = [
   { href: '#hyperglass', label: 'HyperGlass' },
   { href: '#colors', label: 'Colors' },
   { href: '#buttons', label: 'Buttons' },
+  { href: '#icons', label: 'Icons' },
   { href: '#inputs', label: 'Inputs' },
   { href: '#toggles', label: 'Toggles & Sliders' },
   { href: '#tabs-badges', label: 'Tabs & Badges' },
@@ -71,6 +73,7 @@ export function App() {
         <HyperGlass />
         <Colors />
         <Buttons />
+        <Icons />
         <Inputs />
         <Toggles />
         <TabsBadges />

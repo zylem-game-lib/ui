@@ -1,5 +1,5 @@
-import Camera from 'lucide-solid/icons/camera';
 import Zap from 'lucide-solid/icons/zap';
+import { Perspective } from '../../../src/icons';
 import { createEffect, createSignal, For, onCleanup } from 'solid-js';
 import { createStore, produce } from 'solid-js/store';
 import {
@@ -112,7 +112,7 @@ export function Timeline() {
               header={
                 <TrackHeader
                   name="Cameras"
-                  icon={<Camera />}
+                  icon={<Perspective />}
                   detail="Shots + blends"
                   locked={false}
                   onToggleLock={() => {}}

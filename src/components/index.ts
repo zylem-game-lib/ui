@@ -217,3 +217,20 @@ export {
   type TransportBarProps,
   type TransportTimeSignature,
 } from './TransportBar/TransportBar';
+
+// Camera icons (Lucide-shaped originals; also `@zylem/ui/icons`)
+export {
+  CAMERA_ICONS,
+  FreePerspective,
+  GameCamera,
+  IsometricPerspective,
+  Perspective,
+  SideviewPerspective,
+  TopDownPerspective,
+  cameraIconNodes,
+  createZylemIcon,
+  type CameraIcon,
+  type CameraIconName,
+  type IconNode,
+  type ZylemIconProps,
+} from '../icons';

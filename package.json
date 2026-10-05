@@ -1,6 +1,6 @@
 {
   "name": "@zylem/ui",
-  "version": "0.8.11",
+  "version": "0.8.12",
   "description": "Design tokens, global styles, and Solid components for Zylem, built with vanilla-extract",
   "license": "MIT",
   "repository": {
@@ -41,6 +41,10 @@
     "./vite": {
       "types": "./vite/index.ts",
       "import": "./vite/index.ts"
+    },
+    "./icons": {
+      "types": "./src/icons/index.ts",
+      "import": "./src/icons/index.ts"
     },
     "./styles.css": "./dist/styles.css"
   },

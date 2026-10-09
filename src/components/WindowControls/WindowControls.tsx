@@ -1,6 +1,6 @@
 import { Show } from 'solid-js';
-import PanelBottomClose from 'lucide-solid/icons/panel-bottom-close';
-import PanelBottomOpen from 'lucide-solid/icons/panel-bottom-open';
+import ChevronDown from 'lucide-solid/icons/chevron-down';
+import ChevronUp from 'lucide-solid/icons/chevron-up';
 import X from 'lucide-solid/icons/x';
 
 export interface WindowControlsProps {
@@ -17,8 +17,8 @@ export interface WindowControlsProps {
 }
 
 /**
- * Shared glass window controls: the same icon buttons used by floating and
- * detached panels. Only controls with a handler are rendered.
+ * Shared glass window controls: blue collapse jewel and red close jewel, used
+ * by floating and detached panels. Only controls with a handler are rendered.
  */
 export function WindowControls(props: WindowControlsProps) {
   return (
@@ -32,7 +32,11 @@ export function WindowControls(props: WindowControlsProps) {
             title={props.collapsed ? 'Expand panel' : 'Collapse panel'}
             onClick={() => props.onCollapse?.()}
           >
-            {props.collapsed ? <PanelBottomOpen size={12} /> : <PanelBottomClose size={12} />}
+            {props.collapsed ? (
+              <ChevronUp size={11} strokeWidth={2.5} />
+            ) : (
+              <ChevronDown size={11} strokeWidth={2.5} />
+            )}
           </button>
         </Show>
         <Show when={props.onClose}>
@@ -44,7 +48,7 @@ export function WindowControls(props: WindowControlsProps) {
             data-testid={props.closeTestId}
             onClick={() => props.onClose?.()}
           >
-            <X size={12} />
+            <X size={11} strokeWidth={2.5} />
           </button>
         </Show>
       </div>

@@ -29,8 +29,8 @@ Then it combines those with HyperCard's layout ideas:
 - minimal hierarchy
 
 Chrome that isn't a primary action or a title surface stays **flat and
-minimal** — window controls, accordion headers, list rows, and inner content
-areas should recede so the glossy elements read as focal points.
+minimal** — accordion headers, list rows, and inner content areas should
+recede so the glossy elements read as focal points.
 
 ## Palette
 
@@ -81,7 +81,7 @@ Recommended radii:
 - Titlebar top corners: `12px`
 - Buttons: `7px`
 - Small icon buttons: `6px`
-- Window controls: `6px`
+- Window controls: `12px` wide rounded rectangles
 - Input fields: `6px`
 - Entity cards: `10px`
 
@@ -93,15 +93,14 @@ Window controls are **shared glass icon buttons** — the same button is used
 by title bars, floating panels, and detached panels (one definition:
 `.zylem-window-control`, aliased as `.floating-panel-button`).
 
-- Small squared glass buttons (~18px, `6px` radius): `buttonGlass` fill, 1px
-  light border, inset bevel highlight, `brightness()` + 1px translate on
-  hover/active.
-- Only two controls exist: **collapse** (panel-bottom chevron icon, swapping
-  to an expand icon when collapsed) and **close** (X icon). No traffic-light
-  colors and no expand/zoom control.
-- The close button is neutral glass at rest and only shows the accent red
-  (`#E64534` fill with a danger glow) on hover, so destructive intent is
-  revealed on approach rather than shouting at rest.
+- Small glass jewels (~28×18px, `6px` radius) with a light colored rim, a
+  top gloss, a dark lower edge, and a soft drop shadow. `brightness()` plus
+  a 1px translate on hover/active.
+- Only two controls exist: **collapse** (blue glass, chevron; points up when
+  the panel is collapsed) and **close** (red glass, X, danger glow). No
+  expand/zoom control.
+- Collapse uses the primary blue glass. Close uses `buttonGlassDanger` at
+  rest so the destructive control reads immediately.
 
 ## Accordions and section headers
 

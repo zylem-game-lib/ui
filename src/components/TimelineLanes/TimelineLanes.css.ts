@@ -66,6 +66,12 @@ globalStyle('.zylem-lanes-ruler', {
   cursor: 'pointer',
 });
 
+// Inset: the scrolling lanes would clip a ring drawn outside the sticky ruler.
+globalStyle('.zylem-lanes-ruler:focus-visible', {
+  outline: 'none',
+  boxShadow: 'inset 0 0 0 2px rgba(97, 166, 232, 0.6)',
+});
+
 globalStyle('.zylem-lanes-range', {
   position: 'absolute',
   top: 0,

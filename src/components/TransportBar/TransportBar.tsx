@@ -3,7 +3,7 @@ import { type JSX, Show } from 'solid-js';
 import { NumberField } from '../NumberField/NumberField';
 import { PlaybackControls } from '../PlaybackControls/PlaybackControls';
 import { Select } from '../Select/Select';
-import { formatBeats, formatClock, type TimeUnit } from '../TimelineLanes/lanes-math';
+import { describeTime, formatBeats, formatClock, type TimeUnit } from '../TimelineLanes/lanes-math';
 import { TimelineTrack } from '../TimelineTrack/TimelineTrack';
 import { ToolbarButton } from '../ToolbarButton/ToolbarButton';
 
@@ -107,6 +107,8 @@ export function TransportBar(props: TransportBarProps) {
           max={props.length}
           onChange={(value) => props.onSeek?.(value)}
           disabled={props.disabled || !props.onSeek}
+          aria-label="Position"
+          valueText={(value) => describeTime(value, { unit: unit(), beatsPerBar: bpb() })}
           class="zylem-transport-track"
         />
         <span class="zylem-transport-time" aria-live="off">
@@ -133,6 +135,7 @@ export function TransportBar(props: TransportBarProps) {
         <Show when={props.timeSignature}>
           {(signature) => (
             <Select
+              aria-label="Time signature"
               options={signatureOptions()}
               value={signatureKey(signature())}
               disabled={props.disabled || !props.onTimeSignatureChange}

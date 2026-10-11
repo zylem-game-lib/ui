@@ -26,6 +26,7 @@ export interface MixerStripProps {
   /** Wider strip with a stronger label; for the master bus. */
   master?: boolean;
   selected?: boolean;
+  /** Pointer down anywhere on the strip; given, the name is also a button for the keyboard. */
   onSelect?: () => void;
   disabled?: boolean;
   class?: string;
@@ -52,6 +53,7 @@ export function formatPan(value: number): string {
 export function MixerStrip(props: MixerStripProps) {
   const min = () => props.minVolume ?? -60;
   const max = () => props.maxVolume ?? 6;
+  const volumeText = () => formatDb(clamp(props.volume, min(), max()), min());
 
   return (
     <div
@@ -61,6 +63,8 @@ export function MixerStrip(props: MixerStripProps) {
       data-selected={props.selected ? '' : undefined}
       data-disabled={props.disabled ? '' : undefined}
       data-muted={props.muted ? '' : undefined}
+      role="group"
+      aria-label={props.name}
       onPointerDown={() => props.onSelect?.()}
     >
       <Show when={props.pan !== undefined}>
@@ -91,14 +95,13 @@ export function MixerStrip(props: MixerStripProps) {
           disabled={props.disabled}
           onChange={(values) => props.onVolumeChange?.(values[0] ?? min())}
           onChangeEnd={(values) => props.onVolumeCommit?.(values[0] ?? min())}
-          getValueLabel={(params) => formatDb(params.values[0] ?? min(), min())}
         >
           <KSlider.Label class="zylem-fader-sr">{`${props.name} volume`}</KSlider.Label>
           <KSlider.Track class="zylem-fader-track">
             <KSlider.Fill class="zylem-fader-fill" />
             <span class="zylem-fader-zero" aria-hidden="true" />
-            <KSlider.Thumb class="zylem-fader-thumb">
-              <KSlider.Input class="zylem-fader-sr" />
+            <KSlider.Thumb class="zylem-fader-thumb" aria-valuetext={volumeText()}>
+              <KSlider.Input class="zylem-fader-sr" aria-valuetext={volumeText()} />
             </KSlider.Thumb>
           </KSlider.Track>
         </KSlider.Root>
@@ -117,7 +120,7 @@ export function MixerStrip(props: MixerStripProps) {
             class="zylem-track-toggle"
             data-kind="mute"
             aria-pressed={props.muted ? 'true' : 'false'}
-            aria-label={props.muted ? 'Unmute' : 'Mute'}
+            aria-label="Mute"
             title={props.muted ? 'Unmute' : 'Mute'}
             disabled={props.disabled}
             onPointerDown={(event) => event.stopPropagation()}
@@ -132,7 +135,7 @@ export function MixerStrip(props: MixerStripProps) {
             class="zylem-track-toggle"
             data-kind="solo"
             aria-pressed={props.solo ? 'true' : 'false'}
-            aria-label={props.solo ? 'Unsolo' : 'Solo'}
+            aria-label="Solo"
             title={props.solo ? 'Unsolo' : 'Solo'}
             disabled={props.disabled}
             onPointerDown={(event) => event.stopPropagation()}
@@ -142,9 +145,27 @@ export function MixerStrip(props: MixerStripProps) {
           </button>
         </Show>
       </div>
-      <span class="zylem-mixer-name" title={props.name}>
-        {props.name}
-      </span>
+      <Show
+        when={props.onSelect}
+        fallback={
+          <span class="zylem-mixer-name" title={props.name}>
+            {props.name}
+          </span>
+        }
+      >
+        <button
+          type="button"
+          class="zylem-mixer-name"
+          aria-current={props.selected ? 'true' : undefined}
+          title={props.name}
+          onClick={(event) => {
+            // The pointer selected on pointer down; keys and assistive tech click without one.
+            if (event.detail === 0) props.onSelect?.();
+          }}
+        >
+          {props.name}
+        </button>
+      </Show>
     </div>
   );
 }

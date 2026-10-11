@@ -1,13 +1,19 @@
 import { Show, splitProps } from 'solid-js';
 import type { JSX } from 'solid-js';
+import { Heading, type HeadingLevel } from '../shared/Heading';
 
 export interface CardProps
   extends Omit<JSX.HTMLAttributes<HTMLDivElement>, 'title'> {
   title?: JSX.Element;
+  /** Heading level of the title (default 3). */
+  headingLevel?: HeadingLevel;
   description?: JSX.Element;
   /** Artwork above the title: a thumbnail, preview swatch, or icon well. */
   media?: JSX.Element;
-  /** Renders hover glow + pointer cursor and click affordances. */
+  /**
+   * Renders hover glow + pointer cursor and click affordances. The card
+   * becomes a button, so it must not contain other controls.
+   */
   interactive?: boolean;
   selected?: boolean;
   /** Rendered after the description: tags, actions, metadata. */
@@ -22,6 +28,7 @@ export interface CardProps
 export function Card(props: CardProps) {
   const [local, rest] = splitProps(props, [
     'title',
+    'headingLevel',
     'description',
     'media',
     'interactive',
@@ -66,7 +73,9 @@ export function Card(props: CardProps) {
         <div class="zylem-card-media">{local.media}</div>
       </Show>
       <Show when={local.title}>
-        <div class="zylem-card-title">{local.title}</div>
+        <Heading level={local.headingLevel ?? 3} class="zylem-card-title">
+          {local.title}
+        </Heading>
       </Show>
       <Show when={local.description}>
         <div class="zylem-card-description">{local.description}</div>

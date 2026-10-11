@@ -1,10 +1,13 @@
 import { Show, splitProps } from 'solid-js';
 import type { JSX } from 'solid-js';
+import { Heading, type HeadingLevel } from '../shared/Heading';
 
 export interface PanelProps
   extends Omit<JSX.HTMLAttributes<HTMLDivElement>, 'title'> {
   /** Optional glossy header title. */
   title?: JSX.Element;
+  /** Heading level of the title (default 2). */
+  headingLevel?: HeadingLevel;
   /** Extra content rendered on the right side of the header. */
   headerActions?: JSX.Element;
   /** Use the brighter window-glass treatment. */
@@ -28,6 +31,7 @@ export interface PanelProps
 export function Panel(props: PanelProps) {
   const [local, rest] = splitProps(props, [
     'title',
+    'headingLevel',
     'headerActions',
     'window',
     'flush',
@@ -51,7 +55,11 @@ export function Panel(props: PanelProps) {
     <div class={classes()} {...rest}>
       <Show when={local.title || local.headerActions}>
         <div class="zylem-panel-header">
-          <span class="zylem-panel-header-title">{local.title}</span>
+          <Show when={local.title} fallback={<span class="zylem-panel-header-title" />}>
+            <Heading level={local.headingLevel ?? 2} class="zylem-panel-header-title">
+              {local.title}
+            </Heading>
+          </Show>
           {local.headerActions}
         </div>
       </Show>

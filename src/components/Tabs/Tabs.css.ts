@@ -102,11 +102,6 @@ globalStyle('.zylem-tabs-close:hover', {
   color: '#FFF4F2',
 });
 
-globalStyle('.zylem-tabs-close:focus-visible', {
-  outline: 'none',
-  boxShadow: vars.effects.focusRing,
-});
-
 globalStyle('.zylem-tabs-content', {
   flex: 1,
   minHeight: 0,

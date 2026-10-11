@@ -23,7 +23,12 @@ export function Toolbar(props: ToolbarProps) {
       .join(' ');
 
   return (
-    <div role="toolbar" class={classes()} {...rest}>
+    <div
+      role="toolbar"
+      aria-orientation={local.orientation === 'vertical' ? 'vertical' : undefined}
+      class={classes()}
+      {...rest}
+    >
       {local.children}
     </div>
   );

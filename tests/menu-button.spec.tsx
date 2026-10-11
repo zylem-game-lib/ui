@@ -66,6 +66,17 @@ describe('MenuButton', () => {
     expect(onAction).toHaveBeenCalledTimes(1);
   });
 
+  it('names its panel after the button', () => {
+    render(() => (
+      <MenuButton label="Add" tooltip={null} open menu={() => <span>palette</span>}>
+        <span>icon</span>
+      </MenuButton>
+    ));
+    const panel = document.querySelector('.zylem-menu-button__panel')!;
+    expect(panel).not.toBeNull();
+    expect(panel.getAttribute('aria-label')).toBe('Add');
+  });
+
   it('does not widen the button to make room for the chevron', () => {
     const { container } = renderMenuButton();
 

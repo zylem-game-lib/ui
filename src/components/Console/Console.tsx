@@ -9,6 +9,8 @@ export interface ConsoleProps {
   onInput?: (value: string) => void;
   onClear?: () => void;
   readOnly?: boolean;
+  /** Accessible name of the text field (default "Console"). */
+  label?: string;
   class?: string;
   /** Extra action buttons rendered next to Clear. */
   actions?: JSX.Element;
@@ -30,6 +32,7 @@ export function Console(props: ConsoleProps) {
       <div class="zylem-console-wrapper">
         <textarea
           class="zylem-console zylem-scroll"
+          aria-label={props.label ?? 'Console'}
           value={props.value}
           spellcheck={false}
           readOnly={props.readOnly || !props.onInput}

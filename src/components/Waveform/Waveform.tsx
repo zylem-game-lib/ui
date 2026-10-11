@@ -1,6 +1,14 @@
-import { createEffect, createMemo, createSignal, onCleanup, onMount, Show } from 'solid-js';
-import { clamp } from '../TimelineLanes/lanes-math';
+import { createEffect, createMemo, createSignal, For, onCleanup, onMount, Show } from 'solid-js';
+import { clamp, describeSeconds, sliderKeyValue } from '../TimelineLanes/lanes-math';
 import { computePeaks, peaksFromAudioBuffer } from './peaks';
+
+/** Seconds the trim edges must stay apart. */
+const MIN_REGION = 0.01;
+
+const EDGES = [
+  { edge: 'start', label: 'Trim start' },
+  { edge: 'end', label: 'Trim end' },
+] as const;
 
 export type { PeakSource } from './peaks';
 
@@ -17,7 +25,10 @@ export interface WaveformProps {
   buffer?: { duration: number; numberOfChannels: number; getChannelData(channel: number): Float32Array };
   /** Seconds the peaks span; defaults to `buffer.duration`. Needed for regions and the playhead. */
   duration?: number;
-  /** Highlighted span with draggable edges. */
+  /**
+   * Highlighted span with draggable edges. Focused, an edge also takes the
+   * arrow keys (1% of the duration, 10% with Shift) and Home / End.
+   */
   region?: WaveformRegion;
   onRegionChange?: (region: WaveformRegion) => void;
   onRegionCommit?: (region: WaveformRegion) => void;
@@ -106,14 +117,15 @@ export function Waveform(props: WaveformProps) {
     event.preventDefault();
     event.stopPropagation();
     const target = event.currentTarget as HTMLElement;
+    target.focus({ preventScroll: true });
     target.setPointerCapture?.(event.pointerId);
     let last = region;
     const move = (moveEvent: PointerEvent) => {
       const seconds = secondsAt(moveEvent.clientX);
       last =
         edge === 'start'
-          ? { start: Math.min(seconds, region.end - 0.01), end: region.end }
-          : { start: region.start, end: Math.max(seconds, region.start + 0.01) };
+          ? { start: Math.min(seconds, region.end - MIN_REGION), end: region.end }
+          : { start: region.start, end: Math.max(seconds, region.start + MIN_REGION) };
       props.onRegionChange?.(last);
     };
     const stop = () => {
@@ -126,6 +138,29 @@ export function Waveform(props: WaveformProps) {
     target.addEventListener('pointermove', move);
     target.addEventListener('pointerup', stop);
     target.addEventListener('pointercancel', stop);
+  };
+
+  /** The span each edge may move in, short of crossing the other edge. */
+  const edgeBounds = (edge: 'start' | 'end', region: WaveformRegion) =>
+    edge === 'start'
+      ? { min: 0, max: Math.max(0, region.end - MIN_REGION) }
+      : { min: Math.min(duration(), region.start + MIN_REGION), max: duration() };
+
+  const nudgeEdge = (edge: 'start' | 'end') => (event: KeyboardEvent) => {
+    const region = props.region;
+    if (props.disabled || !region) return;
+    const next = sliderKeyValue(event, {
+      value: region[edge],
+      ...edgeBounds(edge, region),
+      step: duration() / 100,
+    });
+    if (next === null) return;
+    event.preventDefault();
+    // Page-level shortcuts (Home to rewind, arrows to seek) must not also act on it.
+    event.stopPropagation();
+    const changed = { ...region, [edge]: next };
+    props.onRegionChange?.(changed);
+    props.onRegionCommit?.(changed);
   };
 
   return (
@@ -153,28 +188,25 @@ export function Waveform(props: WaveformProps) {
                 class="zylem-waveform-shade"
                 style={{ left: `${percent(region().end)}%`, right: 0 }}
               />
-              <div
-                class="zylem-waveform-edge"
-                data-edge="start"
-                style={{ left: `${percent(region().start)}%` }}
-                onPointerDown={beginRegionDrag('start')}
-                role="slider"
-                aria-label="Trim start"
-                aria-valuenow={region().start}
-                aria-valuemin={0}
-                aria-valuemax={duration()}
-              />
-              <div
-                class="zylem-waveform-edge"
-                data-edge="end"
-                style={{ left: `${percent(region().end)}%` }}
-                onPointerDown={beginRegionDrag('end')}
-                role="slider"
-                aria-label="Trim end"
-                aria-valuenow={region().end}
-                aria-valuemin={0}
-                aria-valuemax={duration()}
-              />
+              <For each={EDGES}>
+                {(edge) => (
+                  <div
+                    class="zylem-waveform-edge"
+                    data-edge={edge.edge}
+                    style={{ left: `${percent(region()[edge.edge])}%` }}
+                    onPointerDown={beginRegionDrag(edge.edge)}
+                    onKeyDown={nudgeEdge(edge.edge)}
+                    role="slider"
+                    tabIndex={props.disabled ? -1 : 0}
+                    aria-label={edge.label}
+                    aria-valuenow={region()[edge.edge]}
+                    aria-valuemin={edgeBounds(edge.edge, region()).min}
+                    aria-valuemax={edgeBounds(edge.edge, region()).max}
+                    aria-valuetext={describeSeconds(region()[edge.edge])}
+                    aria-disabled={props.disabled ? 'true' : undefined}
+                  />
+                )}
+              </For>
             </>
           );
         }}

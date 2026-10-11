@@ -23,7 +23,7 @@ export interface WindowControlsProps {
 export function WindowControls(props: WindowControlsProps) {
   return (
     <Show when={props.onClose || props.onCollapse}>
-      <div class="zylem-window-controls" aria-label="Window controls">
+      <div class="zylem-window-controls" role="group" aria-label="Window controls">
         <Show when={props.onCollapse}>
           <button
             type="button"
@@ -33,9 +33,9 @@ export function WindowControls(props: WindowControlsProps) {
             onClick={() => props.onCollapse?.()}
           >
             {props.collapsed ? (
-              <ChevronUp size={11} strokeWidth={2.5} />
+              <ChevronUp size={11} strokeWidth={2.5} aria-hidden="true" />
             ) : (
-              <ChevronDown size={11} strokeWidth={2.5} />
+              <ChevronDown size={11} strokeWidth={2.5} aria-hidden="true" />
             )}
           </button>
         </Show>
@@ -48,7 +48,7 @@ export function WindowControls(props: WindowControlsProps) {
             data-testid={props.closeTestId}
             onClick={() => props.onClose?.()}
           >
-            <X size={11} strokeWidth={2.5} />
+            <X size={11} strokeWidth={2.5} aria-hidden="true" />
           </button>
         </Show>
       </div>

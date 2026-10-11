@@ -28,7 +28,6 @@ export function BuildLabel(props: BuildLabelProps) {
     <div
       id={BUILD_LABEL_ID}
       class="zylem-build-label"
-      aria-label="Build version"
       title={title()}
     >
       {label()}

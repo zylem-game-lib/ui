@@ -81,7 +81,7 @@ export function ToolButton(props: ToolButtonProps) {
   return (
     <ToolbarButton
       label={label()}
-      selected={props.selected}
+      pressed={props.selected ?? false}
       disabled={props.disabled}
       onClick={props.onClick}
       class={props.class ? `zylem-tool-btn ${props.class}` : 'zylem-tool-btn'}

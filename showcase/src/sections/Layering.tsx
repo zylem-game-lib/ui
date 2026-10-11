@@ -5,6 +5,7 @@ import {
   DropdownMenu,
   ItemPicker,
   MenuButton,
+  Select,
   Tooltip,
   useLayer,
   type PickerItem,
@@ -59,6 +60,7 @@ function StackedPanel(props: { rank?: number; children?: import('solid-js').JSX.
 
 export function Layering() {
   const [scopedOpen, setScopedOpen] = createSignal(false);
+  const [scopedShape, setScopedShape] = createSignal<string>();
   const [placed, setPlaced] = createSignal<PickerItem | null>(null);
   const [placements, setPlacements] = createSignal(0);
 
@@ -139,12 +141,13 @@ export function Layering() {
 
       <h3>Scoped reordering</h3>
       <p class="code-label">
-        A dialog wraps its body in a <code>LayerScope</code>. Overlays opened
-        inside it portal into the scope's own container and are capped by the
-        dialog's stacking context, so they float over the dialog but never over
-        page chrome behind it. Ranks still mean the same thing inside, which is how
-        a panel can be lifted above the scope's tooltips while staying under its
-        menus.
+        A dialog is a native <code>&lt;dialog&gt;</code> in the browser's top
+        layer, with its card inside a <code>LayerScope</code>. Overlays opened from
+        the dialog portal into the scope's own container, which sits beside the
+        card rather than in it: they stay inside the dialog, so they still respond
+        while the page behind is inert, and float over the card without being
+        clipped by it. Ranks still mean the same thing inside, which is how a panel
+        can be lifted above the scope's tooltips while staying under its menus.
       </p>
       <div class="demo-container">
         <Button onClick={() => setScopedOpen(true)}>Open scoped dialog</Button>
@@ -217,7 +220,7 @@ export function Layering() {
           </Tooltip>
           <DropdownMenu
             trigger={<span class="zylem-button">Menu ▾</span>}
-            items={[{ id: 'a', label: 'Still above the dialog body' }]}
+            items={[{ id: 'a', label: 'Above the card, never clipped' }]}
           />
           <MenuButton
             label="Add"
@@ -233,6 +236,16 @@ export function Layering() {
           >
             +
           </MenuButton>
+          <Select
+            aria-label="Shape"
+            placeholder="Shape…"
+            options={SHAPES.filter((shape) => !shape.disabled).map((shape) => ({
+              value: shape.id,
+              label: shape.label,
+            }))}
+            value={scopedShape()}
+            onChange={(value) => setScopedShape(value ?? undefined)}
+          />
         </div>
       </Dialog>
     </div>

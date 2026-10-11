@@ -68,13 +68,15 @@ body {
   margin-bottom: 48px;
 }
 
-.section h2 {
+/* Direct children only: the components on show render headings of their own. */
+.section > h2 {
   color: var(--zylem-color-primary);
   font-size: 1.25rem;
   margin-bottom: var(--zylem-spacing-md);
 }
 
-.section h3 {
+.section > h3,
+.demo-container > h3 {
   color: var(--zylem-color-text-secondary);
   font-size: 1rem;
   margin: var(--zylem-spacing-md) 0;

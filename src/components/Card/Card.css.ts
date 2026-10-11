@@ -64,6 +64,7 @@ globalStyle('.zylem-card-media > img', {
 });
 
 globalStyle('.zylem-card-title', {
+  margin: 0,
   fontSize: vars.typography.fontSize,
   fontWeight: 700,
   color: '#F4FAFF',

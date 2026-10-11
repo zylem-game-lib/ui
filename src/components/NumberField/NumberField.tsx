@@ -3,6 +3,8 @@ import { Show } from 'solid-js';
 
 export interface NumberFieldProps {
   label?: string;
+  /** Accessible name when there is no visible `label`. */
+  'aria-label'?: string;
   error?: string;
   value?: number;
   onChange?: (value: number) => void;
@@ -45,19 +47,20 @@ export function NumberField(props: NumberFieldProps) {
       <div class="zylem-numberfield-group">
         <KNumberField.Input
           class="zylem-field zylem-numberfield-input"
+          aria-label={props['aria-label']}
           placeholder={props.placeholder}
         />
         <KNumberField.IncrementTrigger
           class="zylem-numberfield-stepper zylem-numberfield-stepper--up"
           aria-label="Increment"
         >
-          ▲
+          <span aria-hidden="true">▲</span>
         </KNumberField.IncrementTrigger>
         <KNumberField.DecrementTrigger
           class="zylem-numberfield-stepper zylem-numberfield-stepper--down"
           aria-label="Decrement"
         >
-          ▼
+          <span aria-hidden="true">▼</span>
         </KNumberField.DecrementTrigger>
       </div>
       <Show when={props.error}>

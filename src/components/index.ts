@@ -24,6 +24,7 @@ export {
 } from '../layers';
 
 // Primitives
+export { type HeadingLevel } from './shared/Heading';
 export { Button, type ButtonProps, type ButtonVariant, type ButtonSize } from './Button/Button';
 export { ToolbarButton, type ToolbarButtonProps } from './ToolbarButton/ToolbarButton';
 export { TextField, type TextFieldProps } from './TextField/TextField';

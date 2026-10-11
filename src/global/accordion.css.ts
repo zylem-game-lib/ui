@@ -14,11 +14,14 @@ globalStyle('.zylem-accordion', {
   minHeight: 0,
 });
 
+// The header is a heading element; its UA margins would open gaps around the
+// trigger, and differ by heading level.
 globalStyle('.accordion-header', {
   position: 'sticky',
   top: 0,
   zIndex: 1,
   display: 'flex',
+  margin: 0,
 });
 
 globalStyle('.accordion-item', {
@@ -105,7 +108,9 @@ globalStyle('.zylem-accordion--stack .accordion-content', {
 });
 
 globalStyle('.accordion-trigger::after', {
-  content: "'\\25BC'",
+  // The empty alternative text keeps the chevron out of the trigger's
+  // accessible name; the first value is for browsers without that syntax.
+  content: ["'\\25BC'", "'\\25BC' / ''"],
   position: 'relative',
   color: vars.colors.textSecondary,
   fontSize: '10px',

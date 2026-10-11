@@ -50,7 +50,7 @@ export interface ColorPaletteProps {
 export function ColorPalette(props: ColorPaletteProps) {
   return (
     <div
-      role="listbox"
+      role="group"
       aria-label="Palette"
       class={props.class ? `zylem-palette ${props.class}` : 'zylem-palette'}
     >

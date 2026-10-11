@@ -1,40 +1,27 @@
 import { createSignal } from 'solid-js';
+import { PropertyList as List, PropertyRow } from '../../../src/components';
 
-const FULL_PATH = '/assets/textures/backgrounds/space-nebula.png';
-const TRUNCATED_PATH = '.../textures/backgrounds/space-nebula.png';
+const IMAGE_PATH = '/assets/textures/backgrounds/space-nebula.png';
 
 export function PropertyList() {
-  const [expanded, setExpanded] = createSignal(false);
+  const [revealed, setRevealed] = createSignal<string | null>(null);
 
   return (
     <div class="section" id="property-list">
       <h2>Property List</h2>
-      <h3>.zylem-property-list + .zylem-property-row (PropertyRow pattern)</h3>
+      <h3>PropertyList + PropertyRow</h3>
+      <p class="code-label">
+        Long paths keep their last segments; with <code>onPathClick</code> the truncated value is a
+        button that reveals the full path.
+      </p>
       <div class="demo-container" style={{ width: '400px' }}>
-        <section class="zylem-property-list">
-          <div class="zylem-property-row">
-            <span class="zylem-property-label">ID</span>
-            <span class="zylem-property-value">demo-game</span>
-          </div>
-          <div class="zylem-property-row">
-            <span class="zylem-property-label">Aspect Ratio</span>
-            <span class="zylem-property-value">1.778</span>
-          </div>
-          <div class="zylem-property-row">
-            <span class="zylem-property-label">Gravity</span>
-            <span class="zylem-property-value">X:0.00 Y:-9.81 Z:0.00</span>
-          </div>
-          <div class="zylem-property-row">
-            <span class="zylem-property-label">Image</span>
-            <span
-              class="zylem-property-value zylem-property-value--clickable"
-              title="Click to toggle full path"
-              onClick={() => setExpanded(!expanded())}
-            >
-              {expanded() ? FULL_PATH : TRUNCATED_PATH}
-            </span>
-          </div>
-        </section>
+        <List>
+          <PropertyRow label="ID" value="demo-game" />
+          <PropertyRow label="Aspect Ratio" value="1.778" />
+          <PropertyRow label="Gravity" value="X:0.00 Y:-9.81 Z:0.00" />
+          <PropertyRow label="Image" value={IMAGE_PATH} onPathClick={setRevealed} />
+        </List>
+        <p class="code-label">{revealed() ? `Revealed: ${revealed()}` : 'Nothing revealed yet.'}</p>
       </div>
     </div>
   );

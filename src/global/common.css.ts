@@ -13,6 +13,19 @@ globalStyle('.overlay', {
   pointerEvents: 'none',
 });
 
+// Text for assistive tech only: off screen, still in the accessibility tree.
+globalStyle('.zylem-visually-hidden', {
+  position: 'absolute',
+  width: '1px',
+  height: '1px',
+  padding: 0,
+  margin: '-1px',
+  overflow: 'hidden',
+  clip: 'rect(0, 0, 0, 0)',
+  whiteSpace: 'nowrap',
+  border: 0,
+});
+
 // Default scrollbars: slim glass rail (use `.zylem-scroll` for the full
 // 13px HyperGlass treatment defined in hyperglass-base.css.ts).
 globalStyle('::-webkit-scrollbar', {

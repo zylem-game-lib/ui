@@ -46,12 +46,12 @@ export interface TabsTriggerProps {
   disabled?: boolean;
   class?: string;
   /**
-   * Document-style tabs: shows a close affordance after the label. It is a
-   * `role="button"` span (a button may not nest in the trigger button) and
-   * closing does not select the tab.
+   * Document-style tabs: Delete (Backspace on a Mac keyboard) closes the
+   * focused tab, and a close affordance after the label does the same for the
+   * pointer. Closing does not select the tab.
    */
   onClose?: () => void;
-  /** Accessible name of the close affordance; defaults to `Close tab`. */
+  /** Tooltip of the close affordance; defaults to `Close tab`. */
   closeLabel?: string;
   /** Unsaved-changes marker before the close affordance. */
   dirty?: boolean;
@@ -59,9 +59,21 @@ export interface TabsTriggerProps {
 
 export function TabsTrigger(props: TabsTriggerProps) {
   const close = (event: Event) => {
+    // Stopped so a page-level Delete shortcut does not also act on the key.
     event.stopPropagation();
     event.preventDefault();
     props.onClose?.();
+  };
+  const closeFromKeyboard = (event: KeyboardEvent & { currentTarget: HTMLButtonElement }) => {
+    if (!props.onClose || (event.key !== 'Delete' && event.key !== 'Backspace')) return;
+    const trigger = event.currentTarget;
+    const list = trigger.closest('[role="tablist"]');
+    close(event);
+    // A closed tab usually leaves the document, and focus with it.
+    queueMicrotask(() => {
+      if (trigger.isConnected) return;
+      list?.querySelector<HTMLElement>('[role="tab"][aria-selected="true"]')?.focus();
+    });
   };
   return (
     <KTabs.Trigger
@@ -70,25 +82,24 @@ export function TabsTrigger(props: TabsTriggerProps) {
       }
       value={props.value}
       disabled={props.disabled}
+      aria-keyshortcuts={props.onClose ? 'Delete Backspace' : undefined}
+      onKeyDown={closeFromKeyboard}
     >
       <span class="zylem-tabs-trigger-label">{props.children}</span>
       <Show when={props.dirty}>
-        <span class="zylem-tabs-dirty" aria-label="Unsaved changes" title="Unsaved changes" />
+        <span class="zylem-tabs-dirty" aria-hidden="true" title="Unsaved changes" />
+        <span class="zylem-visually-hidden">(unsaved changes)</span>
       </Show>
       <Show when={props.onClose}>
+        {/* Pointer only: a button may not nest in the trigger button, and the key covers it. */}
         <span
           class="zylem-tabs-close"
-          role="button"
-          tabIndex={0}
-          aria-label={props.closeLabel ?? 'Close tab'}
+          aria-hidden="true"
           title={props.closeLabel ?? 'Close tab'}
           onClick={close}
           onPointerDown={(event) => event.stopPropagation()}
-          onKeyDown={(event) => {
-            if (event.key === 'Enter' || event.key === ' ') close(event);
-          }}
         >
-          <X aria-hidden="true" />
+          <X />
         </span>
       </Show>
     </KTabs.Trigger>

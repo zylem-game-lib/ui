@@ -3,6 +3,8 @@ import { Show } from 'solid-js';
 
 export interface SliderProps {
   label?: string;
+  /** Accessible name when there is no visible `label`. */
+  'aria-label'?: string;
   value?: number;
   onChange?: (value: number) => void;
   /**
@@ -48,8 +50,8 @@ export function Slider(props: SliderProps) {
       </Show>
       <KSlider.Track class="zylem-slider-track">
         <KSlider.Fill class="zylem-slider-fill" />
-        <KSlider.Thumb class="zylem-slider-thumb">
-          <KSlider.Input class="zylem-slider-thumb-input" />
+        <KSlider.Thumb class="zylem-slider-thumb" aria-label={props['aria-label']}>
+          <KSlider.Input class="zylem-slider-thumb-input" aria-label={props['aria-label']} />
         </KSlider.Thumb>
       </KSlider.Track>
     </KSlider.Root>

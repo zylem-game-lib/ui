@@ -219,6 +219,7 @@ export function PianoRoll(props: PianoRollProps) {
       tabIndex={0}
       role="application"
       aria-label="Piano roll"
+      aria-disabled={props.disabled ? 'true' : undefined}
       data-disabled={props.disabled ? '' : undefined}
       data-dragging={dragging() ? '' : undefined}
       onKeyDown={handleKeyDown}

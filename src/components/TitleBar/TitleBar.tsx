@@ -1,11 +1,14 @@
 import { Show, splitProps } from 'solid-js';
 import type { JSX } from 'solid-js';
+import { Heading, type HeadingLevel } from '../shared/Heading';
 import { WindowControls, type WindowControlsProps } from '../WindowControls/WindowControls';
 
 export interface TitleBarProps
   extends Omit<JSX.HTMLAttributes<HTMLDivElement>, 'title' | 'onClose'>,
     WindowControlsProps {
   title?: JSX.Element;
+  /** Heading level of the title (default 2). */
+  headingLevel?: HeadingLevel;
   /** Smaller 32px bar for panel headers. */
   compact?: boolean;
   /** Show grab cursor for draggable bars. */
@@ -21,6 +24,7 @@ export interface TitleBarProps
 export function TitleBar(props: TitleBarProps) {
   const [local, rest] = splitProps(props, [
     'title',
+    'headingLevel',
     'compact',
     'draggable',
     'children',
@@ -45,7 +49,9 @@ export function TitleBar(props: TitleBarProps) {
   return (
     <div class={classes()} {...rest}>
       <Show when={local.title}>
-        <span class="zylem-titlebar-title">{local.title}</span>
+        <Heading level={local.headingLevel ?? 2} class="zylem-titlebar-title">
+          {local.title}
+        </Heading>
       </Show>
       {local.children}
       <WindowControls

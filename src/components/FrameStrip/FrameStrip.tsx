@@ -28,7 +28,7 @@ export function FrameStrip(props: FrameStripProps) {
           <span class="zylem-frame-strip-title">{local.title}</span>
         </Show>
       </div>
-      <div class="zylem-frame-strip-row zylem-scroll" role="listbox" aria-label={local.label ?? 'Frames'}>
+      <div class="zylem-frame-strip-row zylem-scroll" role="group" aria-label={local.label ?? 'Frames'}>
         {local.children}
       </div>
     </div>
@@ -51,10 +51,9 @@ export function FrameThumb(props: FrameThumbProps) {
   return (
     <button
       type="button"
-      role="option"
       class={props.class ? `zylem-frame-thumb ${props.class}` : 'zylem-frame-thumb'}
       data-selected={props.selected ? '' : undefined}
-      aria-selected={props.selected ? 'true' : 'false'}
+      aria-pressed={props.selected ? 'true' : 'false'}
       aria-label={props.label ?? `Frame ${props.index}`}
       onClick={props.onClick}
     >

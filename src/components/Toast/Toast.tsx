@@ -25,8 +25,7 @@ export function Toast(props: ToastProps) {
     <Show when={props.message}>
       <div
         class={props.class ? `zylem-toast ${props.class}` : 'zylem-toast'}
-        role="status"
-        aria-live="polite"
+        role={props.tone === 'error' ? 'alert' : 'status'}
         data-tone={props.tone}
         data-position={props.position}
       >

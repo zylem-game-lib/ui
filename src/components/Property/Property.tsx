@@ -107,7 +107,8 @@ export function PropertyRow(props: PropertyRowProps) {
           </span>
         }
       >
-        <span
+        <button
+          type="button"
           class={`zylem-property-value zylem-property-value--clickable ${props.valueClass ?? ''}`}
           onClick={() => {
             const fullValue = display().fullValue;
@@ -116,7 +117,7 @@ export function PropertyRow(props: PropertyRowProps) {
           title="Click to reveal full path"
         >
           {display().element}
-        </span>
+        </button>
       </Show>
     </div>
   );

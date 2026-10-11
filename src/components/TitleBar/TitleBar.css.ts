@@ -26,6 +26,7 @@ globalStyle('.zylem-titlebar--compact', {
 
 globalStyle('.zylem-titlebar-title', {
   flex: 1,
+  margin: 0,
   fontSize: '13px',
   fontWeight: 700,
   letterSpacing: '0.02em',

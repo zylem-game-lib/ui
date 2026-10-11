@@ -1,4 +1,4 @@
-import { createSignal, Show } from 'solid-js';
+import { createSignal, createUniqueId, Show } from 'solid-js';
 import { clamp } from '../TimelineLanes/lanes-math';
 
 export interface KnobProps {
@@ -11,7 +11,10 @@ export interface KnobProps {
   step?: number;
   /** Double-click resets to this. */
   defaultValue?: number;
+  /** Caption under the knob, which also names it. */
   label?: string;
+  /** Accessible name when there is no visible `label`. */
+  'aria-label'?: string;
   /** Readout under the knob; defaults to the value with `step` precision. */
   format?: (value: number) => string;
   /** Draw the arc from the centre (for pan and other ±ranges). */
@@ -48,6 +51,7 @@ export function Knob(props: KnobProps) {
   const max = () => props.max ?? 1;
   const step = () => props.step ?? (max() - min()) / 100;
   const size = () => props.size ?? 36;
+  const labelId = createUniqueId();
   const ratio = () => (max() > min() ? clamp((props.value - min()) / (max() - min()), 0, 1) : 0);
   const angle = () => START_ANGLE + ratio() * SWEEP;
   const zeroAngle = () =>
@@ -147,7 +151,8 @@ export function Knob(props: KnobProps) {
         class="zylem-knob-dial"
         role="slider"
         tabIndex={props.disabled ? -1 : 0}
-        aria-label={props.label}
+        aria-labelledby={props.label ? labelId : undefined}
+        aria-label={props.label ? undefined : props['aria-label']}
         aria-valuemin={min()}
         aria-valuemax={max()}
         aria-valuenow={props.value}
@@ -180,7 +185,9 @@ export function Knob(props: KnobProps) {
         </svg>
       </div>
       <Show when={props.label}>
-        <span class="zylem-knob-label">{props.label}</span>
+        <span id={labelId} class="zylem-knob-label">
+          {props.label}
+        </span>
       </Show>
       <span class="zylem-knob-value">{readout()}</span>
     </div>

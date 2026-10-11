@@ -18,7 +18,7 @@ export interface SearchInputProps {
 export function SearchInput(props: SearchInputProps) {
   return (
     <div class={props.class ? `zylem-search ${props.class}` : 'zylem-search'}>
-      <Search class="zylem-search-icon" />
+      <Search class="zylem-search-icon" aria-hidden="true" />
       <input
         type="search"
         ref={props.ref}

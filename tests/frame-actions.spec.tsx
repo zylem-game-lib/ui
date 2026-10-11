@@ -1,6 +1,6 @@
 import { render } from '@solidjs/testing-library';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { FrameActions } from '../src/components/FrameStrip/FrameStrip';
+import { FrameActions, FrameStrip, FrameThumb } from '../src/components/FrameStrip/FrameStrip';
 import { LayerProvider } from '../src/layers';
 
 afterEach(() => {
@@ -50,5 +50,21 @@ describe('FrameActions', () => {
     right!.click();
     expect(onMoveRight).toHaveBeenCalledTimes(1);
     expect(onMoveLeft).not.toHaveBeenCalled();
+  });
+});
+
+describe('FrameStrip', () => {
+  it('is a group of toggle buttons, not a listbox it has no keyboard model for', () => {
+    const { container, getByRole } = render(() => (
+      <FrameStrip label="Walk">
+        <FrameThumb index={1} selected />
+        <FrameThumb index={2} />
+      </FrameStrip>
+    ));
+    expect(container.querySelector('[role="listbox"], [role="option"], [aria-selected]')).toBeNull();
+    const row = getByRole('group', { name: 'Walk' });
+    const frames = Array.from(row.querySelectorAll('button'));
+    expect(frames.map((frame) => frame.getAttribute('aria-label'))).toEqual(['Frame 1', 'Frame 2']);
+    expect(frames.map((frame) => frame.getAttribute('aria-pressed'))).toEqual(['true', 'false']);
   });
 });

@@ -26,7 +26,7 @@ export function Callout(props: CalloutProps) {
       <Show when={props.title}>
         <span class="zylem-callout-title">{props.title}</span>
       </Show>
-      <span class="zylem-callout-message">{props.children}</span>
+      <div class="zylem-callout-message">{props.children}</div>
     </div>
   );
 }

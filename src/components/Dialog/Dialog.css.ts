@@ -1,7 +1,8 @@
 import { globalStyle, keyframes } from '@vanilla-extract/css';
+import { LAYER_PORTAL_CLASS } from '../../layers/resolve-mount';
 import { vars } from '../../theme.css';
 
-const overlayEnter = keyframes({
+const backdropEnter = keyframes({
   from: { opacity: 0 },
   to: { opacity: 1 },
 });
@@ -11,24 +12,54 @@ const contentEnter = keyframes({
   to: { opacity: 1, transform: 'translateY(0) scale(1)' },
 });
 
-globalStyle('.zylem-dialog-overlay', {
+// The <dialog> is a transparent sheet over the whole viewport; the card inside
+// is the visible window. Undoes the UA's `dialog:modal` box (centered,
+// max-sized, scrolling) but never sets `display`, which would override the UA
+// rule that hides a closed dialog.
+globalStyle('.zylem-dialog', {
   position: 'fixed',
   inset: 0,
-  zIndex: vars.layers.modal,
+  width: '100%',
+  height: '100%',
+  maxWidth: 'none',
+  maxHeight: 'none',
+  margin: 0,
+  padding: 0,
+  border: 0,
+  background: 'transparent',
+  color: 'inherit',
+  font: 'inherit',
+  overflow: 'visible',
+  outline: 'none',
+});
+
+globalStyle('.zylem-dialog::backdrop', {
   background: 'rgba(5, 10, 18, 0.6)',
   backdropFilter: 'blur(3px)',
-  animation: `${overlayEnter} 0.15s ${vars.motion.easeOut}`,
+  animation: `${backdropEnter} 0.15s ${vars.motion.easeOut}`,
+});
+
+globalStyle('html:has(.zylem-dialog[open])', {
+  overflow: 'hidden',
 });
 
 globalStyle('.zylem-dialog-positioner', {
-  position: 'fixed',
-  inset: 0,
-  // One above the backdrop it shares a tier with.
-  zIndex: `calc(${vars.layers.modal} + 1)`,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  boxSizing: 'border-box',
+  width: '100%',
+  height: '100%',
   padding: vars.spacing.lg,
+});
+
+// The scope's portal container, where overlays opened from the dialog mount.
+// Out of flow so it takes no part in centering the card, at the dialog's
+// origin, which is the viewport's.
+globalStyle(`.zylem-dialog-positioner > .${LAYER_PORTAL_CLASS}`, {
+  position: 'absolute',
+  top: 0,
+  left: 0,
 });
 
 globalStyle('.zylem-dialog-content', {
@@ -124,18 +155,11 @@ globalStyle('.zylem-dialog-body', {
   lineHeight: 1.45,
 });
 
-// In fullscreen the body and its layer scope become flex columns so content
-// can lay out against the dialog's height (and own its scrolling).
+// In fullscreen the body becomes a flex column so content can lay out against
+// the dialog's height (and own its scrolling).
 globalStyle('.zylem-dialog-content[data-size="fullscreen"] .zylem-dialog-body', {
   display: 'flex',
   flexDirection: 'column',
-});
-
-globalStyle('.zylem-dialog-content[data-size="fullscreen"] .zylem-dialog-scope', {
-  display: 'flex',
-  flexDirection: 'column',
-  flex: '1 1 auto',
-  minHeight: 0,
 });
 
 globalStyle('.zylem-dialog-footer', {

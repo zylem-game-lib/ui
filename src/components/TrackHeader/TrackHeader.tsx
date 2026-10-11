@@ -11,6 +11,7 @@ export interface TrackHeaderProps {
   /** Secondary line under the name (instrument preset, camera kind). */
   detail?: string;
   selected?: boolean;
+  /** Pointer down anywhere on the header; given, the name is also a button for the keyboard. */
   onSelect?: () => void;
   /** Double-click the name to rename; the new name arrives here on Enter/blur. */
   onRename?: (name: string) => void;
@@ -47,6 +48,31 @@ export function TrackHeader(props: TrackHeaderProps) {
     if (next && next !== props.name) props.onRename?.(next);
   };
 
+  const name = () => (
+    <Show
+      when={props.onSelect}
+      fallback={
+        <span class="zylem-track-header-name" onDblClick={startRename} title={props.name}>
+          {props.name}
+        </span>
+      }
+    >
+      <button
+        type="button"
+        class="zylem-track-header-name"
+        aria-current={props.selected ? 'true' : undefined}
+        title={props.name}
+        onClick={(event) => {
+          // The pointer selected on pointer down; keys and assistive tech click without one.
+          if (event.detail === 0) props.onSelect?.();
+        }}
+        onDblClick={startRename}
+      >
+        {props.name}
+      </button>
+    </Show>
+  );
+
   return (
     <div
       class={props.class ? `zylem-track-header ${props.class}` : 'zylem-track-header'}
@@ -54,6 +80,8 @@ export function TrackHeader(props: TrackHeaderProps) {
       data-selected={props.selected ? '' : undefined}
       data-muted={props.muted ? '' : undefined}
       data-disabled={props.disabled ? '' : undefined}
+      role="group"
+      aria-label={props.name}
       onPointerDown={() => props.onSelect?.()}
     >
       <span class="zylem-track-header-swatch" aria-hidden="true" />
@@ -62,14 +90,7 @@ export function TrackHeader(props: TrackHeaderProps) {
           <Show when={props.icon}>
             <span class="zylem-track-header-icon">{props.icon}</span>
           </Show>
-          <Show
-            when={editing()}
-            fallback={
-              <span class="zylem-track-header-name" onDblClick={startRename} title={props.name}>
-                {props.name}
-              </span>
-            }
-          >
+          <Show when={editing()} fallback={name()}>
             <input
               class="zylem-track-header-input"
               value={draft()}
@@ -95,7 +116,7 @@ export function TrackHeader(props: TrackHeaderProps) {
             class="zylem-track-toggle"
             data-kind="mute"
             aria-pressed={props.muted ? 'true' : 'false'}
-            aria-label={props.muted ? 'Unmute' : 'Mute'}
+            aria-label="Mute"
             title={props.muted ? 'Unmute' : 'Mute'}
             disabled={props.disabled}
             onPointerDown={(event) => event.stopPropagation()}
@@ -110,7 +131,7 @@ export function TrackHeader(props: TrackHeaderProps) {
             class="zylem-track-toggle"
             data-kind="solo"
             aria-pressed={props.solo ? 'true' : 'false'}
-            aria-label={props.solo ? 'Unsolo' : 'Solo'}
+            aria-label="Solo"
             title={props.solo ? 'Unsolo' : 'Solo'}
             disabled={props.disabled}
             onPointerDown={(event) => event.stopPropagation()}
@@ -125,13 +146,17 @@ export function TrackHeader(props: TrackHeaderProps) {
             class="zylem-track-toggle"
             data-kind="lock"
             aria-pressed={props.locked ? 'true' : 'false'}
-            aria-label={props.locked ? 'Unlock' : 'Lock'}
+            aria-label="Lock"
             title={props.locked ? 'Unlock' : 'Lock'}
             disabled={props.disabled}
             onPointerDown={(event) => event.stopPropagation()}
             onClick={() => props.onToggleLock?.()}
           >
-            {props.locked ? <Lock class="zylem-icon" /> : <LockOpen class="zylem-icon" />}
+            {props.locked ? (
+              <Lock class="zylem-icon" aria-hidden="true" />
+            ) : (
+              <LockOpen class="zylem-icon" aria-hidden="true" />
+            )}
           </button>
         </Show>
         <Show when={props.actions}>

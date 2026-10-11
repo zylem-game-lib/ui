@@ -13,6 +13,8 @@ export interface SelectProps {
   value?: string;
   onChange?: (value: string | null) => void;
   label?: string;
+  /** Accessible name when there is no visible `label`. */
+  'aria-label'?: string;
   placeholder?: string;
   disabled?: boolean;
   name?: string;
@@ -55,7 +57,7 @@ export function Select(props: SelectProps) {
       <KSelect.Trigger
         ref={layer.anchorRef}
         class="zylem-field zylem-select-trigger"
-        aria-label={props.label}
+        aria-label={props['aria-label']}
       >
         <KSelect.Value<SelectOption> class="zylem-select-value">
           {(state) => state.selectedOption()?.label}

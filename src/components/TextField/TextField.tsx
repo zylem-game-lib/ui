@@ -4,6 +4,8 @@ import type { JSX } from 'solid-js';
 
 export interface TextFieldProps {
   label?: string;
+  /** Accessible name when there is no visible `label`. */
+  'aria-label'?: string;
   error?: string;
   placeholder?: string;
   value?: string;
@@ -92,6 +94,7 @@ export function TextField(props: TextFieldProps) {
           <KTextField.Input
             class="zylem-field zylem-textfield-input"
             type={props.type ?? 'text'}
+            aria-label={props['aria-label']}
             placeholder={props.placeholder}
             autofocus={props.autofocus}
             onInput={props.onInput as JSX.EventHandlerUnion<HTMLInputElement, InputEvent>}
@@ -102,6 +105,7 @@ export function TextField(props: TextFieldProps) {
       >
         <KTextField.TextArea
           class="zylem-field zylem-textfield-textarea"
+          aria-label={props['aria-label']}
           placeholder={props.placeholder}
           rows={props.rows}
           autofocus={props.autofocus}

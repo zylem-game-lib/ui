@@ -1,5 +1,6 @@
 import { Slider as KSlider } from '@kobalte/core';
 import { For, Show, createMemo } from 'solid-js';
+import { describeSeconds } from '../TimelineLanes/lanes-math';
 import { formatSeconds, intervalTicks, markerPercent } from './timeline-math';
 
 export interface TimelineTrackProps {
@@ -19,6 +20,10 @@ export interface TimelineTrackProps {
   showTime?: boolean;
   disabled?: boolean;
   label?: string;
+  /** Accessible name when there is no visible `label`. */
+  'aria-label'?: string;
+  /** The value as a screen reader reads it (default: seconds). */
+  valueText?: (value: number) => string;
   class?: string;
 }
 
@@ -34,6 +39,7 @@ export function TimelineTrack(props: TimelineTrackProps) {
     return [];
   });
   const pct = (t: number) => `${markerPercent(t, min(), props.max)}%`;
+  const valueText = () => (props.valueText ?? describeSeconds)(props.value);
 
   return (
     <div class={props.class ? `zylem-timeline ${props.class}` : 'zylem-timeline'}>
@@ -45,7 +51,6 @@ export function TimelineTrack(props: TimelineTrackProps) {
         maxValue={props.max}
         step={props.step ?? 0.01}
         disabled={props.disabled}
-        getValueLabel={(params) => formatSeconds(params.values[0] ?? 0)}
       >
         <Show when={props.label}>
           <KSlider.Label class="zylem-timeline-label">{props.label}</KSlider.Label>
@@ -75,8 +80,16 @@ export function TimelineTrack(props: TimelineTrackProps) {
               </For>
             </div>
           </Show>
-          <KSlider.Thumb class="zylem-timeline-thumb">
-            <KSlider.Input class="zylem-timeline-thumb-input" />
+          <KSlider.Thumb
+            class="zylem-timeline-thumb"
+            aria-label={props['aria-label']}
+            aria-valuetext={valueText()}
+          >
+            <KSlider.Input
+              class="zylem-timeline-thumb-input"
+              aria-label={props['aria-label']}
+              aria-valuetext={valueText()}
+            />
           </KSlider.Thumb>
         </KSlider.Track>
       </KSlider.Root>

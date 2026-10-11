@@ -114,11 +114,13 @@ export function Timeline() {
                   name="Cameras"
                   icon={<Perspective />}
                   detail="Shots + blends"
+                  selected={selected() === 'cameras'}
+                  onSelect={() => setSelected('cameras')}
                   locked={false}
                   onToggleLock={() => {}}
                 />
               }
-              selected={selected()?.startsWith('shot') ?? false}
+              selected={selected() === 'cameras' || (selected()?.startsWith('shot') ?? false)}
               onSelectEmpty={() => setSelected(null)}
             >
               <For each={shots}>

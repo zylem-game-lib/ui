@@ -65,6 +65,7 @@ globalStyle('.zylem-panel-header', {
 });
 
 globalStyle('.zylem-panel-header-title', {
+  margin: 0,
   fontSize: '11px',
   fontWeight: 700,
   letterSpacing: '0.09em',

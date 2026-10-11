@@ -6,6 +6,8 @@ export interface ProgressProps {
   minValue?: number;
   maxValue?: number;
   label?: string;
+  /** Accessible name when there is no visible `label`. */
+  'aria-label'?: string;
   showValue?: boolean;
   indeterminate?: boolean;
   class?: string;
@@ -22,6 +24,7 @@ export function Progress(props: ProgressProps) {
       minValue={props.minValue}
       maxValue={props.maxValue}
       indeterminate={props.indeterminate}
+      aria-label={props['aria-label']}
     >
       <Show when={props.label || props.showValue}>
         <div class="zylem-progress-header">

@@ -51,7 +51,8 @@ export function TabsBadges() {
       </div>
       <h3>Document tabs</h3>
       <p class="code-label">
-        <code>onClose</code> adds a close affordance that does not select the tab;{' '}
+        <code>onClose</code> closes the focused tab on Delete (Backspace on a Mac keyboard) and
+        adds a close affordance for the pointer; neither selects the tab.{' '}
         <code>dirty</code> marks unsaved changes.
       </p>
       <div class="demo-container">

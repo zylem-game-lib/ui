@@ -4,6 +4,8 @@ import { Show } from 'solid-js';
 
 export interface CheckboxProps {
   label?: string;
+  /** Accessible name when there is no visible `label`. */
+  'aria-label'?: string;
   checked?: boolean;
   defaultChecked?: boolean;
   onChange?: (checked: boolean) => void;
@@ -25,10 +27,10 @@ export function Checkbox(props: CheckboxProps) {
       disabled={props.disabled}
       name={props.name}
     >
-      <KCheckbox.Input class="zylem-checkbox-input" />
+      <KCheckbox.Input class="zylem-checkbox-input" aria-label={props['aria-label']} />
       <KCheckbox.Control class="zylem-checkbox-control">
         <KCheckbox.Indicator>
-          <Check class="zylem-checkbox-icon" />
+          <Check class="zylem-checkbox-icon" aria-hidden="true" />
         </KCheckbox.Indicator>
       </KCheckbox.Control>
       <Show when={props.label}>

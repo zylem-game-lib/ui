@@ -236,6 +236,25 @@ globalStyle('.zylem-mixer-name', {
   textOverflow: 'ellipsis',
 });
 
+// A selectable strip's name is a button that still reads as the name.
+globalStyle('button.zylem-mixer-name', {
+  appearance: 'none',
+  margin: 0,
+  padding: 0,
+  border: 0,
+  background: 'none',
+  color: 'inherit',
+  fontFamily: 'inherit',
+  lineHeight: 'inherit',
+  cursor: 'inherit',
+});
+
+globalStyle('button.zylem-mixer-name:focus-visible', {
+  outline: 'none',
+  borderRadius: '3px',
+  boxShadow: vars.effects.focusRing,
+});
+
 globalStyle('.zylem-mixer-strip[data-muted] .zylem-mixer-name', {
   color: vars.colors.textSecondary,
 });

@@ -62,7 +62,6 @@ export function mountBuildLabel(
   const el = document.createElement('div');
   el.id = BUILD_LABEL_ID;
   el.className = 'zylem-build-label';
-  el.setAttribute('aria-label', 'Build version');
   el.textContent = formatBuildLabel(resolveBuildVersion(model));
   const title = packagesTitle(model.packages);
   if (title) el.title = title;

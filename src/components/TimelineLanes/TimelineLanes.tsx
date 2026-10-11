@@ -12,8 +12,10 @@ import {
 import {
   type ClipBounds,
   clamp,
+  describeTime,
   resolveClipDrag,
   rulerTicks,
+  sliderKeyValue,
   snapTime,
   type TimeScale,
 } from './lanes-math';
@@ -59,7 +61,11 @@ export interface TimelineLanesProps {
   /** Timeline length in units. */
   length: number;
   playhead?: number;
-  /** Fires while the ruler is clicked or dragged. */
+  /**
+   * Fires while the ruler is clicked or dragged, and for its keys once it has
+   * focus: the arrows step by the ruler's ticks (by its labelled ticks with
+   * Shift), Home and End jump to the ends.
+   */
   onSeek?: (time: number) => void;
   /** Drag snap in units, applied to clips and markers (not to seeking). */
   snap?: number;
@@ -134,6 +140,24 @@ export function TimelineLanes(props: TimelineLanesProps) {
     window.addEventListener('pointercancel', stop);
   };
 
+  const seekFromKey = (event: KeyboardEvent) => {
+    if (props.disabled || !props.onSeek) return;
+    const step = minorStep() > 0 ? minorStep() / ppu() : 1;
+    const major = majorStep() / ppu();
+    const next = sliderKeyValue(event, {
+      value: props.playhead ?? 0,
+      min: 0,
+      max: props.length,
+      step,
+      bigStep: major > step ? major : step * 10,
+    });
+    if (next === null) return;
+    event.preventDefault();
+    // Page-level transport shortcuts (Home, arrows) must not seek a second time.
+    event.stopPropagation();
+    props.onSeek(next);
+  };
+
   const handleWheel = (event: WheelEvent) => {
     if (!props.onZoom || !(event.ctrlKey || event.metaKey)) return;
     event.preventDefault();
@@ -171,11 +195,17 @@ export function TimelineLanes(props: TimelineLanesProps) {
               class="zylem-lanes-ruler"
               style={{ width: `${bodyWidth()}px` }}
               onPointerDown={startSeek}
+              onKeyDown={seekFromKey}
               role={props.onSeek ? 'slider' : undefined}
+              tabIndex={props.onSeek && !props.disabled ? 0 : undefined}
               aria-label={props.onSeek ? 'Playhead' : undefined}
               aria-valuemin={props.onSeek ? 0 : undefined}
               aria-valuemax={props.onSeek ? props.length : undefined}
-              aria-valuenow={props.onSeek ? props.playhead : undefined}
+              aria-valuenow={props.onSeek ? (props.playhead ?? 0) : undefined}
+              aria-valuetext={
+                props.onSeek ? describeTime(props.playhead ?? 0, props.scale) : undefined
+              }
+              aria-disabled={props.onSeek && props.disabled ? 'true' : undefined}
             >
               <Show when={props.range}>
                 {(range) => (
@@ -298,7 +328,8 @@ export interface TimelineClipProps {
   movable?: boolean;
   resizable?: boolean;
   disabled?: boolean;
-  onSelect?: (event: PointerEvent) => void;
+  /** Pointer down, or Enter / Space while focused. */
+  onSelect?: (event: MouseEvent | KeyboardEvent) => void;
   /** Fires continuously while dragging. */
   onChange?: (change: TimelineClipChange) => void;
   /** Fires once when a drag ends, with the final bounds. */
@@ -378,6 +409,17 @@ export function TimelineClip(props: TimelineClipProps) {
       aria-label={props.label}
       aria-pressed={props.selected ? 'true' : 'false'}
       onPointerDown={beginDrag('move')}
+      onKeyDown={(event) => {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        event.preventDefault();
+        // Space is also a page-level play shortcut; on a focused clip it selects.
+        event.stopPropagation();
+        props.onSelect?.(event);
+      }}
+      onClick={(event) => {
+        // Assistive tech activates with a click and no pointer down before it.
+        if (event.detail === 0) props.onSelect?.(event);
+      }}
       onDblClick={(event) => {
         event.stopPropagation();
         props.onDoubleClick?.();
@@ -412,7 +454,8 @@ export interface KeyframeMarkerProps {
   color?: string;
   selected?: boolean;
   disabled?: boolean;
-  onSelect?: (event: PointerEvent) => void;
+  /** Pointer down, or a click from the keyboard or assistive tech. */
+  onSelect?: (event: MouseEvent | KeyboardEvent) => void;
   /** Fires continuously while dragging. */
   onChange?: (time: number) => void;
   /** Fires once when a drag ends. */
@@ -476,6 +519,11 @@ export function KeyframeMarker(props: KeyframeMarkerProps) {
       aria-pressed={props.selected ? 'true' : 'false'}
       title={props.label}
       onPointerDown={beginDrag}
+      onClick={(event) => {
+        // The pointer already selected on pointer down; keys and assistive tech
+        // click without one.
+        if (event.detail === 0) props.onSelect?.(event);
+      }}
       onDblClick={(event) => {
         event.stopPropagation();
         props.onDoubleClick?.();

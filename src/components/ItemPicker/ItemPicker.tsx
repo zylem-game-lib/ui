@@ -1,11 +1,14 @@
-import { For, Show, createMemo, createSignal, type JSX } from 'solid-js';
+import { For, Show, createMemo, createSignal, createUniqueId, type JSX } from 'solid-js';
 import { SearchInput } from '../SearchInput/SearchInput';
 import { filterItems, groupItems, type PickerItem } from './filter-items';
 
 export interface ItemPickerProps<T extends PickerItem = PickerItem> {
   items: T[];
   onSelect: (item: T) => void;
-  /** Marked as the current choice. */
+  /**
+   * Marked as the current choice. Given at all (`null` for none), the items
+   * become toggles that expose it as `aria-pressed`.
+   */
   selectedId?: string | null | undefined;
   /** Hide the search field for a list short enough not to need one. */
   searchable?: boolean | undefined;
@@ -34,6 +37,9 @@ export function ItemPicker<T extends PickerItem>(props: ItemPickerProps<T>) {
 
   const searchable = () => props.searchable !== false;
   const groups = createMemo(() => groupItems(filterItems(props.items, query())));
+  /** Items are toggles only when the caller tracks a choice (`null` is "none yet"). */
+  const pressed = (item: T) =>
+    props.selectedId === undefined ? undefined : props.selectedId === item.id;
 
   return (
     <div class={props.class ? `zylem-picker ${props.class}` : 'zylem-picker'}>
@@ -68,37 +74,44 @@ export function ItemPicker<T extends PickerItem>(props: ItemPickerProps<T>) {
         >
           <div class="zylem-picker__groups zylem-scroll">
             <For each={groups()}>
-              {(group) => (
-                <div class="zylem-picker__group">
-                  <h4 class="zylem-picker__group-title">{group.group}</h4>
-                  <For each={group.items}>
-                    {(item) => (
-                      <button
-                        type="button"
-                        class="zylem-picker__item"
-                        disabled={item.disabled}
-                        data-selected={
-                          props.selectedId === item.id ? '' : undefined
-                        }
-                        title={item.description}
-                        onClick={() => props.onSelect(item)}
-                      >
-                        <Show when={item.icon}>
-                          {(icon) => (
-                            <span
-                              class="zylem-picker__item-glyph"
-                              // Markup from the caller's own registry, in the
-                              // caller's own realm; not a new trust boundary.
-                              innerHTML={icon()}
-                            />
-                          )}
-                        </Show>
-                        <span class="zylem-picker__item-label">{item.label}</span>
-                      </button>
-                    )}
-                  </For>
-                </div>
-              )}
+              {(group) => {
+                const titleId = createUniqueId();
+                return (
+                  <div class="zylem-picker__group" role="group" aria-labelledby={titleId}>
+                    <div id={titleId} class="zylem-picker__group-title">
+                      {group.group}
+                    </div>
+                    <For each={group.items}>
+                      {(item) => (
+                        <button
+                          type="button"
+                          class="zylem-picker__item"
+                          disabled={item.disabled}
+                          data-selected={
+                            props.selectedId === item.id ? '' : undefined
+                          }
+                          aria-pressed={pressed(item)}
+                          title={item.description}
+                          onClick={() => props.onSelect(item)}
+                        >
+                          <Show when={item.icon}>
+                            {(icon) => (
+                              <span
+                                class="zylem-picker__item-glyph"
+                                aria-hidden="true"
+                                // Markup from the caller's own registry, in the
+                                // caller's own realm; not a new trust boundary.
+                                innerHTML={icon()}
+                              />
+                            )}
+                          </Show>
+                          <span class="zylem-picker__item-label">{item.label}</span>
+                        </button>
+                      )}
+                    </For>
+                  </div>
+                );
+              }}
             </For>
           </div>
         </Show>

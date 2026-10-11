@@ -30,6 +30,57 @@ export function clamp(value: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, value));
 }
 
+export interface SliderKeyOptions {
+  value: number;
+  min: number;
+  max: number;
+  step: number;
+  /** Shift + arrow; defaults to ten steps. */
+  bigStep?: number;
+}
+
+/**
+ * Where a slider key moves `value`: arrows step (Shift for a big step), Home
+ * and End jump to the ends. Null for any other key, which the slider should
+ * let through.
+ */
+export function sliderKeyValue(
+  event: Pick<KeyboardEvent, 'key' | 'shiftKey'>,
+  options: SliderKeyOptions,
+): number | null {
+  const step = event.shiftKey ? (options.bigStep ?? options.step * 10) : options.step;
+  switch (event.key) {
+    case 'ArrowRight':
+    case 'ArrowUp':
+      return clamp(options.value + step, options.min, options.max);
+    case 'ArrowLeft':
+    case 'ArrowDown':
+      return clamp(options.value - step, options.min, options.max);
+    case 'Home':
+      return options.min;
+    case 'End':
+      return options.max;
+    default:
+      return null;
+  }
+}
+
+/** Seconds as spoken text for `aria-valuetext`: `1.5 seconds`. */
+export function describeSeconds(seconds: number): string {
+  const rounded = Math.round(Math.max(0, seconds) * 100) / 100;
+  return `${rounded} ${rounded === 1 ? 'second' : 'seconds'}`;
+}
+
+/** A time on `scale` as spoken text: `1.5 seconds`, or `bar 2, beat 1` (both 1-based). */
+export function describeTime(time: number, scale: Pick<TimeScale, 'unit' | 'beatsPerBar'>): string {
+  if (scale.unit === 'seconds') return describeSeconds(time);
+  const bpb = Math.max(1, scale.beatsPerBar ?? 4);
+  const total = Math.round(Math.max(0, time) * 100) / 100;
+  const bar = Math.floor(total / bpb) + 1;
+  const beat = Math.round((total - (bar - 1) * bpb + 1) * 100) / 100;
+  return `bar ${bar}, beat ${beat}`;
+}
+
 export interface ClipBounds {
   start: number;
   length: number;

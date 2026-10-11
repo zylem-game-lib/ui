@@ -140,6 +140,7 @@ export function MenuButton(props: MenuButtonProps) {
               <KPopover.Content
                 ref={dismiss.ref}
                 class="zylem-menu-button__panel"
+                aria-label={props.label}
                 onInteractOutside={dismiss.onInteractOutside}
               >
                 {props.menu(() => setOpen(false))}

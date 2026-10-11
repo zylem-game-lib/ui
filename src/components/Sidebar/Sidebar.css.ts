@@ -34,6 +34,7 @@ globalStyle('.sidebar-section', {
 });
 
 globalStyle('.sidebar-section-title', {
+  margin: 0,
   padding: `${vars.spacing.sm} ${vars.spacing.md} ${vars.spacing.xs}`,
   fontSize: '10px',
   fontWeight: 700,

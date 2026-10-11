@@ -3,6 +3,8 @@ import { Show } from 'solid-js';
 
 export interface SwitchProps {
   label?: string;
+  /** Accessible name when there is no visible `label`. */
+  'aria-label'?: string;
   checked?: boolean;
   defaultChecked?: boolean;
   onChange?: (checked: boolean) => void;
@@ -24,7 +26,7 @@ export function Switch(props: SwitchProps) {
       disabled={props.disabled}
       name={props.name}
     >
-      <KSwitch.Input class="zylem-switch-input" />
+      <KSwitch.Input class="zylem-switch-input" aria-label={props['aria-label']} />
       <KSwitch.Control class="zylem-switch-control">
         <KSwitch.Thumb class="zylem-switch-thumb" />
       </KSwitch.Control>

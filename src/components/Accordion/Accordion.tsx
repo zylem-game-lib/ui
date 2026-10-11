@@ -1,6 +1,7 @@
 import { Accordion as KAccordion } from '@kobalte/core';
 import { For } from 'solid-js';
 import type { JSX } from 'solid-js';
+import { headingTag, type HeadingLevel } from '../shared/Heading';
 
 export interface AccordionItemConfig {
   id: string;
@@ -16,6 +17,8 @@ export interface AccordionProps {
   onChange?: (value: string[]) => void;
   defaultValue?: string[];
   class?: string;
+  /** Heading level of each section header (default 3). */
+  headingLevel?: HeadingLevel;
   /** Extra class applied to each content region (e.g. scroll helpers). */
   contentClass?: string;
   /**
@@ -47,7 +50,7 @@ export function Accordion(props: AccordionProps) {
       <For each={props.items}>
         {(item) => (
           <KAccordion.Item value={item.id} class="accordion-item">
-            <KAccordion.Header class="accordion-header">
+            <KAccordion.Header as={headingTag(props.headingLevel ?? 3)} class="accordion-header">
               <KAccordion.Trigger class="accordion-trigger">
                 {item.title}
               </KAccordion.Trigger>

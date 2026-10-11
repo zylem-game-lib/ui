@@ -60,8 +60,8 @@ export interface LayerScopeProps {
  * them can paint above anything outside; and the scope owns the portal container
  * its descendants mount into, so overlays opened inside it stay inside it.
  *
- * A dialog wraps its content in one, so a tooltip opened within the dialog floats
- * over the dialog body without also floating over a menu belonging to the page.
+ * A dialog puts its card in one, so a menu opened within the dialog mounts
+ * inside the `<dialog>`, floats over the card, and is not clipped by it.
  */
 export function LayerScope(props: LayerScopeProps) {
 	const [container, setContainer] = createSignal<HTMLElement>();

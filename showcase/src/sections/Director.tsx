@@ -68,8 +68,10 @@ export function Director() {
                 max={duration()}
                 onChange={setTime}
                 showTime
+                aria-label="Position"
               />
               <NumberField
+                aria-label="Duration in seconds"
                 value={duration()}
                 minValue={1}
                 maxValue={120}

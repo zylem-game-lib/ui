@@ -49,7 +49,7 @@ export function App() {
   return (
     <div class="zylem-hyperglass-root showcase-shell">
       <BuildLabel packages={ZYLEM_PACKAGE_VERSIONS} />
-      <Sidebar aria-label="Showcase sections">
+      <Sidebar as="nav" aria-label="Showcase sections">
         <div class="showcase-sidebar-header">
           <h1 class="showcase-brand">Zylem UI</h1>
           <SearchInput
@@ -90,7 +90,7 @@ export function App() {
           </For>
         </ScrollArea>
       </Sidebar>
-      <ScrollArea class="showcase-main" direction="both" ref={main}>
+      <ScrollArea class="showcase-main" direction="both" role="main" ref={main}>
         <Dynamic component={current().component} />
       </ScrollArea>
     </div>

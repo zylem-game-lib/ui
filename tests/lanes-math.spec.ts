@@ -1,9 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import {
+  describeSeconds,
+  describeTime,
   formatBeats,
   formatClock,
   resolveClipDrag,
   rulerTicks,
+  sliderKeyValue,
   snapTime,
 } from '../src/components/TimelineLanes/lanes-math';
 
@@ -103,5 +106,40 @@ describe('formatBeats', () => {
     expect(formatBeats(4, 4)).toBe('2.1');
     expect(formatBeats(5.5, 4)).toBe('2.2.50');
     expect(formatBeats(2, 3)).toBe('1.3');
+  });
+});
+
+describe('sliderKeyValue', () => {
+  const options = { value: 5, min: 0, max: 10, step: 1 };
+  const key = (name: string, shiftKey = false) => sliderKeyValue({ key: name, shiftKey }, options);
+
+  it('steps with the arrows, ten steps with Shift, within the range', () => {
+    expect(key('ArrowRight')).toBe(6);
+    expect(key('ArrowUp')).toBe(6);
+    expect(key('ArrowLeft')).toBe(4);
+    expect(key('ArrowDown', true)).toBe(0);
+    expect(sliderKeyValue({ key: 'ArrowRight', shiftKey: true }, { ...options, bigStep: 2 })).toBe(7);
+  });
+
+  it('jumps to the ends with Home and End, and passes on other keys', () => {
+    expect(key('Home')).toBe(0);
+    expect(key('End')).toBe(10);
+    expect(key('Enter')).toBeNull();
+    expect(key(' ')).toBeNull();
+  });
+});
+
+describe('describeTime', () => {
+  it('reads seconds as words', () => {
+    expect(describeSeconds(1)).toBe('1 second');
+    expect(describeSeconds(2.345)).toBe('2.35 seconds');
+    expect(describeTime(0, { unit: 'seconds' })).toBe('0 seconds');
+  });
+
+  it('reads beats as 1-based bars and beats', () => {
+    expect(describeTime(0, { unit: 'beats' })).toBe('bar 1, beat 1');
+    expect(describeTime(4, { unit: 'beats', beatsPerBar: 4 })).toBe('bar 2, beat 1');
+    expect(describeTime(3.5, { unit: 'beats', beatsPerBar: 4 })).toBe('bar 1, beat 4.5');
+    expect(describeTime(3.999999, { unit: 'beats', beatsPerBar: 4 })).toBe('bar 2, beat 1');
   });
 });

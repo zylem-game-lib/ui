@@ -11,6 +11,7 @@ export interface ToolboxButtonProps {
   label: string;
   /** Icon rendered above the label. */
   children: JSX.Element;
+  /** Given at all, the tile is a toggle and exposes this as `aria-pressed`. */
   selected?: boolean;
   disabled?: boolean;
   /** Overrides the size inherited from the enclosing `ToolboxGrid`. */
@@ -29,7 +30,7 @@ export function ToolboxButton(props: ToolboxButtonProps) {
       class={props.class ? `zylem-toolbox-btn ${props.class}` : 'zylem-toolbox-btn'}
       data-size={props.size}
       data-selected={props.selected ? '' : undefined}
-      aria-pressed={props.selected ? 'true' : undefined}
+      aria-pressed={props.selected}
       disabled={props.disabled}
       onClick={props.onClick}
     >

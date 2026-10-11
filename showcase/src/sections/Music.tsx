@@ -53,6 +53,7 @@ export function Music() {
     { id: 'drums', name: 'Drums', color: '#8fd18b', volume: 0, pan: 0.1, mute: true, solo: false },
     { id: 'pad', name: 'Pad', color: '#b48ef0', volume: -12, pan: 0.4, mute: false, solo: false },
   ]);
+  const [selectedChannel, setSelectedChannel] = createSignal('lead');
   const [master, setMaster] = createSignal(0);
 
   const applyNotes = (changed: PianoRollNote[]) =>
@@ -130,6 +131,8 @@ export function Music() {
               <MixerStrip
                 name={channel.name}
                 color={channel.color}
+                selected={selectedChannel() === channel.id}
+                onSelect={() => setSelectedChannel(channel.id)}
                 volume={channel.volume}
                 onVolumeChange={(volume) => setChannels(index(), 'volume', volume)}
                 pan={channel.pan}

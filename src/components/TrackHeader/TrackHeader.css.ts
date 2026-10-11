@@ -61,6 +61,27 @@ globalStyle('.zylem-track-header-name', {
   textOverflow: 'ellipsis',
 });
 
+// A selectable header's name is a button that still reads as the name.
+globalStyle('button.zylem-track-header-name', {
+  appearance: 'none',
+  minWidth: 0,
+  margin: 0,
+  padding: 0,
+  border: 0,
+  background: 'none',
+  color: 'inherit',
+  fontFamily: 'inherit',
+  lineHeight: 'inherit',
+  textAlign: 'start',
+  cursor: 'inherit',
+});
+
+globalStyle('button.zylem-track-header-name:focus-visible', {
+  outline: 'none',
+  borderRadius: '3px',
+  boxShadow: vars.effects.focusRing,
+});
+
 globalStyle('.zylem-track-header[data-muted] .zylem-track-header-name', {
   color: vars.colors.textSecondary,
 });

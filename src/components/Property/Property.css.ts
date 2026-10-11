@@ -57,11 +57,24 @@ globalStyle('.zylem-property-value', {
   whiteSpace: 'nowrap',
 });
 
+// A button that should read as the value text it stands in for.
 globalStyle('.zylem-property-value--clickable', {
+  appearance: 'none',
+  margin: 0,
+  padding: 0,
+  border: 0,
+  background: 'none',
+  lineHeight: 'inherit',
+  textAlign: 'start',
   cursor: 'pointer',
   textDecoration: 'underline',
   textDecorationStyle: 'dotted',
   textUnderlineOffset: '2px',
+});
+
+globalStyle('.zylem-property-value--clickable:focus-visible', {
+  outline: 'none',
+  boxShadow: vars.effects.focusRing,
 });
 
 globalStyle('.zylem-property-value--clickable:hover', {

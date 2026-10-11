@@ -66,6 +66,16 @@ globalStyle('.zylem-waveform-edge::after', {
   boxSizing: 'border-box',
 });
 
+// The ring goes on the grip: around the full-height edge it would be clipped.
+globalStyle('.zylem-waveform-edge:focus-visible', {
+  outline: 'none',
+  boxShadow: 'none',
+});
+
+globalStyle('.zylem-waveform-edge:focus-visible::after', {
+  boxShadow: vars.effects.focusRing,
+});
+
 globalStyle('.zylem-waveform-playhead', {
   position: 'absolute',
   top: 0,

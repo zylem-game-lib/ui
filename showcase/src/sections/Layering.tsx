@@ -1,3 +1,6 @@
+import ChevronDown from 'lucide-solid/icons/chevron-down';
+import Menu from 'lucide-solid/icons/menu';
+import Plus from 'lucide-solid/icons/plus';
 import { createSignal } from 'solid-js';
 import {
   Button,
@@ -115,7 +118,7 @@ export function Layering() {
               <Button variant="ghost">Hover me</Button>
             </Tooltip>
             <DropdownMenu
-              trigger={<span class="zylem-button">Menu ▾</span>}
+              trigger={<Button icon={<ChevronDown />}>Menu</Button>}
               items={[
                 { id: 'a', label: 'Menu tier — 5000' },
                 { id: 'b', label: 'Above the tooltip' },
@@ -177,10 +180,10 @@ export function Layering() {
                 />
               )}
             >
-              +
+              <Plus />
             </MenuButton>
             <MenuButton label="No primary action" menu={() => <ItemPicker items={SHAPES} onSelect={() => {}} />}>
-              ☰
+              <Menu />
             </MenuButton>
           </div>
           <p class="code-label" style={{ margin: '8px 0 0' }}>
@@ -219,7 +222,7 @@ export function Layering() {
             <Button variant="ghost">Hover me</Button>
           </Tooltip>
           <DropdownMenu
-            trigger={<span class="zylem-button">Menu ▾</span>}
+            trigger={<Button icon={<ChevronDown />}>Menu</Button>}
             items={[{ id: 'a', label: 'Above the card, never clipped' }]}
           />
           <MenuButton
@@ -234,7 +237,7 @@ export function Layering() {
               />
             )}
           >
-            +
+            <Plus />
           </MenuButton>
           <Select
             aria-label="Shape"

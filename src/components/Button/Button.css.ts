@@ -9,119 +9,138 @@ import { vars } from '../../theme.css';
  */
 
 globalStyle('.zylem-button', {
-  boxSizing: 'border-box',
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  gap: vars.spacing.xs,
-  minHeight: '28px',
-  padding: `0 ${vars.spacing.md}`,
-  cursor: 'pointer',
-  userSelect: 'none',
-  whiteSpace: 'nowrap',
-  borderRadius: vars.radii.button,
-  border: '1px solid rgba(150, 210, 255, 0.55)',
-  color: '#F4FAFF',
-  background: vars.material.buttonGlass,
-  boxShadow: vars.effects.shadowButton,
-  textShadow: '0 1px 1px rgba(0,0,0,0.72)',
-  fontFamily: vars.typography.fontFamily,
-  fontSize: vars.typography.fontSize,
-  fontWeight: 600,
-  transition: `transform ${vars.motion.fast} ${vars.motion.easeOut}, box-shadow ${vars.motion.fast} ${vars.motion.easeOut}, filter ${vars.motion.fast} ${vars.motion.easeOut}, background ${vars.motion.fast} ${vars.motion.easeOut}`,
+	boxSizing: 'border-box',
+	display: 'inline-flex',
+	alignItems: 'center',
+	justifyContent: 'center',
+	gap: vars.spacing.xs,
+	minHeight: '28px',
+	padding: `0 ${vars.spacing.md}`,
+	cursor: 'pointer',
+	userSelect: 'none',
+	whiteSpace: 'nowrap',
+	borderRadius: vars.radii.button,
+	border: '1px solid rgba(150, 210, 255, 0.55)',
+	color: '#F4FAFF',
+	background: vars.material.buttonGlass,
+	boxShadow: vars.effects.shadowButton,
+	textShadow: '0 1px 1px rgba(0,0,0,0.72)',
+	fontFamily: vars.typography.fontFamily,
+	fontSize: vars.typography.fontSize,
+	fontWeight: 600,
+	transition: `transform ${vars.motion.fast} ${vars.motion.easeOut}, box-shadow ${vars.motion.fast} ${vars.motion.easeOut}, filter ${vars.motion.fast} ${vars.motion.easeOut}, background ${vars.motion.fast} ${vars.motion.easeOut}`,
 });
 
 globalStyle('.zylem-button:hover:not([disabled])', {
-  background: vars.material.buttonGlassHover,
-  boxShadow: `${vars.effects.shadowButton}, ${vars.effects.glowPrimary}`,
-  transform: 'translateY(-1px)',
-  color: '#F4FAFF',
+	background: vars.material.buttonGlassHover,
+	boxShadow: `${vars.effects.shadowButton}, ${vars.effects.glowPrimary}`,
+	transform: 'translateY(-1px)',
+	color: '#F4FAFF',
 });
 
 globalStyle('.zylem-button:active:not([disabled])', {
-  transform: 'translateY(1px)',
-  filter: 'brightness(0.92)',
-  // CodePen-inspired press: compressed drop shadow + bright bottom rim flash.
-  boxShadow:
-    'inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(255,255,255,0.55), inset 0 2px 3px rgba(0,0,0,0.28), 0 1px 3px rgba(0,0,0,0.28)',
+	transform: 'translateY(1px)',
+	filter: 'brightness(0.92)',
+	// CodePen-inspired press: compressed drop shadow + bright bottom rim flash.
+	boxShadow:
+		'inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(255,255,255,0.55), inset 0 2px 3px rgba(0,0,0,0.28), 0 1px 3px rgba(0,0,0,0.28)',
 });
 
 globalStyle('.zylem-button:focus-visible', {
-  outline: 'none',
-  boxShadow: `${vars.effects.shadowButton}, ${vars.effects.focusRing}`,
+	outline: 'none',
+	boxShadow: `${vars.effects.shadowButton}, ${vars.effects.focusRing}`,
 });
 
 globalStyle('.zylem-button[disabled], .zylem-button[data-disabled]', {
-  opacity: 0.45,
-  cursor: 'not-allowed',
+	opacity: 0.45,
+	cursor: 'not-allowed',
 });
 
 // Variants
 
 globalStyle('.zylem-button[data-variant="primary"]', {
-  borderColor: 'rgba(178, 219, 255, 0.8)',
-  background: vars.material.buttonGlassHover,
+	borderColor: 'rgba(178, 219, 255, 0.8)',
+	background: vars.material.buttonGlassHover,
 });
 
 globalStyle('.zylem-button[data-variant="primary"]:hover:not([disabled])', {
-  filter: 'brightness(1.08)',
+	filter: 'brightness(1.08)',
 });
 
 globalStyle('.zylem-button[data-variant="active"]', {
-  borderColor: 'rgba(20, 255, 60, 0.78)',
-  background: vars.material.buttonGlassActive,
-  boxShadow: `${vars.effects.shadowButton}, ${vars.effects.glowActive}`,
+	borderColor: 'rgba(20, 255, 60, 0.78)',
+	background: vars.material.buttonGlassActive,
+	boxShadow: `${vars.effects.shadowButton}, ${vars.effects.glowActive}`,
 });
 
 globalStyle('.zylem-button[data-variant="active"]:hover:not([disabled])', {
-  background: vars.material.buttonGlassActive,
-  boxShadow: `${vars.effects.shadowButton}, ${vars.effects.glowActive}`,
-  filter: 'brightness(1.1)',
+	background: vars.material.buttonGlassActive,
+	boxShadow: `${vars.effects.shadowButton}, ${vars.effects.glowActive}`,
+	filter: 'brightness(1.1)',
 });
 
 globalStyle('.zylem-button[data-variant="danger"]', {
-  borderColor: 'rgba(255, 132, 114, 0.78)',
-  background: vars.material.buttonGlassDanger,
-  boxShadow: `${vars.effects.shadowButton}, ${vars.effects.glowDanger}`,
+	borderColor: 'rgba(255, 132, 114, 0.78)',
+	background: vars.material.buttonGlassDanger,
+	boxShadow: `${vars.effects.shadowButton}, ${vars.effects.glowDanger}`,
 });
 
 globalStyle('.zylem-button[data-variant="danger"]:hover:not([disabled])', {
-  background: vars.material.buttonGlassDanger,
-  boxShadow: `${vars.effects.shadowButton}, ${vars.effects.glowDanger}`,
-  filter: 'brightness(1.1)',
+	background: vars.material.buttonGlassDanger,
+	boxShadow: `${vars.effects.shadowButton}, ${vars.effects.glowDanger}`,
+	filter: 'brightness(1.1)',
 });
 
 globalStyle('.zylem-button[data-variant="ghost"]', {
-  border: '1px solid rgba(97, 166, 232, 0.35)',
-  background: 'transparent',
-  boxShadow: 'none',
-  color: vars.colors.primary,
-  textShadow: 'none',
+	border: '1px solid rgba(97, 166, 232, 0.35)',
+	background: 'transparent',
+	boxShadow: 'none',
+	color: vars.colors.primary,
+	textShadow: 'none',
 });
 
 globalStyle('.zylem-button[data-variant="ghost"]:hover:not([disabled])', {
-  background: 'rgba(97, 166, 232, 0.12)',
-  boxShadow: vars.effects.glowPrimary,
-  color: vars.colors.primary,
+	background: 'rgba(97, 166, 232, 0.12)',
+	boxShadow: vars.effects.glowPrimary,
+	color: vars.colors.primary,
 });
 
 // Sizes
 
 globalStyle('.zylem-button[data-size="sm"]', {
-  minHeight: '22px',
-  padding: `0 ${vars.spacing.sm}`,
-  fontSize: `calc(${vars.typography.fontSize} - 2px)`,
+	minHeight: '22px',
+	padding: `0 ${vars.spacing.sm}`,
+	fontSize: `calc(${vars.typography.fontSize} - 2px)`,
 });
 
 globalStyle('.zylem-button[data-size="lg"]', {
-  minHeight: '36px',
-  padding: `0 ${vars.spacing.lg}`,
-  fontSize: `calc(${vars.typography.fontSize} + 1px)`,
+	minHeight: '36px',
+	padding: `0 ${vars.spacing.lg}`,
+	fontSize: `calc(${vars.typography.fontSize} + 4px)`,
 });
 
 globalStyle('.zylem-button[data-size="icon"]', {
-  minHeight: '28px',
-  minWidth: '28px',
-  padding: vars.spacing.xs,
-  borderRadius: vars.radii.control,
+	minHeight: '24px',
+	minWidth: '28px',
+	padding: vars.spacing.xs,
+	borderRadius: vars.radii.control,
+});
+
+globalStyle('.zylem-button-icon', {
+	display: 'inline-flex',
+	alignItems: 'center',
+	justifyContent: 'center',
+	flexShrink: 0,
+});
+
+globalStyle('.zylem-button svg', {
+	width: '16px',
+	height: '16px',
+	flexShrink: 0,
+	stroke: 'currentColor',
+});
+
+globalStyle('.zylem-button[data-size="sm"] svg', {
+	width: '14px',
+	height: '14px',
 });

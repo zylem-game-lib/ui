@@ -1,5 +1,4 @@
-import type { JSX } from 'solid-js';
-import { splitProps } from 'solid-js';
+import { Show, splitProps, type JSX } from 'solid-js';
 
 export type ButtonVariant = 'default' | 'primary' | 'active' | 'danger' | 'ghost';
 export type ButtonSize = 'sm' | 'md' | 'lg' | 'icon';
@@ -8,6 +7,8 @@ export interface ButtonProps
   extends JSX.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
+  /** Icon drawn before the label. Omitted, the button is label only. */
+  icon?: JSX.Element | undefined;
 }
 
 /**
@@ -19,7 +20,7 @@ export interface ButtonProps
  * `@zylem/ui/styles.css`), selected via `data-variant` / `data-size`.
  */
 export function Button(props: ButtonProps) {
-  const [local, rest] = splitProps(props, ['variant', 'size', 'class', 'children']);
+  const [local, rest] = splitProps(props, ['variant', 'size', 'class', 'children', 'icon']);
   return (
     <button
       type="button"
@@ -28,6 +29,11 @@ export function Button(props: ButtonProps) {
       data-size={local.size ?? 'md'}
       {...rest}
     >
+      <Show when={local.icon}>
+        <span class="zylem-button-icon" aria-hidden="true">
+          {local.icon}
+        </span>
+      </Show>
       {local.children}
     </button>
   );

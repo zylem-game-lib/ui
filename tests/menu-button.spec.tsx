@@ -27,8 +27,10 @@ function renderMenuButton(onAction?: () => void) {
 describe('MenuButton', () => {
   it('shows the chevron when the face carries its own action', () => {
     const { container } = renderMenuButton(() => {});
+    const chevron = container.querySelector(CHEVRON)!;
 
     expect(container.querySelectorAll(CHEVRON)).toHaveLength(1);
+    expect(chevron.querySelector('svg')).not.toBeNull();
   });
 
   it('shows the chevron when the whole button opens the menu', () => {
@@ -38,6 +40,7 @@ describe('MenuButton', () => {
     const { container } = renderMenuButton();
 
     expect(container.querySelectorAll(CHEVRON)).toHaveLength(1);
+    expect(container.querySelector(`${CHEVRON} svg`)).not.toBeNull();
   });
 
   it('treats the chevron as decoration when the face is the trigger', () => {

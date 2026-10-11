@@ -1,4 +1,5 @@
 import { Popover as KPopover } from '@kobalte/core';
+import CircleChevronDown from 'lucide-solid/icons/circle-chevron-down';
 import { Show, createSignal, type JSX } from 'solid-js';
 import { createDismissGuard, useLayer } from '../../layers';
 import { Tooltip } from '../Tooltip/Tooltip';
@@ -40,9 +41,12 @@ export interface MenuButtonProps {
 
 /**
  * Shown in both modes, because a chevron means "this has a menu" and that is
- * true whether or not the face carries its own action.
+ * true whether or not the face carries its own action. The circle is the icon's
+ * own stroke, so the badge does not draw a second plate behind it.
  */
-const CHEVRON = '▾';
+function MenuChevron() {
+  return <CircleChevronDown aria-hidden="true" />;
+}
 
 /**
  * A toolbar button that owns a menu, optionally split.
@@ -70,11 +74,18 @@ export function MenuButton(props: MenuButtonProps) {
   const isSplit = () => props.onAction !== undefined;
   const tooltipText = () =>
     props.tooltip === null ? null : props.tooltip ?? props.label;
+  /** The menu takes one side of the button, so the label takes the other. */
+  const tooltipPlacement = () =>
+    (props.placement ?? 'bottom-start').startsWith('top') ? 'bottom' : 'top';
 
   /** Wrap in a tooltip only when there is text for one. */
   const described = (content: JSX.Element) => (
     <Show when={tooltipText()} fallback={content} keyed>
-      {(text) => <Tooltip content={text}>{content}</Tooltip>}
+      {(text) => (
+        <Tooltip content={text} placement={tooltipPlacement()}>
+          {content}
+        </Tooltip>
+      )}
     </Show>
   );
 
@@ -107,7 +118,7 @@ export function MenuButton(props: MenuButtonProps) {
                 class="zylem-menu-button__chevron zylem-menu-button__chevron--static"
                 aria-hidden="true"
               >
-                {CHEVRON}
+                <MenuChevron />
               </span>
             </KPopover.Trigger>,
           )}
@@ -130,7 +141,7 @@ export function MenuButton(props: MenuButtonProps) {
             aria-label={`${props.label} options`}
             disabled={props.disabled}
           >
-            <span aria-hidden="true">{CHEVRON}</span>
+            <MenuChevron />
           </KPopover.Trigger>
         </Show>
 

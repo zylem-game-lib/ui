@@ -1,3 +1,4 @@
+import ChevronDown from 'lucide-solid/icons/chevron-down';
 import { WindowControls } from '../../../src/components';
 import { StagePanelContent } from '../demos/panels';
 
@@ -36,6 +37,7 @@ export function DetachedPanel() {
         >
           <span class="accordion-trigger zylem-exo-2" style={{ padding: '8px 12px' }}>
             Console
+            <ChevronDown class="accordion-chevron" aria-hidden="true" />
           </span>
         </div>
         <div class="accordion-drop-indicator" style={{ width: '300px' }} />

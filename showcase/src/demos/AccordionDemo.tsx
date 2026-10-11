@@ -1,4 +1,5 @@
 import { Accordion } from '@kobalte/core';
+import ChevronDown from 'lucide-solid/icons/chevron-down';
 import { For } from 'solid-js';
 import type { JSX } from 'solid-js';
 import { ConsoleDemo } from './ConsoleDemo';
@@ -22,7 +23,10 @@ export function AccordionDemo(props: { defaultExpanded?: string[] }) {
         {(panel) => (
           <Accordion.Item value={panel.id} class="accordion-item">
             <Accordion.Header class="accordion-header">
-              <Accordion.Trigger class="accordion-trigger zylem-exo-2">{panel.title}</Accordion.Trigger>
+              <Accordion.Trigger class="accordion-trigger zylem-exo-2">
+                {panel.title}
+                <ChevronDown class="accordion-chevron" aria-hidden="true" />
+              </Accordion.Trigger>
             </Accordion.Header>
             <Accordion.Content class="accordion-content scrollable-y scroll-thin">
               {panel.content()}

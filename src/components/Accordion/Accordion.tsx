@@ -1,4 +1,5 @@
 import { Accordion as KAccordion } from '@kobalte/core';
+import ChevronDown from 'lucide-solid/icons/chevron-down';
 import { For } from 'solid-js';
 import type { JSX } from 'solid-js';
 import { headingTag, type HeadingLevel } from '../shared/Heading';
@@ -53,6 +54,7 @@ export function Accordion(props: AccordionProps) {
             <KAccordion.Header as={headingTag(props.headingLevel ?? 3)} class="accordion-header">
               <KAccordion.Trigger class="accordion-trigger">
                 {item.title}
+                <ChevronDown class="accordion-chevron" aria-hidden="true" />
               </KAccordion.Trigger>
             </KAccordion.Header>
             <KAccordion.Content

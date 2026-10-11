@@ -1,4 +1,5 @@
 import { Select as KSelect } from '@kobalte/core';
+import ChevronDown from 'lucide-solid/icons/chevron-down';
 import { Show } from 'solid-js';
 import { createDismissGuard, useLayer } from '../../layers';
 
@@ -62,7 +63,9 @@ export function Select(props: SelectProps) {
         <KSelect.Value<SelectOption> class="zylem-select-value">
           {(state) => state.selectedOption()?.label}
         </KSelect.Value>
-        <KSelect.Icon class="zylem-select-icon">▼</KSelect.Icon>
+        <KSelect.Icon class="zylem-select-icon">
+          <ChevronDown aria-hidden="true" />
+        </KSelect.Icon>
       </KSelect.Trigger>
       <Show when={layer.mount()} keyed>
         {(mount) => (

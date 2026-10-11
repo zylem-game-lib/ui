@@ -20,10 +20,16 @@ globalStyle('.zylem-select-value', {
 });
 
 globalStyle('.zylem-select-icon', {
+  display: 'flex',
   flexShrink: 0,
-  fontSize: '9px',
   color: vars.colors.primary,
   transition: `transform ${vars.motion.fast} ${vars.motion.easeOut}`,
+});
+
+globalStyle('.zylem-select-icon svg', {
+  width: '14px',
+  height: '14px',
+  stroke: 'currentColor',
 });
 
 globalStyle('.zylem-select-trigger[data-expanded] .zylem-select-icon', {

@@ -1,4 +1,6 @@
 import { NumberField as KNumberField } from '@kobalte/core';
+import ChevronDown from 'lucide-solid/icons/chevron-down';
+import ChevronUp from 'lucide-solid/icons/chevron-up';
 import { Show } from 'solid-js';
 
 export interface NumberFieldProps {
@@ -54,13 +56,13 @@ export function NumberField(props: NumberFieldProps) {
           class="zylem-numberfield-stepper zylem-numberfield-stepper--up"
           aria-label="Increment"
         >
-          <span aria-hidden="true">▲</span>
+          <ChevronUp aria-hidden="true" />
         </KNumberField.IncrementTrigger>
         <KNumberField.DecrementTrigger
           class="zylem-numberfield-stepper zylem-numberfield-stepper--down"
           aria-label="Decrement"
         >
-          <span aria-hidden="true">▼</span>
+          <ChevronDown aria-hidden="true" />
         </KNumberField.DecrementTrigger>
       </div>
       <Show when={props.error}>

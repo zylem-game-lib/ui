@@ -107,17 +107,16 @@ globalStyle('.zylem-accordion--stack .accordion-content', {
   overflow: 'visible',
 });
 
-globalStyle('.accordion-trigger::after', {
-  // The empty alternative text keeps the chevron out of the trigger's
-  // accessible name; the first value is for browsers without that syntax.
-  content: ["'\\25BC'", "'\\25BC' / ''"],
-  position: 'relative',
+globalStyle('.accordion-chevron', {
+  width: '16px',
+  height: '16px',
+  flexShrink: 0,
+  stroke: 'currentColor',
   color: vars.colors.textSecondary,
-  fontSize: '10px',
   transition: `transform ${vars.motion.normal} ${vars.motion.easeOut}`,
 });
 
-globalStyle('.accordion-trigger[data-expanded]::after', {
+globalStyle('.accordion-trigger[data-expanded] .accordion-chevron', {
   transform: 'rotate(180deg)',
   color: '#F4FAFF',
 });

@@ -1,3 +1,4 @@
+import ChevronDown from 'lucide-solid/icons/chevron-down';
 import { createSignal } from 'solid-js';
 import {
   Button,
@@ -26,7 +27,7 @@ export function Overlays() {
             <Button variant="ghost">Hover for tooltip</Button>
           </Tooltip>
           <DropdownMenu
-            trigger={<span class="zylem-button">File ▾</span>}
+            trigger={<Button icon={<ChevronDown />}>File</Button>}
             items={[
               { id: 'new', label: 'New', shortcut: '⌘N', onSelect: () => setLastAction('New') },
               { id: 'open', label: 'Open...', shortcut: '⌘O', onSelect: () => setLastAction('Open') },

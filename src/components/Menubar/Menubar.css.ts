@@ -33,7 +33,7 @@ globalStyle('.zylem-menubar-trigger', {
 
 globalStyle('.zylem-menubar-trigger:hover', {
 	background: 'rgba(97, 166, 232, 0.12)',
-	color: vars.colors.primaryHover,
+	color: vars.colors.text,
 });
 
 globalStyle('.zylem-menubar-trigger[data-expanded]', {

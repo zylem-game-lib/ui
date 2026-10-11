@@ -146,7 +146,9 @@ globalStyle('.floating-panel-content', {
 
 globalStyle('.floating-panel-controls', {
   display: 'flex',
+  marginTop: '4px',
   alignItems: 'center',
+  alignSelf: 'flex-start',
   gap: '7px',
 });
 

@@ -43,7 +43,13 @@ export const SECTIONS: ShowcaseSection[] = [
   { id: 'hyperglass', label: 'HyperGlass', group: 'Overview', tags: ['editor', 'composite'], component: HyperGlass },
 
   { id: 'colors', label: 'Colors', group: 'Foundations', tags: ['tokens', 'palette'], component: Colors },
-  { id: 'typography', label: 'Typography', group: 'Foundations', tags: ['font', 'Exo 2'], component: Typography },
+  {
+    id: 'typography',
+    label: 'Typography',
+    group: 'Foundations',
+    tags: ['font', 'Exo 2', 'JetBrains Mono', 'time', 'units'],
+    component: Typography,
+  },
   {
     id: 'spacing-sizing',
     label: 'Spacing & Sizing',
@@ -53,7 +59,13 @@ export const SECTIONS: ShowcaseSection[] = [
   },
   { id: 'icons', label: 'Icons', group: 'Foundations', tags: ['camera', 'perspective'], component: Icons },
 
-  { id: 'buttons', label: 'Buttons', group: 'Controls', tags: ['Button'], component: Buttons },
+  {
+    id: 'buttons',
+    label: 'Buttons',
+    group: 'Controls',
+    tags: ['Button', 'ToolbarButton', 'MenuButton', 'ToolboxButton', 'ToolButton', 'WindowControls', 'AddTile'],
+    component: Buttons,
+  },
   {
     id: 'inputs',
     label: 'Inputs',

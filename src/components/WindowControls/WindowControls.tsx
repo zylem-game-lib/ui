@@ -17,8 +17,9 @@ export interface WindowControlsProps {
 }
 
 /**
- * Shared glass window controls: blue collapse jewel and red close jewel, used
- * by floating and detached panels. Only controls with a handler are rendered.
+ * Shared ghost window controls, used by floating and detached panels. Close
+ * takes the danger color only while hovered or focused. Only controls with a
+ * handler are rendered.
  */
 export function WindowControls(props: WindowControlsProps) {
   return (

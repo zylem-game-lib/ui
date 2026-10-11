@@ -73,6 +73,7 @@ globalStyle('.zylem-knob-label', {
 });
 
 globalStyle('.zylem-knob-value', {
+  fontFamily: vars.typography.fontFamilyMono,
   fontSize: '10px',
   fontVariantNumeric: 'tabular-nums',
   color: vars.colors.text,
@@ -216,6 +217,7 @@ globalStyle('.zylem-mixer-meter-fill', {
 });
 
 globalStyle('.zylem-mixer-readout', {
+  fontFamily: vars.typography.fontFamilyMono,
   fontSize: '10px',
   fontVariantNumeric: 'tabular-nums',
   color: vars.colors.textSecondary,

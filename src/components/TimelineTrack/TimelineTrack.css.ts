@@ -142,16 +142,17 @@ globalStyle('.zylem-timeline-thumb-input', {
 });
 
 // Fixed box so the readout doesn't reflow the track as digits change:
-// wide enough for `59.99s / 120s`, one track-height tall, right-aligned.
+// wide enough for `59.99s / 120s` in the mono face, one track-height tall.
 globalStyle('.zylem-timeline-time', {
   boxSizing: 'border-box',
   flex: 'none',
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'flex-end',
-  width: '12ch',
+  width: '14ch',
   height: TRACK_HEIGHT,
   lineHeight: TRACK_HEIGHT,
+  fontFamily: vars.typography.fontFamilyMono,
   fontSize: `calc(${vars.typography.fontSize} - 1px)`,
   fontWeight: 600,
   fontVariantNumeric: 'tabular-nums',

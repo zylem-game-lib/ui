@@ -29,6 +29,7 @@ globalStyle('.zylem-transport-track', {
 globalStyle('.zylem-transport-time', {
   flex: 'none',
   minWidth: '9ch',
+  fontFamily: vars.typography.fontFamilyMono,
   fontSize: `calc(${vars.typography.fontSize} - 1px)`,
   fontWeight: 600,
   fontVariantNumeric: 'tabular-nums',
@@ -62,4 +63,8 @@ globalStyle('.zylem-transport-bpm', {
 globalStyle('.zylem-transport-signature', {
   width: '84px',
   flex: 'none',
+});
+
+globalStyle('.zylem-transport-signature .zylem-field', {
+  fontFamily: vars.typography.fontFamilyMono,
 });

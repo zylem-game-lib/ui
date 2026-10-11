@@ -22,7 +22,7 @@ globalStyle('.zylem-callout-title', {
 });
 
 globalStyle('.zylem-callout-message code', {
-  fontFamily: "'Courier New', monospace",
+  fontFamily: vars.typography.fontFamilyMono,
   fontSize: '0.95em',
 });
 

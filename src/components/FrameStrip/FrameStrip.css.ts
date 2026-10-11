@@ -101,6 +101,7 @@ globalStyle('.zylem-frame-thumb-index', {
   alignItems: 'center',
   justifyContent: 'center',
   flex: '1 1 auto',
+  fontFamily: vars.typography.fontFamilyMono,
   fontSize: '11px',
   fontWeight: 600,
   fontVariantNumeric: 'tabular-nums',

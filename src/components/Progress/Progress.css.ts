@@ -25,7 +25,7 @@ globalStyle('.zylem-progress-label', {
 globalStyle('.zylem-progress-value', {
   fontSize: `calc(${vars.typography.fontSize} - 2px)`,
   color: vars.colors.primary,
-  fontFamily: vars.typography.fontFamily,
+  fontFamily: vars.typography.fontFamilyMono,
   fontVariantNumeric: 'tabular-nums',
 });
 

@@ -37,6 +37,15 @@ globalStyle('.zylem-exo-2', {
   fontStyle: 'normal',
 });
 
+/** Time and units: clocks, beats, dimensions, levels. */
+globalStyle('.zylem-mono', {
+  fontFamily: vars.typography.fontFamilyMono,
+  fontOpticalSizing: 'auto',
+  fontWeight: 400,
+  fontStyle: 'normal',
+  fontVariantNumeric: 'tabular-nums',
+});
+
 globalStyle('.scrollable-y', {
   overflowY: 'scroll',
   overflowX: 'hidden',

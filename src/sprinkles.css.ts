@@ -149,7 +149,10 @@ const visual = defineProperties({
       bold: '2px',
     },
     borderStyle: ['solid', 'dashed', 'dotted', 'none'],
-    fontFamily: { default: vars.typography.fontFamily },
+    fontFamily: {
+      default: vars.typography.fontFamily,
+      mono: vars.typography.fontFamilyMono,
+    },
     fontSize: { default: vars.typography.fontSize },
     lineHeight: ['1', '1.2', '1.35', '1.45', '1.5'],
     letterSpacing: {

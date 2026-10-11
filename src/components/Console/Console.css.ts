@@ -35,7 +35,7 @@ globalStyle('.zylem-console', {
   background: 'rgba(4, 12, 20, 0.72)',
   boxShadow: vars.effects.shadowInset,
   color: vars.colors.consoleText,
-  fontFamily: "'Courier New', monospace",
+  fontFamily: vars.typography.fontFamilyMono,
   fontSize: `calc(${vars.typography.fontSize} - 1px)`,
   lineHeight: 1.45,
   outline: 'none',

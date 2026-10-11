@@ -20,6 +20,7 @@ globalStyle('.zylem-size-picker-presets', {
 
 globalStyle('.zylem-size-picker-presets .zylem-button', {
   minWidth: '40px',
+  fontFamily: vars.typography.fontFamilyMono,
   fontVariantNumeric: 'tabular-nums',
 });
 
@@ -89,6 +90,7 @@ globalStyle('.zylem-size-picker-readout', {
   position: 'absolute',
   right: vars.spacing.sm,
   bottom: vars.spacing.xs,
+  fontFamily: vars.typography.fontFamilyMono,
   fontSize: `calc(${vars.typography.fontSize} - 2px)`,
   fontVariantNumeric: 'tabular-nums',
   color: vars.colors.primary,

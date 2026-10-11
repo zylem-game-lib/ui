@@ -53,8 +53,13 @@ const tokens = {
 		iconSm: '16px',
 		iconLg: '96px',
 	},
+	/**
+	 * Exo 2 is the interface face. JetBrains Mono is for time and units
+	 * (clocks, beats, dimensions, levels) so digits keep a stable width.
+	 */
 	typography: {
 		fontFamily: "'Exo 2', sans-serif",
+		fontFamilyMono: "'JetBrains Mono', ui-monospace, monospace",
 		fontSize: '14px',
 	},
 	borders: {
@@ -178,6 +183,7 @@ const varNames = {
 	},
 	typography: {
 		fontFamily: 'zylem-font-family',
+		fontFamilyMono: 'zylem-font-family-mono',
 		fontSize: 'zylem-font-size',
 	},
 	borders: {

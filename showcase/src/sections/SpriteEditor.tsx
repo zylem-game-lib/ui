@@ -242,7 +242,7 @@ export function SpriteEditor() {
             onFastForward={() => setCurrent(frames().length - 1)}
           >
             <NumberField value={fps()} minValue={1} maxValue={60} onChange={setFps} />
-            <span>
+            <span class="zylem-mono">
               FPS {current() + 1}/{frames().length}
             </span>
           </PlaybackControls>

@@ -100,6 +100,7 @@ globalStyle('.zylem-lanes-tick-label', {
   position: 'absolute',
   left: '4px',
   bottom: '8px',
+  fontFamily: vars.typography.fontFamilyMono,
   fontSize: '10px',
   fontVariantNumeric: 'tabular-nums',
   whiteSpace: 'nowrap',

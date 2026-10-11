@@ -80,7 +80,7 @@ export function Director() {
                   if (time() > d) setTime(d);
                 }}
               />
-              <span>s</span>
+              <span class="zylem-mono">s</span>
             </PlaybackControls>
           </div>
         </div>

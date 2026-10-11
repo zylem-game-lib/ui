@@ -14,46 +14,54 @@ body {
   min-height: 100vh;
 }
 
-/* Restore default button behavior inside the showcase (the library's
-   editor-base reset uses `all: unset` for the shadow-DOM editor). */
-.showcase h1 {
+/* Section rail on the left, the selected section on the right; each scrolls on its own. */
+.showcase-shell {
+  display: grid;
+  grid-template-columns: 248px minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  height: 100vh;
+  overflow: hidden;
+}
+
+.showcase-sidebar-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--zylem-spacing-sm);
+  padding: var(--zylem-spacing-md);
+  border-bottom: 1px solid rgba(97, 166, 232, 0.22);
+}
+
+.showcase-brand {
+  margin: 0;
+  color: var(--zylem-color-primary);
+  font-size: 16px;
+  letter-spacing: 0.02em;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
-.showcase {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var(--zylem-spacing-lg);
+.showcase-sidebar-list {
+  flex: 1;
+  padding-top: var(--zylem-spacing-xs);
+  scroll-padding-block: var(--zylem-spacing-sm);
 }
 
-.showcase h1 {
-  color: var(--zylem-color-primary);
-  font-size: 2rem;
-  margin-bottom: var(--zylem-spacing-lg);
-  border-bottom: 2px solid var(--zylem-color-border);
-  padding-bottom: var(--zylem-spacing-md);
+.showcase-sidebar-empty {
+  margin: var(--zylem-spacing-sm);
 }
 
-.showcase-nav {
-  display: flex;
-  gap: var(--zylem-spacing-sm);
-  flex-wrap: wrap;
-  margin-bottom: 48px;
+.showcase-main {
+  padding: var(--zylem-spacing-xl) var(--zylem-spacing-xxl);
+  /* Loading a #hash scrolls the section with that id into view; keep the top padding visible. */
+  scroll-padding-top: var(--zylem-spacing-xl);
 }
 
-.showcase-nav a {
-  color: var(--zylem-color-text-secondary);
-  text-decoration: none;
-  font-size: 13px;
-  padding: 4px 10px;
-  border: 1px solid var(--zylem-color-border);
-  border-radius: var(--zylem-radius);
-  transition: color 0.15s ease, border-color 0.15s ease;
+.showcase-main > .section {
+  max-width: 1100px;
+  margin-inline: auto;
 }
 
-.showcase-nav a:hover {
-  color: var(--zylem-color-primary);
-  border-color: var(--zylem-color-primary);
+.showcase-main > .section > h2:first-child {
+  margin-top: 0;
 }
 
 .section {

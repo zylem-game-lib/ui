@@ -19,6 +19,19 @@ describe('resolveBuildVersion', () => {
     ).toBe('0.8.8');
   });
 
+  it('shows the named package when prefer is set', () => {
+    expect(
+      resolveBuildVersion({
+        prefer: '@zylem/editor',
+        packages: {
+          '@zylem/ui': '0.8.1',
+          '@zylem/game-lib': '0.8.8',
+          '@zylem/editor': '0.9.9',
+        },
+      })
+    ).toBe('0.9.9');
+  });
+
   it('falls through the preferred list when game-lib is absent', () => {
     expect(
       resolveBuildVersion({

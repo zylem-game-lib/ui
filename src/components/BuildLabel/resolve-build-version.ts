@@ -3,6 +3,11 @@ export interface BuildLabelModel {
   version?: string;
   /** Resolved `@zylem/*` package versions collected at build time. */
   packages?: Record<string, string>;
+  /**
+   * Package name to show when it is present in `packages`. Demo apps leave
+   * this unset and keep the engine-first default.
+   */
+  prefer?: string;
 }
 
 const PREFERRED_PACKAGES = [
@@ -21,6 +26,10 @@ const PREFERRED_PACKAGES = [
  */
 export function resolveBuildVersion(model: BuildLabelModel): string {
   const packages = model.packages;
+  if (packages && model.prefer) {
+    const preferred = packages[model.prefer];
+    if (preferred) return preferred;
+  }
   if (packages) {
     for (const name of PREFERRED_PACKAGES) {
       const version = packages[name];

@@ -14,6 +14,6 @@ export default defineConfig({
   root: 'showcase',
   plugins: [zylemVersionsPlugin(__dirname), solid(), vanillaExtractPlugin()],
   server: {
-    port: 3030,
+    port: 1234,
   },
 });

@@ -32,7 +32,7 @@ pnpm build
 # Watch mode
 pnpm dev
 
-# Run the showcase app at http://localhost:3030
+# Run the showcase app at http://localhost:1234
 pnpm showcase
 
 # Lint

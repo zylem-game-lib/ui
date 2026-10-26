@@ -1,5 +1,28 @@
-import { CameraToolbar } from '../demos/CameraToolbar';
+import { createSignal } from 'solid-js';
+import {
+  CAMERA_ICONS,
+  Toolbar as ToolbarStrip,
+  ToolbarDropdownMenu,
+} from '../../../src/components';
 import { ToolbarDemo } from '../demos/ToolbarDemo';
+
+function CameraModes() {
+  const [camera, setCamera] = createSignal('perspective');
+
+  return (
+    <ToolbarStrip>
+      <ToolbarDropdownMenu
+        items={CAMERA_ICONS.map((item) => ({
+          id: item.name,
+          label: item.label,
+          icon: item.Icon,
+        }))}
+        value={camera()}
+        onChange={setCamera}
+      />
+    </ToolbarStrip>
+  );
+}
 
 export function Toolbar() {
   return (
@@ -11,10 +34,10 @@ export function Toolbar() {
       </div>
       <h3>Camera modes</h3>
       <p class="code-label">
-        Exclusive selection with the Zylem camera icons. Hover a button for its label.
+        The face is the current camera. Open it to pick another perspective.
       </p>
       <div class="demo-container">
-        <CameraToolbar />
+        <CameraModes />
       </div>
     </div>
   );

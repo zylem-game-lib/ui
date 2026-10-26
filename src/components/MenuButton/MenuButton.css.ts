@@ -92,3 +92,15 @@ globalStyle('.zylem-menu-button__face svg', {
 	width: '18px',
 	height: '18px',
 });
+
+/**
+ * Vertical column of icon buttons inside the panel. The panel chrome stays on
+ * `.zylem-menu-button__panel`; this only stacks and pads its contents.
+ */
+globalStyle('.zylem-menu-button__stack', {
+	display: 'flex',
+	flexDirection: 'column',
+	alignItems: 'center',
+	gap: vars.spacing.xs,
+	padding: vars.spacing.sm,
+});

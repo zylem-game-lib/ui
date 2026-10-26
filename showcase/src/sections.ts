@@ -120,7 +120,7 @@ export const SECTIONS: ShowcaseSection[] = [
     component: Sidebar,
   },
   { id: 'accordion', label: 'Accordion', group: 'Layout', tags: ['inspector'], component: Accordion },
-  { id: 'toolbar', label: 'Toolbar', group: 'Layout', tags: ['ToolbarButton', 'camera'], component: Toolbar },
+  { id: 'toolbar', label: 'Toolbar', group: 'Layout', tags: ['ToolbarButton', 'ToolbarDropdownMenu', 'camera'], component: Toolbar },
   {
     id: 'floating-panel',
     label: 'Floating Panel',

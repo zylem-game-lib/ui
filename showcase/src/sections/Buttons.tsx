@@ -56,10 +56,10 @@ export function Buttons() {
           label="Add"
           onAction={() => {}}
           menu={(close) => (
-            <div class="demo-row" style={{ padding: '8px' }}>
-              <Button size="sm" onClick={close}>
-                Box
-              </Button>
+            <div class="zylem-menu-button__stack">
+              <ToolButton tool="pencil" onClick={close} />
+              <ToolButton tool="fill" onClick={close} />
+              <ToolButton tool="eraser" onClick={close} />
             </div>
           )}
         >
@@ -67,11 +67,12 @@ export function Buttons() {
         </MenuButton>
         <MenuButton
           label="Menu"
+          placement="top-start"
           menu={(close) => (
-            <div class="demo-row" style={{ padding: '8px' }}>
-              <Button size="sm" onClick={close}>
-                Box
-              </Button>
+            <div class="zylem-menu-button__stack">
+              <ToolButton tool="rectangle" onClick={close} />
+              <ToolButton tool="ellipse" onClick={close} />
+              <ToolButton tool="select" onClick={close} />
             </div>
           )}
         >

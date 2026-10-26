@@ -1,10 +1,11 @@
-import { render } from '@solidjs/testing-library';
-import { afterEach, describe, expect, it } from 'vitest';
+import { fireEvent, render } from '@solidjs/testing-library';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { LayerProvider } from '../src/layers';
 import { ToolbarButton } from '../src/components/ToolbarButton/ToolbarButton';
 import { ART_TOOLS, ToolButton } from '../src/components/ToolButton/ToolButton';
 
 afterEach(() => {
+  vi.useRealTimers();
   document.body.innerHTML = '';
 });
 
@@ -65,5 +66,51 @@ describe('ToolbarButton', () => {
     expect(pause!.hasAttribute('aria-pressed')).toBe(false);
     expect(grid!.hasAttribute('data-selected')).toBe(true);
     expect(grid!.getAttribute('aria-pressed')).toBe('true');
+  });
+
+  it('opens its tooltip beside the button and above other layers when inside a popup', async () => {
+    vi.useFakeTimers();
+    render(() => (
+      <LayerProvider>
+        <div data-popper-positioner="">
+          <ToolbarButton label="Pencil">
+            <span />
+          </ToolbarButton>
+        </div>
+      </LayerProvider>
+    ));
+
+    fireEvent.pointerEnter(document.querySelector('button')!.parentElement!);
+    await vi.advanceTimersByTimeAsync(400);
+
+    const tooltip = document.querySelector('.zylem-tooltip');
+    expect(tooltip).not.toBeNull();
+    expect(tooltip!.classList.contains('zylem-tooltip--front')).toBe(true);
+    // Origin on the left means the tooltip sits to the right of the button.
+    // `flip="left"` is the only other side it may take.
+    const origin = tooltip!
+      .closest<HTMLElement>('[data-popper-positioner]')!
+      .style.getPropertyValue('--kb-popper-content-transform-origin');
+    expect(origin === 'left center' || origin === 'right center').toBe(true);
+    vi.useRealTimers();
+  });
+
+  it('keeps the tooltip on the tooltip tier outside a popup', async () => {
+    vi.useFakeTimers();
+    render(() => (
+      <LayerProvider>
+        <ToolbarButton label="Pencil">
+          <span />
+        </ToolbarButton>
+      </LayerProvider>
+    ));
+
+    fireEvent.pointerEnter(document.querySelector('button')!.parentElement!);
+    await vi.advanceTimersByTimeAsync(400);
+
+    const tooltip = document.querySelector('.zylem-tooltip');
+    expect(tooltip).not.toBeNull();
+    expect(tooltip!.classList.contains('zylem-tooltip--front')).toBe(false);
+    vi.useRealTimers();
   });
 });

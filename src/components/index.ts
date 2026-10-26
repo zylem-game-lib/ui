@@ -90,6 +90,11 @@ export {
 } from './Sidebar/Sidebar';
 export { Card, type CardProps } from './Card/Card';
 export { MenuButton, type MenuButtonProps } from './MenuButton/MenuButton';
+export {
+  ToolbarDropdownMenu,
+  type ToolbarDropdownItem,
+  type ToolbarDropdownMenuProps,
+} from './ToolbarDropdownMenu/ToolbarDropdownMenu';
 export { ItemPicker, type ItemPickerProps } from './ItemPicker/ItemPicker';
 export {
   filterItems,

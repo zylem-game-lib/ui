@@ -33,3 +33,12 @@ globalStyle('.zylem-tooltip', {
 globalStyle('.zylem-tooltip[data-enter]', {
   animation: `${enter} 0.15s ${vars.motion.easeOut}`,
 });
+
+/**
+ * Opened from inside a popup. The menu tier sits above tooltips, so one step
+ * past it is what puts this label over the popup it came from and over
+ * everything else.
+ */
+globalStyle('.zylem-tooltip.zylem-tooltip--front', {
+  zIndex: `calc(${vars.layers.menu} + 1)`,
+});

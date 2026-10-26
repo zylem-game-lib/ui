@@ -1,6 +1,6 @@
 {
   "name": "@zylem/ui",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "description": "Design tokens, global styles, and Solid components for Zylem, built with vanilla-extract",
   "license": "MIT",
   "repository": {

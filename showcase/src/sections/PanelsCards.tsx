@@ -14,7 +14,7 @@ export function PanelsCards() {
       <h2>Panels / TitleBar / Cards / EmptyState</h2>
       <h3>Window controls (shared glass buttons)</h3>
       <div class="demo-row">
-        <WindowControls onClose={() => {}} onCollapse={() => {}} />
+        <WindowControls dock="float" onDock={() => {}} onClose={() => {}} onCollapse={() => {}} />
         <WindowControls onClose={() => {}} onCollapse={() => {}} collapsed />
       </div>
       <h3>Panel with glossy header + TitleBar window</h3>

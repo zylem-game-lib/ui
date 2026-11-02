@@ -1,3 +1,4 @@
+import { createSignal } from 'solid-js';
 import Box from 'lucide-solid/icons/box';
 import Menu from 'lucide-solid/icons/menu';
 import MousePointer from 'lucide-solid/icons/mouse-pointer';
@@ -11,9 +12,12 @@ import {
   ToolbarButton,
   ToolboxButton,
   WindowControls,
+  type DockPosition,
 } from '../../../src/components';
 
 export function Buttons() {
+  const [dock, setDock] = createSignal<DockPosition>('float');
+
   return (
     <div class="section" id="buttons">
       <h2>Buttons</h2>
@@ -99,7 +103,12 @@ export function Buttons() {
 
       <h3>WindowControls</h3>
       <div class="demo-row">
-        <WindowControls onCollapse={() => {}} onClose={() => {}} />
+        <WindowControls
+          dock={dock()}
+          onDock={setDock}
+          onCollapse={() => {}}
+          onClose={() => {}}
+        />
       </div>
 
       <h3>AddTile</h3>

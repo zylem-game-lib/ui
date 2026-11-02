@@ -68,7 +68,11 @@ export { Toast, type ToastProps, type ToastTone } from './Toast/Toast';
 export { Separator, type SeparatorProps } from './Separator/Separator';
 
 // Composites
-export { WindowControls, type WindowControlsProps } from './WindowControls/WindowControls';
+export {
+  WindowControls,
+  type DockPosition,
+  type WindowControlsProps,
+} from './WindowControls/WindowControls';
 export { TitleBar, type TitleBarProps } from './TitleBar/TitleBar';
 export { Panel, type PanelProps } from './Panel/Panel';
 export { Toolbar, type ToolbarProps } from './Toolbar/Toolbar';

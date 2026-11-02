@@ -8,7 +8,7 @@ const enter = keyframes({
 
 globalStyle('.zylem-dropdown-content', {
   zIndex: vars.layers.menu,
-  minWidth: '180px',
+  width: 'max-content',
   padding: vars.spacing.xs,
   borderRadius: vars.radii.control,
   border: '1px solid rgba(97, 166, 232, 0.45)',

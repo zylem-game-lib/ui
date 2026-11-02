@@ -17,6 +17,11 @@ export interface DropdownMenuItemConfig {
    * one-of-many the way a stage picker works).
    */
   checked?: boolean;
+  /**
+   * Close the menu when this item is chosen. Checkable items stay open unless
+   * this is set, so a one-of-many picker can dismiss itself.
+   */
+  closeOnSelect?: boolean;
   /** Render a separator line above this item. */
   separatorAbove?: boolean;
 }
@@ -28,6 +33,8 @@ export interface DropdownMenuProps {
   placement?: 'bottom-start' | 'bottom-end' | 'bottom' | 'top-start' | 'top-end' | 'top' | 'right-start' | 'left-start';
   /** Class applied to the trigger button. */
   triggerClass?: string;
+  /** Accessible name when the trigger content is only an icon. */
+  triggerLabel?: string;
 }
 
 /**
@@ -85,6 +92,7 @@ export function MenuItems(props: { items: DropdownMenuItemConfig[] }) {
               class={itemClass(item)}
               checked={item.checked}
               disabled={item.disabled}
+              closeOnSelect={item.closeOnSelect}
               onSelect={item.onSelect}
             >
               {body(item)}
@@ -108,7 +116,12 @@ export function DropdownMenu(props: DropdownMenuProps) {
 
   return (
     <KDropdownMenu.Root placement={props.placement ?? 'bottom-start'}>
-      <KDropdownMenu.Trigger ref={layer.anchorRef} class={props.triggerClass}>
+      <KDropdownMenu.Trigger
+        ref={layer.anchorRef}
+        class={props.triggerClass}
+        aria-label={props.triggerLabel}
+        title={props.triggerLabel}
+      >
         {props.trigger}
       </KDropdownMenu.Trigger>
       <Show when={layer.mount()} keyed>

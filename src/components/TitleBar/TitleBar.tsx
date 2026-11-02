@@ -33,6 +33,8 @@ export function TitleBar(props: TitleBarProps) {
     'collapsed',
     'closeLabel',
     'closeTestId',
+    'dock',
+    'onDock',
     'class',
   ]);
 
@@ -60,6 +62,8 @@ export function TitleBar(props: TitleBarProps) {
         collapsed={local.collapsed}
         closeLabel={local.closeLabel}
         closeTestId={local.closeTestId}
+        dock={local.dock}
+        onDock={local.onDock}
       />
     </div>
   );

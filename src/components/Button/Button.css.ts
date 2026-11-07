@@ -67,6 +67,20 @@ globalStyle('.zylem-button[data-variant="primary"]:hover:not([disabled])', {
 	filter: 'brightness(1.08)',
 });
 
+globalStyle('.zylem-button[data-on]', {
+	borderColor: 'rgba(46, 231, 255, 0.9)',
+	background: vars.material.buttonGlassOn,
+	boxShadow: `${vars.effects.shadowButton}, ${vars.effects.glowOn}`,
+	color: '#F3FDFF',
+});
+
+globalStyle('.zylem-button[data-on]:hover:not([disabled])', {
+	background: vars.material.buttonGlassOn,
+	boxShadow: `${vars.effects.shadowButton}, ${vars.effects.glowOn}`,
+	filter: 'brightness(1.08)',
+	color: '#F3FDFF',
+});
+
 globalStyle('.zylem-button[data-variant="active"]', {
 	borderColor: 'rgba(20, 255, 60, 0.78)',
 	background: vars.material.buttonGlassActive,

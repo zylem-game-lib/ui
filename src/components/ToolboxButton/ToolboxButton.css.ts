@@ -50,6 +50,19 @@ globalStyle('.zylem-toolbox-btn:focus-visible', {
   boxShadow: `${vars.effects.shadowButton}, ${vars.effects.focusRing}`,
 });
 
+globalStyle('.zylem-toolbox-btn[data-on]', {
+  borderColor: 'rgba(46, 231, 255, 0.9)',
+  background: vars.material.buttonGlassOn,
+  boxShadow: `${vars.effects.shadowButton}, ${vars.effects.glowOn}`,
+  color: '#F3FDFF',
+});
+
+globalStyle('.zylem-toolbox-btn[data-on]:hover:not([disabled])', {
+  background: vars.material.buttonGlassOn,
+  boxShadow: `${vars.effects.shadowButton}, ${vars.effects.glowOn}`,
+  filter: 'brightness(1.08)',
+});
+
 globalStyle('.zylem-toolbox-btn[data-selected]', {
   borderColor: 'rgba(20, 255, 60, 0.78)',
   background: vars.material.buttonGlassActive,

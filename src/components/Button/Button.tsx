@@ -9,18 +9,24 @@ export interface ButtonProps
   size?: ButtonSize;
   /** Icon drawn before the label. Omitted, the button is label only. */
   icon?: JSX.Element | undefined;
+  /**
+   * Checkbox-like toggle. Electric blue while on, and exposed as `aria-pressed`.
+   * Pass `false` while off so the button still announces itself.
+   */
+  on?: boolean | undefined;
 }
 
 /**
  * HyperGlass button: squared Aqua-like bevel with glass depth. Variants map
- * to the Zylem palette — `active` for live/run actions, `danger` for
- * destructive actions, `ghost` for low-emphasis chrome.
+ * to the Zylem palette — `active` for live/run actions, `on` for a toggle
+ * that is switched on, `danger` for destructive actions, `ghost` for
+ * low-emphasis chrome.
  *
  * Styling lives on the global `.zylem-button` class (bundled in
  * `@zylem/ui/styles.css`), selected via `data-variant` / `data-size`.
  */
 export function Button(props: ButtonProps) {
-  const [local, rest] = splitProps(props, ['variant', 'size', 'class', 'children', 'icon']);
+  const [local, rest] = splitProps(props, ['variant', 'size', 'class', 'children', 'icon', 'on']);
   return (
     <button
       type="button"
@@ -28,6 +34,8 @@ export function Button(props: ButtonProps) {
       data-variant={local.variant ?? 'default'}
       data-size={local.size ?? 'md'}
       {...rest}
+      data-on={local.on ? '' : undefined}
+      aria-pressed={local.on === undefined ? undefined : local.on}
     >
       <Show when={local.icon}>
         <span class="zylem-button-icon" aria-hidden="true">

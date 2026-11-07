@@ -1,5 +1,7 @@
 import { createSignal } from 'solid-js';
 import Box from 'lucide-solid/icons/box';
+import Grid3x3 from 'lucide-solid/icons/grid-3x3';
+import Magnet from 'lucide-solid/icons/magnet';
 import Menu from 'lucide-solid/icons/menu';
 import MousePointer from 'lucide-solid/icons/mouse-pointer';
 import Pause from 'lucide-solid/icons/pause';
@@ -17,6 +19,8 @@ import {
 
 export function Buttons() {
   const [dock, setDock] = createSignal<DockPosition>('float');
+  const [snap, setSnap] = createSignal(true);
+  const [showGrid, setShowGrid] = createSignal(false);
 
   return (
     <div class="section" id="buttons">
@@ -46,12 +50,29 @@ export function Buttons() {
         <ToolbarButton label="Select" selected>
           <MousePointer class="zylem-icon" />
         </ToolbarButton>
-        <ToolbarButton label="Pause" pressed>
+        <ToolbarButton label="Pause" selected>
           <Pause class="zylem-icon" />
         </ToolbarButton>
         <ToolbarButton label="Add" disabled>
           <Plus class="zylem-icon" />
         </ToolbarButton>
+      </div>
+      <p class="code-label">
+        On is electric blue: a toggle whose label stays put. Selected stays live green.
+      </p>
+      <div class="demo-row">
+        <ToolbarButton label="Snap to grid" on={snap()} onClick={() => setSnap(!snap())}>
+          <Magnet class="zylem-icon" />
+        </ToolbarButton>
+        <ToolbarButton label="Show grid" on={showGrid()} onClick={() => setShowGrid(!showGrid())}>
+          <Grid3x3 class="zylem-icon" />
+        </ToolbarButton>
+        <Button on={snap()} onClick={() => setSnap(!snap())}>
+          Snap to grid
+        </Button>
+        <Button on={showGrid()} onClick={() => setShowGrid(!showGrid())}>
+          Show grid
+        </Button>
       </div>
 
       <h3>MenuButton</h3>

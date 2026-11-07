@@ -30,6 +30,8 @@ const tokens = {
 
 		active: 'rgba(20, 255, 60, 0.7)',
 		activeHover: 'rgba(20, 255, 60, 0.4)',
+		/** Electric blue for a toggle that is on. Brighter than the resting primary. */
+		on: '#2EE7FF',
 		successHover: '#2a6734b3',
 
 		text: '#E6EBEF',
@@ -79,6 +81,8 @@ const tokens = {
 			'linear-gradient(180deg, rgba(218, 242, 255, 0.58), rgba(48, 137, 220, 0.86) 48%, rgba(11, 62, 112, 0.96))',
 		buttonGlassActive:
 			'linear-gradient(180deg, rgba(190, 255, 203, 0.42), rgba(28, 174, 63, 0.78) 50%, rgba(9, 86, 31, 0.95))',
+		buttonGlassOn:
+			'linear-gradient(180deg, rgba(214, 251, 255, 0.55), rgba(0, 196, 255, 0.82) 48%, rgba(0, 72, 148, 0.96))',
 		buttonGlassDanger:
 			'linear-gradient(180deg, rgba(255, 210, 202, 0.36), rgba(230, 69, 52, 0.82) 50%, rgba(96, 18, 13, 0.94))',
 		fieldGlass:
@@ -100,6 +104,7 @@ const tokens = {
 
 		glowPrimary: '0 0 18px rgba(97, 166, 232, 0.28)',
 		glowActive: '0 0 20px rgba(20, 255, 60, 0.26)',
+		glowOn: '0 0 20px rgba(46, 231, 255, 0.42)',
 		glowDanger: '0 0 20px rgba(230, 69, 52, 0.24)',
 
 		focusRing:
@@ -158,6 +163,7 @@ const varNames = {
 
 		active: 'zylem-color-active',
 		activeHover: 'zylem-color-active-hover',
+		on: 'zylem-color-on',
 		successHover: 'zylem-color-success-hover',
 
 		text: 'zylem-color-text',
@@ -197,6 +203,7 @@ const varNames = {
 		buttonGlass: 'zylem-material-button-glass',
 		buttonGlassHover: 'zylem-material-button-glass-hover',
 		buttonGlassActive: 'zylem-material-button-glass-active',
+		buttonGlassOn: 'zylem-material-button-glass-on',
 		buttonGlassDanger: 'zylem-material-button-glass-danger',
 		fieldGlass: 'zylem-material-field-glass',
 		panelHeaderGloss: 'zylem-material-panel-header-gloss',
@@ -212,6 +219,7 @@ const varNames = {
 
 		glowPrimary: 'zylem-effect-glow-primary',
 		glowActive: 'zylem-effect-glow-active',
+		glowOn: 'zylem-effect-glow-on',
 		glowDanger: 'zylem-effect-glow-danger',
 
 		focusRing: 'zylem-effect-focus-ring',

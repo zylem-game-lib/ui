@@ -81,6 +81,7 @@ export function ToolButton(props: ToolButtonProps) {
   return (
     <ToolbarButton
       label={label()}
+      selected={props.selected}
       pressed={props.selected ?? false}
       disabled={props.disabled}
       onClick={props.onClick}

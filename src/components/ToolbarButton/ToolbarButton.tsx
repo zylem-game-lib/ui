@@ -7,10 +7,18 @@ export interface ToolbarButtonProps {
   onClick?: (event: MouseEvent) => void;
   /**
    * The selected look alone, for a button whose label already says its state
-   * (Play / Pause). For a toggle with a constant label, use `pressed`.
+   * (Play / Pause). Live green. For a toggle with a constant label, use `on`.
    */
   selected?: boolean;
-  /** Makes the button a toggle: the state is exposed as `aria-pressed` and drawn as selected. */
+  /**
+   * Checkbox-like toggle. Electric blue while on, and exposed as `aria-pressed`.
+   * Pass `false` for a toggle that is off so the button still announces itself.
+   */
+  on?: boolean;
+  /**
+   * Toggle drawn as `on`, unless `selected` is also set, which keeps the
+   * live-green jewel. Prefer `on` for new toggles.
+   */
   pressed?: boolean;
   disabled?: boolean;
   children: JSX.Element;
@@ -28,7 +36,7 @@ function insidePopup(element: Element | undefined): boolean {
 
 /**
  * HyperGlass toolbar button: square glass icon button with a tooltip.
- * Selected and pressed states render as a live-green jewel.
+ * `selected` is the live-green jewel. `on` is the electric-blue toggle.
  *
  * The tooltip portals into the layer container for its own tree, so it stays
  * styled when the toolbar lives inside a web component's shadow root.
@@ -58,7 +66,7 @@ export function ToolbarButton(props: ToolbarButtonProps) {
       >
         <KButton.Root
           aria-label={props.label}
-          aria-pressed={props.pressed}
+          aria-pressed={props.on !== undefined ? props.on : props.pressed}
           onClick={props.onClick}
           disabled={props.disabled}
           class={
@@ -66,7 +74,8 @@ export function ToolbarButton(props: ToolbarButtonProps) {
               ? `zylem-toolbar-btn ${props.class}`
               : 'zylem-toolbar-btn'
           }
-          data-selected={props.selected || props.pressed ? '' : undefined}
+          data-selected={props.selected ? '' : undefined}
+          data-on={props.on || (props.pressed && !props.selected) ? '' : undefined}
         >
           {props.children}
         </KButton.Root>

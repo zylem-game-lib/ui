@@ -63,9 +63,30 @@ describe('ToolbarButton', () => {
     ));
     const [pause, grid] = Array.from(container.querySelectorAll('button'));
     expect(pause!.hasAttribute('data-selected')).toBe(true);
+    expect(pause!.hasAttribute('data-on')).toBe(false);
     expect(pause!.hasAttribute('aria-pressed')).toBe(false);
-    expect(grid!.hasAttribute('data-selected')).toBe(true);
+    expect(grid!.hasAttribute('data-on')).toBe(true);
+    expect(grid!.hasAttribute('data-selected')).toBe(false);
     expect(grid!.getAttribute('aria-pressed')).toBe('true');
+  });
+
+  it('draws an on toggle in the electric-blue state and keeps it announced while off', () => {
+    const { container } = render(() => (
+      <LayerProvider>
+        <ToolbarButton label="Snap to grid" on>
+          <span />
+        </ToolbarButton>
+        <ToolbarButton label="Show grid" on={false}>
+          <span />
+        </ToolbarButton>
+      </LayerProvider>
+    ));
+    const [snap, show] = Array.from(container.querySelectorAll('button'));
+    expect(snap!.hasAttribute('data-on')).toBe(true);
+    expect(snap!.hasAttribute('data-selected')).toBe(false);
+    expect(snap!.getAttribute('aria-pressed')).toBe('true');
+    expect(show!.hasAttribute('data-on')).toBe(false);
+    expect(show!.getAttribute('aria-pressed')).toBe('false');
   });
 
   it('opens its tooltip beside the button and above other layers when inside a popup', async () => {

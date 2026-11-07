@@ -41,6 +41,11 @@ describe('WindowControls dock', () => {
 
     const trigger = document.querySelector('[aria-label="Dock panel"]') as HTMLElement;
     expect(trigger.classList.contains('zylem-window-control')).toBe(true);
+    const icon = trigger.querySelector('svg');
+    expect(icon?.classList.contains('zylem-icon-dock')).toBe(true);
+    expect(icon?.getAttribute('width')).toBe('11');
+    expect(icon?.getAttribute('viewBox')).toBe('0 0 16 16');
+    expect(icon?.getAttribute('fill')).toBe('currentColor');
     // Dock sits with the other ghost controls, ahead of collapse and close.
     const controls = document.querySelector('.zylem-window-controls')!;
     expect(controls.firstElementChild).toBe(trigger);
@@ -58,6 +63,7 @@ describe('WindowControls dock', () => {
     fireEvent.pointerUp(items[0]!, { button: 0 });
 
     expect(onDock).toHaveBeenCalledWith('top');
+    expect(trigger.querySelector('.zylem-icon-dock')).not.toBeNull();
     // Closing waits a tick, and the exit animation keeps the node mounted.
     await new Promise((resolve) => setTimeout(resolve, 20));
     const menu = document.querySelector('.zylem-dropdown-content');

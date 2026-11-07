@@ -21,6 +21,19 @@ function kebab(name: string): string {
   return name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 }
 
+export interface ZylemIconOptions {
+  /**
+   * Replaces the `zylem-icon` class. Toolbar icons keep that class, which
+   * sizes them to 18px; chrome glyphs omit it so `size` wins, the way a
+   * Lucide chevron does.
+   */
+  className?: string;
+  /** Draw with `currentColor` fill instead of a stroke. */
+  filled?: boolean;
+  /** Defaults to the 24×24 Lucide grid. */
+  viewBox?: string;
+}
+
 /**
  * Solid icon factory matching lucide-solid's size / color / strokeWidth
  * props so these glyphs drop into the same toolbar buttons and CSS.
@@ -28,6 +41,7 @@ function kebab(name: string): string {
 export function createZylemIcon(
   name: string,
   iconNode: IconNode,
+  options?: ZylemIconOptions,
 ): Component<ZylemIconProps> {
   const Icon: Component<ZylemIconProps> = (props) => {
     const [local, rest] = splitProps(props, [
@@ -46,17 +60,22 @@ export function createZylemIcon(
       return width;
     };
     const classes = () =>
-      ['zylem-icon', `zylem-icon-${kebab(name)}`, local.class]
+      [options?.className ?? 'zylem-icon', `zylem-icon-${kebab(name)}`, local.class]
         .filter((value) => Boolean(value))
         .join(' ');
+
+    const filled = options?.filled === true;
+    const paint = () => local.color ?? 'currentColor';
 
     return (
       <svg
         {...DEFAULTS}
+        viewBox={options?.viewBox ?? DEFAULTS.viewBox}
         width={size()}
         height={size()}
-        stroke={local.color ?? 'currentColor'}
-        stroke-width={strokeWidth()}
+        fill={filled ? paint() : 'none'}
+        stroke={filled ? 'none' : paint()}
+        stroke-width={filled ? 0 : strokeWidth()}
         class={classes()}
         aria-hidden="true"
         {...rest}

@@ -237,10 +237,12 @@ export {
   Perspective,
   SideviewPerspective,
   TopDownPerspective,
+  Dock,
   cameraIconNodes,
   createZylemIcon,
   type CameraIcon,
   type CameraIconName,
   type IconNode,
+  type ZylemIconOptions,
   type ZylemIconProps,
 } from '../icons';

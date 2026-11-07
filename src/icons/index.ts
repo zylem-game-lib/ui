@@ -1,6 +1,7 @@
 import type { Component } from 'solid-js';
 import { createZylemIcon, type ZylemIconProps } from './create-icon';
 import {
+  DockNode,
   FreePerspectiveNode,
   GameCameraNode,
   IsometricPerspectiveNode,
@@ -19,7 +20,7 @@ export {
   SideviewPerspectiveNode,
   TopDownPerspectiveNode,
 } from './icon-nodes';
-export { createZylemIcon, type ZylemIconProps } from './create-icon';
+export { createZylemIcon, type ZylemIconOptions, type ZylemIconProps } from './create-icon';
 
 export type CameraIcon = Component<ZylemIconProps>;
 
@@ -43,6 +44,13 @@ export const IsometricPerspective = createZylemIcon(
 export const FreePerspective = createZylemIcon('FreePerspective', FreePerspectiveNode);
 /** Recorder with controller buttons (game camera). */
 export const GameCamera = createZylemIcon('GameCamera', GameCameraNode);
+
+/** Filled window frame. Skips the 18px toolbar metric so `size` matches a chevron. */
+export const Dock = createZylemIcon('Dock', DockNode, {
+  className: 'zylem-dock',
+  filled: true,
+  viewBox: '0 0 16 16',
+});
 
 export const CAMERA_ICONS = [
   { name: 'perspective', label: 'Perspective', Icon: Perspective },

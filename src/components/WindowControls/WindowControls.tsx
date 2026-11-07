@@ -1,8 +1,8 @@
 import { Show } from 'solid-js';
 import ChevronDown from 'lucide-solid/icons/chevron-down';
 import ChevronUp from 'lucide-solid/icons/chevron-up';
-import Dock from 'lucide-solid/icons/dock';
 import X from 'lucide-solid/icons/x';
+import { Dock } from '../../icons';
 import { DropdownMenu } from '../DropdownMenu/DropdownMenu';
 
 /** Where a panel sits. `float` leaves it free of the top and bottom edges. */
@@ -45,7 +45,7 @@ export function WindowControls(props: WindowControlsProps) {
             triggerLabel="Dock panel"
             triggerClass="zylem-window-control zylem-window-control--dock"
             placement="bottom-end"
-            trigger={<Dock size={11} strokeWidth={2.5} aria-hidden="true" />}
+            trigger={<Dock size={11} aria-hidden="true" />}
             items={DOCK_OPTIONS.map((option) => ({
               id: option.id,
               label: option.label,

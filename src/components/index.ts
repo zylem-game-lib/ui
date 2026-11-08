@@ -100,6 +100,12 @@ export {
   type ToolbarDropdownItem,
   type ToolbarDropdownMenuProps,
 } from './ToolbarDropdownMenu/ToolbarDropdownMenu';
+export {
+  CameraToggle,
+  CAMERA_TOGGLE_IDS,
+  type CameraToggleId,
+  type CameraToggleProps,
+} from './CameraToggle/CameraToggle';
 export { ItemPicker, type ItemPickerProps } from './ItemPicker/ItemPicker';
 export {
   filterItems,

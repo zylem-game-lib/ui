@@ -170,6 +170,9 @@ export const CAMERA_ICONS: readonly [{
     readonly Icon: Component<ZylemIconProps>;
 }];
 
+// @public (undocumented)
+export const CAMERA_TOGGLE_IDS: readonly ["game", "perspective", "iso-left-top", "top", "iso-right-top", "left", "free", "right", "iso-left-bottom", "bottom", "iso-right-bottom"];
+
 // @public
 export const CAMERA_VIEWS: readonly [{
     readonly name: "view-iso-left-top";
@@ -228,6 +231,22 @@ export const cameraIconNodes: {
     readonly 'view-bottom': IconNode;
     readonly 'view-iso-left-bottom': IconNode;
 };
+
+// @public
+export function CameraToggle(props: CameraToggleProps): JSX;
+
+// @public (undocumented)
+export type CameraToggleId = (typeof CAMERA_TOGGLE_IDS)[number];
+
+// @public (undocumented)
+export interface CameraToggleProps {
+    on?: boolean | undefined;
+    onAction?: (() => void) | undefined;
+    // (undocumented)
+    onChange: (id: CameraToggleId) => void;
+    placement?: MenuButtonProps['placement'];
+    value: CameraToggleId;
+}
 
 // @public
 export function Card(props: CardProps): JSX.Element;

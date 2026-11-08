@@ -34,6 +34,7 @@ export function TitleBar(props: TitleBarProps) {
     'closeLabel',
     'closeTestId',
     'dock',
+    'dockOptions',
     'onDock',
     'class',
   ]);
@@ -63,6 +64,7 @@ export function TitleBar(props: TitleBarProps) {
         closeLabel={local.closeLabel}
         closeTestId={local.closeTestId}
         dock={local.dock}
+        dockOptions={local.dockOptions}
         onDock={local.onDock}
       />
     </div>

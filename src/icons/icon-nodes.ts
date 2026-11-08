@@ -73,6 +73,34 @@ export const DockNode: IconNode = [
   ],
 ];
 
+/**
+ * One side-view camera — body on the left, lens pointing right, subject plane
+ * on the right — turned about the icon center. Positive degrees are clockwise,
+ * which is what puts the camera on that side of the subject:
+ * 0 left, 45 iso left/top, 90 top, 135 iso right/top, 180 right,
+ * 225 iso right/bottom, 270 bottom, 315 iso left/bottom.
+ */
+const FACING_RIGHT: IconNode = [
+  ['rect', { x: '2', y: '8', width: '8', height: '8', rx: '2' }],
+  ['path', { d: 'm10 10 4-2v8l-4-2' }],
+  ['path', { d: 'M16 6h4v12h-4' }],
+];
+
+function turnCamera(angle: number): IconNode {
+  if (angle === 0) return FACING_RIGHT;
+  const transform = `rotate(${angle} 12 12)`;
+  return FACING_RIGHT.map(([element, attrs]) => [element, { ...attrs, transform }]) as IconNode;
+}
+
+export const ViewLeftNode = turnCamera(0);
+export const ViewIsoLeftTopNode = turnCamera(45);
+export const ViewTopNode = turnCamera(90);
+export const ViewIsoRightTopNode = turnCamera(135);
+export const ViewRightNode = turnCamera(180);
+export const ViewIsoRightBottomNode = turnCamera(225);
+export const ViewBottomNode = turnCamera(270);
+export const ViewIsoLeftBottomNode = turnCamera(315);
+
 export const cameraIconNodes = {
   perspective: PerspectiveNode,
   'sideview-perspective': SideviewPerspectiveNode,
@@ -80,6 +108,14 @@ export const cameraIconNodes = {
   'isometric-perspective': IsometricPerspectiveNode,
   'free-perspective': FreePerspectiveNode,
   'game-camera': GameCameraNode,
+  'view-left': ViewLeftNode,
+  'view-iso-left-top': ViewIsoLeftTopNode,
+  'view-top': ViewTopNode,
+  'view-iso-right-top': ViewIsoRightTopNode,
+  'view-right': ViewRightNode,
+  'view-iso-right-bottom': ViewIsoRightBottomNode,
+  'view-bottom': ViewBottomNode,
+  'view-iso-left-bottom': ViewIsoLeftBottomNode,
 } as const;
 
 export type CameraIconName = keyof typeof cameraIconNodes;

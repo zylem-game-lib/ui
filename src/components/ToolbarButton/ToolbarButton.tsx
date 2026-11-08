@@ -8,8 +8,14 @@ export interface ToolbarButtonProps {
   /**
    * The selected look alone, for a button whose label already says its state
    * (Play / Pause). Live green. For a toggle with a constant label, use `on`.
+   * With `danger`, the same state is the danger jewel instead.
    */
   selected?: boolean;
+  /**
+   * Draw `selected` as the danger jewel instead of live green. The button stays
+   * ordinary glass until it is selected. Only Delete uses this.
+   */
+  danger?: boolean;
   /**
    * Checkbox-like toggle. Electric blue while on, and exposed as `aria-pressed`.
    * Pass `false` for a toggle that is off so the button still announces itself.
@@ -36,7 +42,8 @@ function insidePopup(element: Element | undefined): boolean {
 
 /**
  * HyperGlass toolbar button: square glass icon button with a tooltip.
- * `selected` is the live-green jewel. `on` is the electric-blue toggle.
+ * `selected` is the live-green jewel. `danger` swaps that jewel for the
+ * danger one while selected. `on` is the electric-blue toggle.
  *
  * The tooltip portals into the layer container for its own tree, so it stays
  * styled when the toolbar lives inside a web component's shadow root.
@@ -74,7 +81,8 @@ export function ToolbarButton(props: ToolbarButtonProps) {
               ? `zylem-toolbar-btn ${props.class}`
               : 'zylem-toolbar-btn'
           }
-          data-selected={props.selected ? '' : undefined}
+          data-selected={props.selected && !props.danger ? '' : undefined}
+          data-danger={props.selected && props.danger ? '' : undefined}
           data-on={props.on || (props.pressed && !props.selected) ? '' : undefined}
         >
           {props.children}

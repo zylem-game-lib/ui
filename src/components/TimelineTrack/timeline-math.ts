@@ -1,6 +1,7 @@
 /**
  * Position of `t` along a track, as a 0–100 percentage clamped to the
- * track's range. A degenerate range (max <= min) pins everything to 0.
+ * track's range. A degenerate range, where max is less than or equal to min,
+ * pins everything to 0.
  */
 export function markerPercent(t: number, min: number, max: number): number {
   if (!Number.isFinite(t) || max <= min) {

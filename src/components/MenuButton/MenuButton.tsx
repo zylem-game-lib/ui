@@ -22,6 +22,12 @@ export interface MenuButtonProps {
   onAction?: (() => void) | undefined;
   /** Renders the face in its selected state. */
   selected?: boolean | undefined;
+  /**
+   * Checkbox-like toggle for the face. Electric blue while on. A split face
+   * exposes it as `aria-pressed`, so pass `false` for a toggle that is off and
+   * the face still announces itself.
+   */
+  on?: boolean | undefined;
   disabled?: boolean | undefined;
   /** Tooltip text; defaults to `label`. Pass `null` for no tooltip. */
   tooltip?: string | null | undefined;
@@ -108,6 +114,7 @@ export function MenuButton(props: MenuButtonProps) {
               aria-label={props.label}
               disabled={props.disabled}
               data-selected={props.selected ? '' : undefined}
+              data-on={props.on ? '' : undefined}
             >
               {props.children}
               {/*
@@ -129,8 +136,10 @@ export function MenuButton(props: MenuButtonProps) {
               ref={layer.anchorRef}
               class="zylem-toolbar-btn zylem-menu-button__face"
               aria-label={props.label}
+              aria-pressed={props.on}
               disabled={props.disabled}
               data-selected={props.selected ? '' : undefined}
+              data-on={props.on ? '' : undefined}
               onClick={() => props.onAction?.()}
             >
               {props.children}

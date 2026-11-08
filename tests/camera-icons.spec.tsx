@@ -2,6 +2,7 @@ import { render } from '@solidjs/testing-library';
 import { afterEach, describe, expect, it } from 'vitest';
 import {
   CAMERA_ICONS,
+  CAMERA_VIEWS,
   cameraIconNodes,
   Perspective,
 } from '../src/icons';
@@ -13,7 +14,8 @@ afterEach(() => {
 describe('camera icons', () => {
   it('renders an svg for every named camera icon', () => {
     expect(CAMERA_ICONS).toHaveLength(6);
-    for (const item of CAMERA_ICONS) {
+    expect(CAMERA_VIEWS).toHaveLength(8);
+    for (const item of [...CAMERA_ICONS, ...CAMERA_VIEWS]) {
       const { container, unmount } = render(() => <item.Icon />);
       const svg = container.querySelector(`svg.zylem-icon.zylem-icon-${item.name}`);
       expect(svg, item.name).not.toBeNull();

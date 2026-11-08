@@ -6,7 +6,7 @@ export function Menu() {
   return (
     <div class="section" id="menu">
       <h2>Menu Container</h2>
-      <h3>.zylem-menu (editor panel body: Toolbar + AccordionMenu)</h3>
+      <h3>Toolbar and Accordion</h3>
       <div style={{ width: '460px', height: '500px' }}>
         <div class="zylem-menu">
           <ToolbarDemo />

@@ -70,6 +70,7 @@ export { Separator, type SeparatorProps } from './Separator/Separator';
 // Composites
 export {
   WindowControls,
+  type DockOption,
   type DockPosition,
   type WindowControlsProps,
 } from './WindowControls/WindowControls';
@@ -144,6 +145,7 @@ export {
   ART_TOOL_ICONS,
   ART_TOOL_LABELS,
   type ArtTool,
+  type IconComponent,
   type ToolButtonProps,
 } from './ToolButton/ToolButton';
 export { AddTile, type AddTileProps, type AddTileVariant } from './AddTile/AddTile';
@@ -208,6 +210,8 @@ export {
   majorTickTimes,
   formatClock,
   formatBeats,
+  type ResolveClipDragOptions,
+  type RulerTickOptions,
 } from './TimelineLanes/lanes-math';
 export { TrackHeader, type TrackHeaderProps } from './TrackHeader/TrackHeader';
 export { PianoRoll, type PianoRollProps, type PianoRollNote } from './PianoRoll/PianoRoll';
@@ -216,6 +220,7 @@ export {
   isBlackKey,
   resolveNoteDrag,
   cellStart,
+  type NoteDragOptions,
 } from './PianoRoll/piano-roll-math';
 export { Knob, arcPath, type KnobProps } from './Mixer/Knob';
 export { MixerStrip, formatDb, formatPan, type MixerStripProps } from './Mixer/MixerStrip';
@@ -231,12 +236,21 @@ export {
 // Camera icons (Lucide-shaped originals; also `@zylem/ui/icons`)
 export {
   CAMERA_ICONS,
+  CAMERA_VIEWS,
   FreePerspective,
   GameCamera,
   IsometricPerspective,
   Perspective,
   SideviewPerspective,
   TopDownPerspective,
+  ViewBottom,
+  ViewIsoLeftBottom,
+  ViewIsoLeftTop,
+  ViewIsoRightBottom,
+  ViewIsoRightTop,
+  ViewLeft,
+  ViewRight,
+  ViewTop,
   Dock,
   cameraIconNodes,
   createZylemIcon,

@@ -21,7 +21,7 @@ export type ArtTool =
   | 'eyedropper'
   | 'move';
 
-type IconComponent = Component<JSX.SvgSVGAttributes<SVGSVGElement>>;
+export type IconComponent = Component<JSX.SvgSVGAttributes<SVGSVGElement>>;
 
 export const ART_TOOL_ICONS: Record<ArtTool, IconComponent> = {
   pencil: Pencil,

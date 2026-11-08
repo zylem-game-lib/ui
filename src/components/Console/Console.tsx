@@ -19,6 +19,11 @@ export interface ConsoleProps {
 /**
  * HyperGlass console: dark low-gloss terminal field with a floating Clear
  * action.
+ *
+ * @example
+ * ```tsx
+ * <Console value={text()} onInput={setText} onClear={() => setText('')} />
+ * ```
  */
 export function Console(props: ConsoleProps) {
   return (

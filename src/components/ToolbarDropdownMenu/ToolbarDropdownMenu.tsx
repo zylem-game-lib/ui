@@ -15,6 +15,13 @@ export interface ToolbarDropdownMenuProps {
   items: readonly ToolbarDropdownItem[];
   value: string;
   onChange: (id: string) => void;
+  /**
+   * Draws the face as an on/off toggle instead of always selected, for a picker
+   * where one choice means off, such as the game camera among editor cameras.
+   */
+  on?: boolean | undefined;
+  /** Splits the button: the face fires this and the chevron opens the menu. */
+  onAction?: (() => void) | undefined;
   /** Where the menu opens. Defaults to dropping down from the face. */
   placement?: MenuButtonProps['placement'];
 }
@@ -33,7 +40,9 @@ export function ToolbarDropdownMenu(props: ToolbarDropdownMenuProps) {
       {(item) => (
         <MenuButton
           label={item.label}
-          selected
+          selected={props.on === undefined}
+          on={props.on}
+          onAction={props.onAction}
           placement={props.placement ?? 'bottom-start'}
           menu={(close) => (
             <div class="zylem-menu-button__stack">

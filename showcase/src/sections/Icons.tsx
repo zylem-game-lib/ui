@@ -1,7 +1,9 @@
 import { For, type JSX } from 'solid-js';
-import { CAMERA_ICONS } from '../../../src/components';
+import { CAMERA_ICONS, CAMERA_VIEWS } from '../../../src/components';
 import { CameraToolbar } from '../demos/CameraToolbar';
 import { USED_LUCIDE_ICONS } from '../used-icons';
+
+const ZYLEM_ICONS = [...CAMERA_ICONS, ...CAMERA_VIEWS];
 
 function IconCard(props: { label: string; name: string; children: JSX.Element }) {
 	return (
@@ -29,7 +31,7 @@ export function Icons() {
       </div>
       <h3>Zylem</h3>
       <div class="demo-row icon-catalog">
-        <For each={CAMERA_ICONS}>
+        <For each={ZYLEM_ICONS}>
           {(item) => (
             <IconCard label={item.label} name={item.name}>
               <item.Icon size={32} />
@@ -54,7 +56,7 @@ export function Icons() {
             <div class="demo-container icon-size-card">
               <span class="code-label">{size}px</span>
               <div class="icon-size-grid">
-                <For each={CAMERA_ICONS}>
+                <For each={ZYLEM_ICONS}>
                   {(item) => (
                     <span title={item.label}>
                       <item.Icon size={size} />

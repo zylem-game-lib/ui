@@ -5,10 +5,17 @@ import X from 'lucide-solid/icons/x';
 import { Dock } from '../../icons';
 import { DropdownMenu } from '../DropdownMenu/DropdownMenu';
 
-/** Where a panel sits. `float` leaves it free of the top and bottom edges. */
-export type DockPosition = 'top' | 'float' | 'bottom';
+/** Where a panel sits. `float` leaves it free of a dock edge. */
+export type DockPosition = 'left' | 'right' | 'top' | 'float' | 'bottom';
 
-const DOCK_OPTIONS: readonly { id: DockPosition; label: string }[] = [
+/** One row in the dock menu. */
+export interface DockOption {
+  id: DockPosition;
+  label: string;
+}
+
+/** Top, Float, and Bottom: the menu a strip uses when it docks to those edges. */
+const DEFAULT_DOCK_OPTIONS: readonly DockOption[] = [
   { id: 'top', label: 'Top' },
   { id: 'float', label: 'Float' },
   { id: 'bottom', label: 'Bottom' },
@@ -27,6 +34,11 @@ export interface WindowControlsProps {
   closeTestId?: string | undefined;
   /** Current dock, checked in the menu. Omit for none checked. */
   dock?: DockPosition | undefined;
+  /**
+   * Rows in the dock menu. Defaults to Top, Float, and Bottom. Pass this when
+   * the window docks to other edges, such as Left and Right.
+   */
+  dockOptions?: readonly DockOption[] | undefined;
   /** Renders the dock control. Called with the position chosen from the menu. */
   onDock?: ((position: DockPosition) => void) | undefined;
 }
@@ -34,7 +46,8 @@ export interface WindowControlsProps {
 /**
  * Shared ghost window controls, used by floating and detached panels. Close
  * takes the danger color only while hovered or focused. Dock opens a menu of
- * where the panel sits. Only controls with a handler are rendered.
+ * where the panel sits: Top, Float, and Bottom, or `dockOptions` when the
+ * window uses other edges. Only controls with a handler are rendered.
  */
 export function WindowControls(props: WindowControlsProps) {
   return (
@@ -46,7 +59,7 @@ export function WindowControls(props: WindowControlsProps) {
             triggerClass="zylem-window-control zylem-window-control--dock"
             placement="bottom-end"
             trigger={<Dock size={11} aria-hidden="true" />}
-            items={DOCK_OPTIONS.map((option) => ({
+            items={(props.dockOptions ?? DEFAULT_DOCK_OPTIONS).map((option) => ({
               id: option.id,
               label: option.label,
               checked: props.dock === option.id,

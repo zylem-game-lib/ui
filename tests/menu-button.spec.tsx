@@ -69,6 +69,44 @@ describe('MenuButton', () => {
     expect(onAction).toHaveBeenCalledTimes(1);
   });
 
+  it('draws an on face in the electric-blue state and announces it on a split button', () => {
+    const { container } = render(() => (
+      <>
+        <MenuButton
+          label="Camera"
+          tooltip={null}
+          on
+          onAction={() => {}}
+          menu={() => <span>cameras</span>}
+        >
+          <span>icon</span>
+        </MenuButton>
+        <MenuButton
+          label="Grid"
+          tooltip={null}
+          on={false}
+          onAction={() => {}}
+          menu={() => <span>sizes</span>}
+        >
+          <span>icon</span>
+        </MenuButton>
+      </>
+    ));
+    const [camera, grid] = Array.from(container.querySelectorAll(FACE));
+
+    expect(camera!.hasAttribute('data-on')).toBe(true);
+    expect(camera!.hasAttribute('data-selected')).toBe(false);
+    expect(camera!.getAttribute('aria-pressed')).toBe('true');
+    expect(grid!.hasAttribute('data-on')).toBe(false);
+    expect(grid!.getAttribute('aria-pressed')).toBe('false');
+  });
+
+  it('does not announce a face as a toggle without `on`', () => {
+    const { container } = renderMenuButton(() => {});
+
+    expect(container.querySelector(FACE)!.hasAttribute('aria-pressed')).toBe(false);
+  });
+
   it('names its panel after the button', () => {
     render(() => (
       <MenuButton label="Add" tooltip={null} open menu={() => <span>palette</span>}>

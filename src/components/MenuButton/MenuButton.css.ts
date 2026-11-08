@@ -104,3 +104,28 @@ globalStyle('.zylem-menu-button__stack', {
 	gap: vars.spacing.xs,
 	padding: vars.spacing.sm,
 });
+
+/**
+ * View cube. A short row (game camera, perspective) sits above a 3×3 square:
+ * isometric corners, orthographic edges, free camera in the middle.
+ */
+globalStyle('.zylem-menu-button__compass', {
+	display: 'flex',
+	flexDirection: 'column',
+	alignItems: 'flex-start',
+	gap: vars.spacing.xs,
+	padding: vars.spacing.sm,
+});
+
+globalStyle('.zylem-menu-button__compass-row, .zylem-menu-button__compass-square', {
+	display: 'grid',
+	gap: vars.spacing.xs,
+});
+
+globalStyle('.zylem-menu-button__compass-row', {
+	gridTemplateColumns: 'repeat(2, auto)',
+});
+
+globalStyle('.zylem-menu-button__compass-square', {
+	gridTemplateColumns: 'repeat(3, auto)',
+});

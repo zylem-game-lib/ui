@@ -32,6 +32,37 @@ describe('ToolbarDropdownMenu', () => {
     expect(face?.querySelector('svg')).not.toBeNull();
   });
 
+  it('draws the face as an on/off toggle instead of selected when given `on`', () => {
+    const { container } = render(() => (
+      <LayerProvider>
+        <ToolbarDropdownMenu items={ITEMS} value="top" on onChange={() => {}} />
+        <ToolbarDropdownMenu items={ITEMS} value="perspective" on={false} onChange={() => {}} />
+      </LayerProvider>
+    ));
+
+    const [on, off] = Array.from(container.querySelectorAll('.zylem-menu-button__face'));
+    expect(on!.hasAttribute('data-on')).toBe(true);
+    expect(on!.hasAttribute('data-selected')).toBe(false);
+    expect(off!.hasAttribute('data-on')).toBe(false);
+    expect(off!.hasAttribute('data-selected')).toBe(false);
+  });
+
+  it('gives the face its own action and leaves the menu to the chevron', () => {
+    const onAction = vi.fn();
+    render(() => (
+      <LayerProvider>
+        <ToolbarDropdownMenu items={ITEMS} value="top" onAction={onAction} onChange={() => {}} />
+      </LayerProvider>
+    ));
+
+    (document.querySelector('.zylem-menu-button__face') as HTMLElement).click();
+    expect(onAction).toHaveBeenCalledTimes(1);
+    expect(document.querySelector('.zylem-menu-button__panel')).toBeNull();
+
+    (document.querySelector('.zylem-menu-button__chevron') as HTMLElement).click();
+    expect(document.querySelector('.zylem-menu-button__panel')).not.toBeNull();
+  });
+
   it('selects a menu item and closes', () => {
     const onChange = vi.fn();
     const [value, setValue] = createSignal('perspective');

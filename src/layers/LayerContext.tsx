@@ -93,7 +93,7 @@ export interface ResolvedLayer {
 /**
  * Resolve a tier to a portal target and a `z-index`.
  *
- * @param rank Offset within the tier, for ordering peers — raising a clicked
+ * @param rank - Offset within the tier, for ordering peers — raising a clicked
  * window above its siblings, say. Bands are 1000 apart, so ranks below that stay
  * inside their tier. The offset means the same thing inside a `LayerScope` as
  * out, so a panel can be lifted above a scope's tooltips while staying under its

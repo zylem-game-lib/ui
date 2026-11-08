@@ -70,6 +70,24 @@ describe('ToolbarButton', () => {
     expect(grid!.getAttribute('aria-pressed')).toBe('true');
   });
 
+  it('draws a selected danger button with the danger jewel instead of live green', () => {
+    const { container } = render(() => (
+      <LayerProvider>
+        <ToolbarButton label="Delete" selected danger>
+          <span />
+        </ToolbarButton>
+        <ToolbarButton label="Delete" danger>
+          <span />
+        </ToolbarButton>
+      </LayerProvider>
+    ));
+    const [armed, idle] = Array.from(container.querySelectorAll('button'));
+    expect(armed!.hasAttribute('data-danger')).toBe(true);
+    expect(armed!.hasAttribute('data-selected')).toBe(false);
+    expect(idle!.hasAttribute('data-danger')).toBe(false);
+    expect(idle!.hasAttribute('data-selected')).toBe(false);
+  });
+
   it('draws an on toggle in the electric-blue state and keeps it announced while off', () => {
     const { container } = render(() => (
       <LayerProvider>

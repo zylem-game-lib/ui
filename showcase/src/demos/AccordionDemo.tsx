@@ -1,7 +1,5 @@
-import { Accordion } from '@kobalte/core';
-import ChevronDown from 'lucide-solid/icons/chevron-down';
-import { For } from 'solid-js';
 import type { JSX } from 'solid-js';
+import { Accordion } from '../../../src/components';
 import { ConsoleDemo } from './ConsoleDemo';
 import { EntitiesPanelContent, GamePanelContent, StagePanelContent } from './panels';
 
@@ -12,28 +10,9 @@ const PANELS: Array<{ id: string; title: string; content: () => JSX.Element }> =
   { id: 'console', title: 'Console', content: () => <ConsoleDemo /> },
 ];
 
-/**
- * Mirror of the editor's AccordionMenu: Kobalte multiple-accordion with the
- * same panel set (Game, Stage, Entities, Console) and class structure.
- */
+/** Editor sidebar: Game, Stage, Entities, and Console. */
 export function AccordionDemo(props: { defaultExpanded?: string[] }) {
   return (
-    <Accordion.Root multiple class="zylem-accordion" defaultValue={props.defaultExpanded ?? ['console']}>
-      <For each={PANELS}>
-        {(panel) => (
-          <Accordion.Item value={panel.id} class="accordion-item">
-            <Accordion.Header class="accordion-header">
-              <Accordion.Trigger class="accordion-trigger zylem-exo-2">
-                {panel.title}
-                <ChevronDown class="accordion-chevron" aria-hidden="true" />
-              </Accordion.Trigger>
-            </Accordion.Header>
-            <Accordion.Content class="accordion-content scrollable-y scroll-thin">
-              {panel.content()}
-            </Accordion.Content>
-          </Accordion.Item>
-        )}
-      </For>
-    </Accordion.Root>
+    <Accordion multiple items={PANELS} defaultValue={props.defaultExpanded ?? ['console']} />
   );
 }

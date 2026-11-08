@@ -4,7 +4,8 @@ import { vars } from '../../theme.css';
 /**
  * Square glass icon button for toolbars — owns the `.zylem-toolbar-btn`
  * class the editor already uses. Selected state uses the live-green jewel
- * treatment.
+ * treatment. `data-danger` is that same selected state in the danger jewel,
+ * used by the Delete tool.
  */
 globalStyle('.zylem-toolbar-btn', {
   boxSizing: 'border-box',
@@ -65,6 +66,18 @@ globalStyle('.zylem-toolbar-btn[data-selected], .zylem-toolbar-btn.selected', {
   borderColor: 'rgba(20, 255, 60, 0.78)',
   background: vars.material.buttonGlassActive,
   boxShadow: `${vars.effects.shadowButton}, ${vars.effects.glowActive}`,
+});
+
+globalStyle('.zylem-toolbar-btn[data-danger]', {
+  borderColor: 'rgba(255, 132, 114, 0.78)',
+  background: vars.material.buttonGlassDanger,
+  boxShadow: `${vars.effects.shadowButton}, ${vars.effects.glowDanger}`,
+});
+
+globalStyle('.zylem-toolbar-btn[data-danger]:hover', {
+  background: vars.material.buttonGlassDanger,
+  boxShadow: `${vars.effects.shadowButton}, ${vars.effects.glowDanger}`,
+  filter: 'brightness(1.1)',
 });
 
 globalStyle('.zylem-toolbar-btn[disabled]', {

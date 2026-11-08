@@ -69,4 +69,37 @@ describe('WindowControls dock', () => {
     const menu = document.querySelector('.zylem-dropdown-content');
     expect(menu === null || menu.hasAttribute('data-closed')).toBe(true);
   });
+
+  it('lists the edges a window can use when dock options are given', () => {
+    const onDock = vi.fn();
+
+    render(() => (
+      <LayerProvider>
+        <WindowControls
+          dock="left"
+          dockOptions={[
+            { id: 'left', label: 'Left' },
+            { id: 'float', label: 'Float' },
+            { id: 'right', label: 'Right' },
+          ]}
+          onDock={onDock}
+        />
+      </LayerProvider>
+    ));
+
+    const trigger = document.querySelector('[aria-label="Dock panel"]') as HTMLElement;
+    expect(trigger.classList.contains('zylem-window-control')).toBe(true);
+    fireEvent.pointerDown(trigger, { button: 0, pointerType: 'mouse' });
+
+    const labels = Array.from(document.querySelectorAll('.zylem-dropdown-label')).map(
+      (label) => label.textContent,
+    );
+    expect(labels).toEqual(['Left', 'Float', 'Right']);
+
+    const items = Array.from(document.querySelectorAll<HTMLElement>('.zylem-dropdown-item'));
+    expect(items[0]?.getAttribute('aria-checked')).toBe('true');
+
+    fireEvent.pointerUp(items[2]!, { button: 0 });
+    expect(onDock).toHaveBeenCalledWith('right');
+  });
 });

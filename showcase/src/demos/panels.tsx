@@ -20,35 +20,22 @@ import Sun from 'lucide-solid/icons/sun';
 import Torus from 'lucide-solid/icons/torus';
 import Type from 'lucide-solid/icons/type';
 import { For, type Component } from 'solid-js';
-import { Tooltip } from '../../../src/components';
-
-function PropertyRow(props: { label: string; value: string }) {
-  return (
-    <div class="zylem-property-row">
-      <span class="zylem-property-label">{props.label}</span>
-      <span class="zylem-property-value">{props.value}</span>
-    </div>
-  );
-}
+import { Button, PropertyList, PropertyRow, Toolbar, Tooltip } from '../../../src/components';
 
 export function GamePanelContent() {
   return (
     <div class="panel-content">
-      <section class="zylem-property-list">
+      <PropertyList>
         <PropertyRow label="ID" value="demo-game" />
         <PropertyRow label="Aspect Ratio" value="1.778" />
         <PropertyRow label="Fullscreen" value="No" />
         <PropertyRow label="Debug" value="Yes" />
         <PropertyRow label="Resolution" value="640x360" />
-      </section>
-      <section class="zylem-toolbar">
-        <button type="button" class="zylem-button" data-size="sm">
-          Print Global State
-        </button>
-        <button type="button" class="zylem-button" data-size="sm">
-          Print All
-        </button>
-      </section>
+      </PropertyList>
+      <Toolbar>
+        <Button size="sm">Print Global State</Button>
+        <Button size="sm">Print All</Button>
+      </Toolbar>
     </div>
   );
 }
@@ -56,17 +43,15 @@ export function GamePanelContent() {
 export function StagePanelContent() {
   return (
     <div class="panel-content">
-      <section class="zylem-property-list">
+      <PropertyList>
         <PropertyRow label="ID" value="main-level" />
         <PropertyRow label="Background" value="#11151C" />
         <PropertyRow label="Gravity" value="X:0.00 Y:-9.81 Z:0.00" />
         <PropertyRow label="Variables" value="3 defined" />
-      </section>
-      <section class="zylem-toolbar">
-        <button type="button" class="zylem-button" data-size="sm">
-          Print Stage State
-        </button>
-      </section>
+      </PropertyList>
+      <Toolbar>
+        <Button size="sm">Print Stage State</Button>
+      </Toolbar>
     </div>
   );
 }

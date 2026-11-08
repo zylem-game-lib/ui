@@ -102,9 +102,18 @@ export function PropertyRow(props: PropertyRowProps) {
       <Show
         when={display().isClickable}
         fallback={
-          <span class={`zylem-property-value ${props.valueClass ?? ''}`}>
-            {display().element}
-          </span>
+          // A div when the value is elements. A NumberField root is a div, and a
+          // span would close before it, dropping the fields out of this cell.
+          <Show
+            when={props.children !== undefined}
+            fallback={
+              <span class={`zylem-property-value ${props.valueClass ?? ''}`}>
+                {display().element}
+              </span>
+            }
+          >
+            <div class={`zylem-property-value ${props.valueClass ?? ''}`}>{props.children}</div>
+          </Show>
         }
       >
         <button

@@ -50,6 +50,7 @@
   },
   "files": [
     "dist",
+    "etc",
     "src",
     "vite"
   ],
@@ -60,7 +61,8 @@
     "showcase": "vite --host",
     "test": "vitest run",
     "test:watch": "vitest",
-    "lint": "biome check ."
+    "lint": "biome check .",
+    "api:extract": "tsc -p tsconfig.api.json && api-extractor run"
   },
   "peerDependencies": {
     "solid-js": "^1.9.9"
@@ -72,6 +74,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3.7",
+    "@microsoft/api-extractor": "^7.55.2",
     "@clack/prompts": "^1.6.0",
     "@solidjs/testing-library": "^0.8.10",
     "@vanilla-extract/esbuild-plugin": "^2.3.22",

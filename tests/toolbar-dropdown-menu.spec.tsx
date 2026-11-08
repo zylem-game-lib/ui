@@ -47,6 +47,22 @@ describe('ToolbarDropdownMenu', () => {
     expect(off!.hasAttribute('data-selected')).toBe(false);
   });
 
+  it('lights the face only while `selected` says so', () => {
+    const [armed, setArmed] = createSignal(false);
+    const { container } = render(() => (
+      <LayerProvider>
+        <ToolbarDropdownMenu items={ITEMS} value="top" selected={armed()} onChange={() => {}} />
+      </LayerProvider>
+    ));
+
+    const face = container.querySelector('.zylem-menu-button__face');
+    expect(face?.hasAttribute('data-selected')).toBe(false);
+    expect(face?.hasAttribute('data-on')).toBe(false);
+
+    setArmed(true);
+    expect(face?.hasAttribute('data-selected')).toBe(true);
+  });
+
   it('gives the face its own action and leaves the menu to the chevron', () => {
     const onAction = vi.fn();
     render(() => (

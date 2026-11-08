@@ -20,6 +20,11 @@ export interface ToolbarDropdownMenuProps {
    * where one choice means off, such as the game camera among editor cameras.
    */
   on?: boolean | undefined;
+  /**
+   * Lights the face. Defaults to always lit unless `on` is given; pass it for a
+   * menu that arms something, so the face is lit only while that is armed.
+   */
+  selected?: boolean | undefined;
   /** Splits the button: the face fires this and the chevron opens the menu. */
   onAction?: (() => void) | undefined;
   /** Where the menu opens. Defaults to dropping down from the face. */
@@ -40,7 +45,7 @@ export function ToolbarDropdownMenu(props: ToolbarDropdownMenuProps) {
       {(item) => (
         <MenuButton
           label={item.label}
-          selected={props.on === undefined}
+          selected={props.selected ?? props.on === undefined}
           on={props.on}
           onAction={props.onAction}
           placement={props.placement ?? 'bottom-start'}

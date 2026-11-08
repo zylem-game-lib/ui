@@ -1676,6 +1676,7 @@ export interface ToolbarDropdownMenuProps {
     // (undocumented)
     onChange: (id: string) => void;
     placement?: MenuButtonProps['placement'];
+    selected?: boolean | undefined;
     // (undocumented)
     value: string;
 }

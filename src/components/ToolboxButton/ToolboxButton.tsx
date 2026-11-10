@@ -1,4 +1,6 @@
 import { Button as KButton } from '@kobalte/core';
+import ChevronDown from 'lucide-solid/icons/chevron-down';
+import ChevronRight from 'lucide-solid/icons/chevron-right';
 import { type JSX, Show, splitProps } from 'solid-js';
 
 /**
@@ -21,6 +23,8 @@ export interface ToolboxButtonProps {
   disabled?: boolean;
   /** Overrides the size inherited from the enclosing `ToolboxGrid`. */
   size?: ToolboxSize;
+  /** Do not render the label. It stays the accessible name, and a tooltip can show it. */
+  iconOnly?: boolean;
   onClick?: (event: MouseEvent) => void;
   class?: string;
 }
@@ -36,6 +40,8 @@ export function ToolboxButton(props: ToolboxButtonProps) {
       data-size={props.size}
       data-selected={props.selected ? '' : undefined}
       data-on={props.on ? '' : undefined}
+      data-icon-only={props.iconOnly ? '' : undefined}
+      aria-label={props.iconOnly ? props.label : undefined}
       aria-pressed={props.on !== undefined ? props.on : props.selected}
       disabled={props.disabled}
       onClick={props.onClick}
@@ -43,7 +49,9 @@ export function ToolboxButton(props: ToolboxButtonProps) {
       <span class="zylem-toolbox-btn-icon" aria-hidden="true">
         {props.children}
       </span>
-      <span class="zylem-toolbox-btn-label">{props.label}</span>
+      <Show when={!props.iconOnly}>
+        <span class="zylem-toolbox-btn-label">{props.label}</span>
+      </Show>
     </KButton.Root>
   );
 }
@@ -58,6 +66,12 @@ export interface ToolboxGridProps extends JSX.HTMLAttributes<HTMLDivElement> {
    * pairs with two columns, `lg` with three; defaults to `md`.
    */
   size?: ToolboxSize;
+  /** The caption toggles the tiles. */
+  collapsible?: boolean;
+  /** Tiles are hidden. Applies when `collapsible` is set. */
+  collapsed?: boolean;
+  /** Called with the next collapsed value. */
+  onCollapsedChange?: (collapsed: boolean) => void;
   children: JSX.Element;
 }
 
@@ -67,6 +81,9 @@ export function ToolboxGrid(props: ToolboxGridProps) {
     'label',
     'columns',
     'size',
+    'collapsible',
+    'collapsed',
+    'onCollapsedChange',
     'children',
     'class',
     'style',
@@ -75,6 +92,7 @@ export function ToolboxGrid(props: ToolboxGridProps) {
     '--zylem-toolbox-columns': String(local.columns ?? 2),
     ...(typeof local.style === 'object' ? local.style : {}),
   });
+  const collapsed = () => local.collapsible === true && local.collapsed === true;
   return (
     <div
       class={local.class ? `zylem-toolbox-grid ${local.class}` : 'zylem-toolbox-grid'}
@@ -85,11 +103,33 @@ export function ToolboxGrid(props: ToolboxGridProps) {
       {...rest}
     >
       <Show when={local.label}>
-        <span class="zylem-toolbox-grid-label" aria-hidden="true">
-          {local.label}
-        </span>
+        <Show
+          when={local.collapsible}
+          fallback={
+            <span class="zylem-toolbox-grid-label" aria-hidden="true">
+              {local.label}
+            </span>
+          }
+        >
+          <button
+            type="button"
+            class="zylem-toolbox-grid-label zylem-toolbox-grid-disclosure"
+            aria-expanded={!collapsed()}
+            onClick={() => local.onCollapsedChange?.(!collapsed())}
+          >
+            <Show
+              when={collapsed()}
+              fallback={<ChevronDown size={12} strokeWidth={2.5} aria-hidden="true" />}
+            >
+              <ChevronRight size={12} strokeWidth={2.5} aria-hidden="true" />
+            </Show>
+            {local.label}
+          </button>
+        </Show>
       </Show>
-      <div class="zylem-toolbox-grid-items">{local.children}</div>
+      <Show when={!collapsed()}>
+        <div class="zylem-toolbox-grid-items">{local.children}</div>
+      </Show>
     </div>
   );
 }

@@ -93,6 +93,34 @@ globalStyle('.zylem-toolbox-btn-label', {
   display: 'block',
 });
 
+globalStyle('.zylem-toolbox-btn[data-icon-only]', {
+  position: 'relative',
+  minHeight: '44px',
+  padding: vars.spacing.sm,
+  gap: 0,
+});
+
+globalStyle(
+  '.zylem-toolbox-btn[data-icon-only] .zylem-toolbox-btn-icon, .zylem-toolbox-btn[data-icon-only] .zylem-toolbox-btn-icon svg',
+  {
+    width: '18px',
+    height: '18px',
+  },
+);
+
+/** The name stays available to assistive tech and is shown by the caller's tooltip. */
+globalStyle('.zylem-toolbox-btn[data-icon-only] .zylem-toolbox-btn-label', {
+  position: 'absolute',
+  width: '1px',
+  height: '1px',
+  padding: '0',
+  margin: '-1px',
+  overflow: 'hidden',
+  clip: 'rect(0, 0, 0, 0)',
+  whiteSpace: 'nowrap',
+  border: '0',
+});
+
 /**
  * Extra large tiles. A button's own `data-size` wins; otherwise it inherits
  * the enclosing grid's. `lg` suits three columns, `xl` two.
@@ -136,6 +164,20 @@ globalStyle('.zylem-toolbox-grid', {
 });
 
 globalStyle('.zylem-toolbox-grid-label', artCaption);
+
+globalStyle('button.zylem-toolbox-grid-disclosure', {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '6px',
+  width: '100%',
+  margin: 0,
+  padding: 0,
+  border: 0,
+  background: 'transparent',
+  color: 'inherit',
+  cursor: 'pointer',
+  textAlign: 'left',
+});
 
 globalStyle('.zylem-toolbox-grid-items', {
   display: 'grid',

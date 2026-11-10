@@ -1699,6 +1699,7 @@ export interface ToolboxButtonProps {
     class?: string;
     // (undocumented)
     disabled?: boolean;
+    iconOnly?: boolean;
     // (undocumented)
     label: string;
     on?: boolean;
@@ -1715,8 +1716,11 @@ export function ToolboxGrid(props: ToolboxGridProps): JSX.Element;
 export interface ToolboxGridProps extends JSX.HTMLAttributes<HTMLDivElement> {
     // (undocumented)
     children: JSX.Element;
+    collapsed?: boolean;
+    collapsible?: boolean;
     columns?: number;
     label?: string;
+    onCollapsedChange?: (collapsed: boolean) => void;
     size?: ToolboxSize;
 }
 

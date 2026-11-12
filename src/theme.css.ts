@@ -3,6 +3,8 @@ import {
 	createGlobalThemeContract,
 } from '@vanilla-extract/css';
 import { layerTierValues, layerTierVarNames } from './layers/tiers';
+import { shadeValues, shadeVarNames } from './theme/shades';
+import { toolbarChromeValues, toolbarVarNames } from './theme/toolbar';
 
 /**
  * Concrete design-token values for the Zylem UI.
@@ -133,6 +135,18 @@ const tokens = {
 		canvasBorder: 'rgba(150, 210, 255, 0.5)',
 	},
 	/**
+	 * Hue scales. Declared in `theme/shades.ts`. Each step is its own variable
+	 * so a consumer can overwrite one shade and every recipe that mixes it
+	 * follows. Not nested under `colors`: sprinkles treats that map as flat.
+	 */
+	shades: shadeValues,
+	/**
+	 * Toolbar rail and resting-button chrome. Defaults are the primary glass.
+	 * A toolbar mode reassigns these on that strip; set the same variables on
+	 * any ancestor to overwrite a subtree without a mode.
+	 */
+	toolbar: toolbarChromeValues,
+	/**
 	 * Stacking tiers. Declared in `layers/tiers.ts` because the runtime side of
 	 * the layer system reads the same ladder without loading this file.
 	 */
@@ -241,6 +255,8 @@ const varNames = {
 		checkerDark: 'zylem-art-checker-dark',
 		canvasBorder: 'zylem-art-canvas-border',
 	},
+	shades: shadeVarNames,
+	toolbar: toolbarVarNames,
 	layers: layerTierVarNames,
 } as const;
 

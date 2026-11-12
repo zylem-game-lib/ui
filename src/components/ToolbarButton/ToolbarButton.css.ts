@@ -3,9 +3,10 @@ import { vars } from '../../theme.css';
 
 /**
  * Square glass icon button for toolbars — owns the `.zylem-toolbar-btn`
- * class the editor already uses. Selected state uses the live-green jewel
- * treatment. `data-danger` is that same selected state in the danger jewel,
- * used by the Delete tool.
+ * class the editor already uses. Resting and hover glass come from the
+ * toolbar chrome tokens, so a toolbar mode retints them. Selected state uses
+ * the live-green jewel. `data-danger` is that same selected state in the
+ * danger jewel, used by the Delete tool.
  */
 globalStyle('.zylem-toolbar-btn', {
   boxSizing: 'border-box',
@@ -20,19 +21,19 @@ globalStyle('.zylem-toolbar-btn', {
   fontSize: `calc(${vars.typography.fontSize} - 1px)`,
   fontWeight: 600,
   whiteSpace: 'nowrap',
-  textShadow: '0 1px 1px rgba(0,0,0,0.6)',
+  textShadow: vars.toolbar.buttonTextShadow,
   cursor: 'pointer',
   borderRadius: vars.radii.control,
-  border: '1px solid rgba(150, 210, 255, 0.5)',
-  background: vars.material.buttonGlass,
+  border: `1px solid ${vars.toolbar.buttonBorder}`,
+  background: vars.toolbar.buttonGlass,
   boxShadow: vars.effects.shadowButton,
-  color: '#E8F4FF',
+  color: vars.toolbar.buttonText,
   transition: `transform ${vars.motion.fast} ${vars.motion.easeOut}, box-shadow ${vars.motion.fast} ${vars.motion.easeOut}, filter ${vars.motion.fast} ${vars.motion.easeOut}, background ${vars.motion.fast} ${vars.motion.easeOut}`,
 });
 
 globalStyle('.zylem-toolbar-btn:hover', {
-  background: vars.material.buttonGlassHover,
-  boxShadow: `${vars.effects.shadowButton}, ${vars.effects.glowPrimary}`,
+  background: vars.toolbar.buttonGlassHover,
+  boxShadow: `${vars.effects.shadowButton}, ${vars.toolbar.glow}`,
   transform: 'translateY(-1px)',
 });
 
@@ -54,6 +55,7 @@ globalStyle('.zylem-toolbar-btn[data-on]', {
   background: vars.material.buttonGlassOn,
   boxShadow: `${vars.effects.shadowButton}, ${vars.effects.glowOn}`,
   color: '#F3FDFF',
+  textShadow: '0 1px 1px rgba(0,0,0,0.6)',
 });
 
 globalStyle('.zylem-toolbar-btn[data-on]:hover', {
@@ -66,12 +68,16 @@ globalStyle('.zylem-toolbar-btn[data-selected], .zylem-toolbar-btn.selected', {
   borderColor: 'rgba(20, 255, 60, 0.78)',
   background: vars.material.buttonGlassActive,
   boxShadow: `${vars.effects.shadowButton}, ${vars.effects.glowActive}`,
+  color: '#E8F4FF',
+  textShadow: '0 1px 1px rgba(0,0,0,0.6)',
 });
 
 globalStyle('.zylem-toolbar-btn[data-danger]', {
   borderColor: 'rgba(255, 132, 114, 0.78)',
   background: vars.material.buttonGlassDanger,
   boxShadow: `${vars.effects.shadowButton}, ${vars.effects.glowDanger}`,
+  color: '#E8F4FF',
+  textShadow: '0 1px 1px rgba(0,0,0,0.6)',
 });
 
 globalStyle('.zylem-toolbar-btn[data-danger]:hover', {

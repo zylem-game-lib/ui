@@ -1681,10 +1681,14 @@ export interface ToolbarDropdownMenuProps {
     value: string;
 }
 
+// @public
+export type ToolbarMode = 'primary' | 'black' | 'white' | 'brown' | 'yellow' | 'magenta' | 'purple';
+
 // @public (undocumented)
 export interface ToolbarProps extends JSX.HTMLAttributes<HTMLDivElement> {
     // (undocumented)
     children?: JSX.Element;
+    mode?: ToolbarMode;
     // (undocumented)
     orientation?: 'horizontal' | 'vertical';
 }

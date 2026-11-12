@@ -76,7 +76,7 @@ export {
 } from './WindowControls/WindowControls';
 export { TitleBar, type TitleBarProps } from './TitleBar/TitleBar';
 export { Panel, type PanelProps } from './Panel/Panel';
-export { Toolbar, type ToolbarProps } from './Toolbar/Toolbar';
+export { Toolbar, type ToolbarMode, type ToolbarProps } from './Toolbar/Toolbar';
 export {
   PropertyList,
   PropertyRow,

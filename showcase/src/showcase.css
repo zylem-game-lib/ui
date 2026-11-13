@@ -172,6 +172,19 @@ body {
   gap: var(--zylem-spacing-lg);
 }
 
+.toolbar-mode {
+  min-width: 0;
+}
+
+.toolbar-mode-scroll {
+  overflow-x: auto;
+}
+
+.toolbar-modes .zylem-toolbar {
+  width: max-content;
+  flex-wrap: nowrap;
+}
+
 /* Sprite editor / director / toolbox demos */
 .sprite-new-card {
   display: flex;

@@ -1,8 +1,7 @@
 import Grid3x3 from 'lucide-solid/icons/grid-3x3';
 import Magnet from 'lucide-solid/icons/magnet';
 import MousePointer from 'lucide-solid/icons/mouse-pointer';
-import Plus from 'lucide-solid/icons/plus';
-import { For, createSignal } from 'solid-js';
+import { createSignal } from 'solid-js';
 import {
   CAMERA_ICONS,
   CameraToggle,
@@ -10,9 +9,9 @@ import {
   Toolbar as ToolbarStrip,
   ToolbarButton,
   ToolbarDropdownMenu,
-  type ToolbarMode,
 } from '../../../src/components';
 import { ToolbarDemo } from '../demos/ToolbarDemo';
+import { ToolbarModes } from '../demos/ToolbarModes';
 
 function ViewToggles() {
   const [snap, setSnap] = createSignal(true);
@@ -45,34 +44,6 @@ function CameraModes() {
   return (
     <ToolbarStrip>
       <ToolbarDropdownMenu items={CAMERAS} value={camera()} onChange={setCamera} />
-    </ToolbarStrip>
-  );
-}
-
-const TOOLBAR_MODES: Array<{ mode: ToolbarMode; label: string }> = [
-  { mode: 'black', label: 'Game Preview' },
-  { mode: 'primary', label: 'Stage Editor' },
-  { mode: 'white', label: 'Level Mesh' },
-  { mode: 'brown', label: 'Map Navigation' },
-  { mode: 'yellow', label: 'Decorations' },
-  { mode: 'magenta', label: 'HUD View' },
-  { mode: 'purple', label: 'Entity Inspector' },
-];
-
-function ModeStrip(props: { mode: ToolbarMode }) {
-  const [on, setOn] = createSignal(true);
-
-  return (
-    <ToolbarStrip mode={props.mode}>
-      <ToolbarButton label="Add">
-        <Plus class="zylem-icon" />
-      </ToolbarButton>
-      <ToolbarButton label="Select" selected>
-        <MousePointer class="zylem-icon" />
-      </ToolbarButton>
-      <ToolbarButton label="Snap to grid" on={on()} onClick={() => setOn(!on())}>
-        <Magnet class="zylem-icon" />
-      </ToolbarButton>
     </ToolbarStrip>
   );
 }
@@ -114,18 +85,11 @@ export function Toolbar() {
       </div>
       <h3>Modes</h3>
       <p class="code-label">
-        The rail and resting buttons take the mode color. Selected stays live green, and a toggle
-        that is on stays electric blue.
+        Each strip is that mode's tools. Select stays live green. Debug and Snap turn electric blue
+        while on. The game camera is off; Top and Free are on.
       </p>
       <div class="demo-container toolbar-modes">
-        <For each={TOOLBAR_MODES}>
-          {(item) => (
-            <div>
-              <p class="code-label">{item.label}</p>
-              <ModeStrip mode={item.mode} />
-            </div>
-          )}
-        </For>
+        <ToolbarModes />
       </div>
       <h3>Camera modes</h3>
       <p class="code-label">

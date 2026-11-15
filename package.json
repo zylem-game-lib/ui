@@ -59,6 +59,7 @@
     "prepublishOnly": "NODE_ENV=production tsup",
     "dev": "tsup --watch",
     "showcase": "vite --host",
+    "showcase:build": "vite build",
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "biome check .",
@@ -85,7 +86,8 @@
     "typescript": "6.0.3",
     "vite": "7.0.4",
     "vite-plugin-solid": "^2.11.8",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.10",
+    "wrangler": "4.162.0"
   },
   "dependencies": {
     "@kobalte/core": "^0.13.11",

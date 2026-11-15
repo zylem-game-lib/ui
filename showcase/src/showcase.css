@@ -303,28 +303,69 @@ body {
   max-width: 100%;
 }
 
-.icon-size-row {
-  align-items: stretch;
+/* The catalog owns its preview size, including the 18px toolbar glyphs. */
+.icon-catalog-description {
+  max-width: 76ch;
+  color: var(--zylem-color-text-secondary);
+  line-height: 1.6;
 }
 
-.icon-size-card {
+.icon-catalog-controls {
   display: flex;
-  flex-direction: column;
-  gap: var(--zylem-spacing-sm);
-}
-
-.icon-size-grid {
-  display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  align-items: end;
   gap: var(--zylem-spacing-md);
-  color: var(--zylem-color-text);
+  margin-block: var(--zylem-spacing-lg);
 }
 
-.icon-catalog-card {
+.icon-catalog-search { flex: 1 1 280px; }
+.icon-catalog-select { min-width: 140px; color-scheme: dark; }
+
+.icon-catalog-summary,
+.icon-catalog-pagination {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
-  gap: var(--zylem-spacing-xs);
-  min-width: 128px;
-  color: var(--zylem-color-text);
+  justify-content: space-between;
+  gap: var(--zylem-spacing-sm);
+  margin-block: var(--zylem-spacing-md);
+  color: var(--zylem-color-text-secondary);
+  font-size: 12px;
 }
+
+.icon-table-scroll {
+  max-width: 100%;
+  max-height: 65vh;
+  overflow: auto;
+  border: 1px solid var(--zylem-color-border);
+  border-radius: var(--zylem-radius);
+  background: var(--zylem-color-background-translucent);
+}
+
+.icon-table-scroll:focus-visible {
+  outline: 2px solid var(--zylem-color-primary);
+  outline-offset: 3px;
+}
+
+.icon-table { table-layout: fixed; min-width: 680px; }
+.icon-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--zylem-color-background);
+  padding-block: 12px;
+}
+.icon-table thead th:first-child { width: 100px; }
+.icon-table thead th:nth-child(2) { width: 29%; }
+.icon-table thead th:nth-child(3) { width: 110px; }
+.icon-table tbody th,
+.icon-table td { padding: 12px; vertical-align: middle; }
+.icon-table tbody th { color: var(--zylem-color-text); font-weight: 500; }
+.icon-table tbody tr:hover { background: rgba(97, 166, 232, 0.06); }
+.icon-table-preview { text-align: center; color: var(--zylem-color-primary); }
+.icon-table-preview svg { display: inline-block; width: var(--icon-preview-size); height: var(--icon-preview-size); vertical-align: middle; }
+.icon-table-id { display: block; margin-top: 6px; font-size: 11px; overflow-wrap: anywhere; }
+.icon-table-import { font-size: 11px; line-height: 1.6; overflow-wrap: anywhere; user-select: all; }
+.icon-category-tag { color: var(--zylem-color-text-secondary); font-size: 12px; }
+.icon-catalog-empty { text-align: center; height: 120px; }
+.icon-catalog-caption { text-align: left; padding: 10px 12px; color: var(--zylem-color-text-secondary); font-size: 12px; }

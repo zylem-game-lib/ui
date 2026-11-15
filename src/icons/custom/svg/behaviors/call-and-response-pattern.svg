@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Call And Response Pattern">
+<title>Call And Response Pattern</title>
+<g transform="translate(1 1) scale(.77)"><path d="M25 43V14L49 9V37 M25 22 49 17"/><path d="M25 43C25 51 10 55 9 47S24 35 25 43Z M49 37C49 45 34 49 33 41S48 29 49 37Z"/></g><g transform="translate(40.5 40.5)"><circle cx="10" cy="10" r="10" stroke-width="1.7"/><g transform="translate(2 2) scale(.8)"><path d="M3 6H17L13 2 M17 14H3L7 18"/></g></g>
+</svg>

@@ -3,8 +3,9 @@
  * 24×24 viewBox, 2-unit stroke, no fill, rounded caps and joins.
  */
 export type IconNode = [
-  elementName: 'rect' | 'path',
+  elementName: 'rect' | 'path' | 'circle' | 'g',
   attributes: Record<string, string>,
+  children?: IconNode,
 ][];
 
 export const PerspectiveNode: IconNode = [

@@ -32,6 +32,22 @@ export interface ZylemIconOptions {
   filled?: boolean;
   /** Defaults to the 24×24 Lucide grid. */
   viewBox?: string;
+  /** Default rendered size; callers can override it with `size`. */
+  defaultSize?: number;
+  /** Stroke width in viewBox units. */
+  defaultStrokeWidth?: number;
+}
+
+function IconElements(props: { nodes: IconNode }) {
+  return (
+    <For each={props.nodes}>
+      {([element, attrs, children]) => (
+        <Dynamic component={element} {...attrs}>
+          {children ? <IconElements nodes={children} /> : undefined}
+        </Dynamic>
+      )}
+    </For>
+  );
 }
 
 /**
@@ -51,11 +67,12 @@ export function createZylemIcon(
       'class',
       'absoluteStrokeWidth',
     ]);
-    const size = () => local.size ?? 24;
+    const size = () => local.size ?? options?.defaultSize ?? 24;
     const strokeWidth = () => {
-      const width = Number(local.strokeWidth ?? 2);
+      const width = Number(local.strokeWidth ?? options?.defaultStrokeWidth ?? 2);
       if (local.absoluteStrokeWidth) {
-        return (width * 24) / Number(size());
+        const viewBoxWidth = Number((options?.viewBox ?? DEFAULTS.viewBox).split(/\s+/)[2]);
+        return (width * viewBoxWidth) / Number(size());
       }
       return width;
     };
@@ -74,15 +91,14 @@ export function createZylemIcon(
         width={size()}
         height={size()}
         fill={filled ? paint() : 'none'}
+        color={paint()}
         stroke={filled ? 'none' : paint()}
         stroke-width={filled ? 0 : strokeWidth()}
         class={classes()}
         aria-hidden="true"
         {...rest}
       >
-        <For each={iconNode}>
-          {([element, attrs]) => <Dynamic component={element} {...attrs} />}
-        </For>
+        <IconElements nodes={iconNode} />
       </svg>
     );
   };

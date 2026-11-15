@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Stationary Aim Mode">
+<title>Stationary Aim Mode</title>
+<g transform="translate(1 1) scale(.77)"><circle cx="32" cy="32" r="17"/><circle cx="32" cy="32" r="6"/><path d="M32 7V17 M32 47V57 M7 32H17 M47 32H57"/></g><g transform="translate(40.5 40.5)"><circle cx="10" cy="10" r="10" stroke-width="1.7"/><g transform="translate(2 2) scale(.8)"><rect x="4" y="4" width="12" height="12" rx="2"/></g></g>
+</svg>

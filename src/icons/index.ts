@@ -1,4 +1,5 @@
 import type { Component } from 'solid-js';
+export * from './custom';
 import { createZylemIcon, type ZylemIconProps } from './create-icon';
 import {
   DockNode,

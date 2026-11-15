@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Budgeted Passive Loadout">
+<title>Budgeted Passive Loadout</title>
+<g transform="translate(1 1) scale(.77)"><rect x="8" y="9" width="48" height="46" rx="4"/><path d="M8 25H56 M24 9V55 M40 9V55 M8 40H56"/><rect x="26" y="27" width="12" height="11" rx="2" fill="currentColor" stroke="none"/></g><g transform="translate(40.5 40.5)"><circle cx="10" cy="10" r="10" stroke-width="1.7"/><g transform="translate(2 2) scale(.8)"><circle cx="10" cy="10" r="7"/><path d="M10 5V15 M13 6H8Q4 9 10 10T12 14H7"/></g></g>
+</svg>

@@ -57,7 +57,7 @@ export const SECTIONS: ShowcaseSection[] = [
     tags: ['tokens', 'radius'],
     component: SpacingSizing,
   },
-  { id: 'icons', label: 'Icons', group: 'Foundations', tags: ['camera', 'perspective'], component: Icons },
+  { id: 'icons', label: 'Icons', group: 'Foundations', tags: ['camera', 'perspective', 'genres', 'behaviors', 'custom', 'lucide'], component: Icons },
 
   {
     id: 'buttons',

@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Periodic Resource Production">
+<title>Periodic Resource Production</title>
+<g transform="translate(1 1) scale(.77)"><path d="M10 20C10 12 36 12 36 20S10 28 10 20Z M10 20V40C10 48 36 48 36 40V20 M10 30Q23 38 36 30 M36 32C48 25 57 30 57 36V49C57 57 32 57 32 49V45 M38 39Q48 44 57 37"/></g><g transform="translate(40.5 40.5)"><circle cx="10" cy="10" r="10" stroke-width="1.7"/><g transform="translate(2 2) scale(.8)"><circle cx="10" cy="10" r="7"/><path d="M10 5V10L14 12"/></g></g>
+</svg>

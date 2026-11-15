@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Room Furniture Placement">
+<title>Room Furniture Placement</title>
+<g transform="translate(1 1) scale(.77)"><path d="M13 31V20Q13 13 21 13H43Q51 13 51 20V31 M9 31Q17 31 17 40H47Q47 31 55 31V51H9Z M14 51V57 M50 51V57 M32 14V39"/></g><g transform="translate(40.5 40.5)"><circle cx="10" cy="10" r="10" stroke-width="1.7"/><g transform="translate(2 2) scale(.8)"><rect x="3" y="3" width="14" height="14" rx="1"/><path d="M10 3V17 M3 10H17"/></g></g>
+</svg>

@@ -63,7 +63,9 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "biome check .",
-    "api:extract": "tsc -p tsconfig.api.json && api-extractor run"
+    "api:extract": "tsc -p tsconfig.api.json && api-extractor run",
+    "icons:generate": "node scripts/generate-custom-icons.mjs && node scripts/generate-used-icons.mjs",
+    "icons:check": "node scripts/generate-custom-icons.mjs --check && node scripts/generate-used-icons.mjs --check"
   },
   "peerDependencies": {
     "solid-js": "^1.9.9"

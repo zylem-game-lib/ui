@@ -571,8 +571,9 @@ export type IconComponent = Component<JSX.SvgSVGAttributes<SVGSVGElement>>;
 
 // @public
 export type IconNode = [
-elementName: 'rect' | 'path',
-attributes: Record<string, string>
+elementName: 'rect' | 'path' | 'circle' | 'g',
+attributes: Record<string, string>,
+children?: IconNode
 ][];
 
 // @public
@@ -1945,6 +1946,8 @@ export interface WindowControlsProps {
 // @public (undocumented)
 export interface ZylemIconOptions {
     className?: string;
+    defaultSize?: number;
+    defaultStrokeWidth?: number;
     filled?: boolean;
     viewBox?: string;
 }

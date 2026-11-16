@@ -57,6 +57,10 @@ globalStyle('.zylem-window-control:focus-visible, .floating-panel-button:focus-v
 	boxShadow: `${vars.effects.glowPrimary}, ${vars.effects.focusRing}`,
 });
 
+globalStyle('.zylem-window-control--settings:hover, .zylem-window-control--settings:focus-visible', {
+	color: '#fff',
+});
+
 globalStyle('.zylem-window-control--close:hover', {
 	borderColor: 'rgba(255, 132, 114, 0.78)',
 	background: 'rgba(230, 69, 52, 0.16)',

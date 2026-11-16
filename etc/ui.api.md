@@ -1941,6 +1941,8 @@ export interface WindowControlsProps {
     // (undocumented)
     onCollapse?: (() => void) | undefined;
     onDock?: ((position: DockPosition) => void) | undefined;
+    onSettings?: (() => void) | undefined;
+    settingsLabel?: string | undefined;
 }
 
 // @public (undocumented)

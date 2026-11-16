@@ -19,7 +19,7 @@ export interface TitleBarProps
 
 /**
  * HyperGlass title bar: glossy molded glass strip with a title, optional
- * extra chrome, and shared glass window controls.
+ * extra chrome, and shared ghost window controls.
  */
 export function TitleBar(props: TitleBarProps) {
   const [local, rest] = splitProps(props, [
@@ -30,6 +30,8 @@ export function TitleBar(props: TitleBarProps) {
     'children',
     'onClose',
     'onCollapse',
+    'onSettings',
+    'settingsLabel',
     'collapsed',
     'closeLabel',
     'closeTestId',
@@ -60,6 +62,8 @@ export function TitleBar(props: TitleBarProps) {
       <WindowControls
         onClose={local.onClose}
         onCollapse={local.onCollapse}
+        onSettings={local.onSettings}
+        settingsLabel={local.settingsLabel}
         collapsed={local.collapsed}
         closeLabel={local.closeLabel}
         closeTestId={local.closeTestId}

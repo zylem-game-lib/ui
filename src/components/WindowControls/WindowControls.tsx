@@ -1,6 +1,7 @@
 import { Show } from 'solid-js';
 import ChevronDown from 'lucide-solid/icons/chevron-down';
 import ChevronUp from 'lucide-solid/icons/chevron-up';
+import Settings from 'lucide-solid/icons/settings';
 import X from 'lucide-solid/icons/x';
 import { Dock } from '../../icons';
 import { DropdownMenu } from '../DropdownMenu/DropdownMenu';
@@ -26,6 +27,10 @@ export interface WindowControlsProps {
   // `exactOptionalPropertyTypes` can forward their own optional props directly.
   onClose?: (() => void) | undefined;
   onCollapse?: (() => void) | undefined;
+  /** Renders the gear control. Called when panel settings are requested. */
+  onSettings?: (() => void) | undefined;
+  /** Accessible label/title for the settings button (default "Panel settings"). */
+  settingsLabel?: string | undefined;
   /** Show the "expand" collapse icon when the panel is collapsed. */
   collapsed?: boolean | undefined;
   /** Accessible label/title for the close button (default "Close panel"). */
@@ -44,15 +49,27 @@ export interface WindowControlsProps {
 }
 
 /**
- * Shared ghost window controls, used by floating and detached panels. Close
- * takes the danger color only while hovered or focused. Dock opens a menu of
- * where the panel sits: Top, Float, and Bottom, or `dockOptions` when the
- * window uses other edges. Only controls with a handler are rendered.
+ * Shared ghost window controls, used by floating and detached panels. Settings
+ * turns white and Close takes the danger color while hovered or focused.
+ * Dock opens a menu of where the panel sits: Top, Float, and Bottom, or
+ * `dockOptions` when the window uses other edges. Only controls with a handler
+ * are rendered.
  */
 export function WindowControls(props: WindowControlsProps) {
   return (
-    <Show when={props.onClose || props.onCollapse || props.onDock}>
+    <Show when={props.onClose || props.onCollapse || props.onDock || props.onSettings}>
       <div class="zylem-window-controls" role="group" aria-label="Window controls">
+        <Show when={props.onSettings}>
+          <button
+            type="button"
+            class="zylem-window-control zylem-window-control--settings"
+            aria-label={props.settingsLabel ?? 'Panel settings'}
+            title={props.settingsLabel ?? 'Panel settings'}
+            onClick={() => props.onSettings?.()}
+          >
+            <Settings size={11} strokeWidth={2.5} aria-hidden="true" />
+          </button>
+        </Show>
         <Show when={props.onDock}>
           <DropdownMenu
             triggerLabel="Dock panel"

@@ -89,18 +89,19 @@ This avoids copying Aqua's pill-shaped controls too closely.
 
 ## Window controls
 
-Window controls are **shared glass icon buttons** — the same button is used
+Window controls are **shared ghost icon buttons** — the same button is used
 by title bars, floating panels, and detached panels (one definition:
 `.zylem-window-control`, aliased as `.floating-panel-button`).
 
-- Small glass jewels (~28×18px, `6px` radius) with a light colored rim, a
-  top gloss, a dark lower edge, and a soft drop shadow. `brightness()` plus
-  a 1px translate on hover/active.
-- Only two controls exist: **collapse** (blue glass, chevron; points up when
-  the panel is collapsed) and **close** (red glass, X, danger glow). No
-  expand/zoom control.
-- Collapse uses the primary blue glass. Close uses `buttonGlassDanger` at
-  rest so the destructive control reads immediately.
+- Small outlined buttons (~28×18px, `6px` radius), transparent at rest with
+  primary-blue icons, a soft glow on hover, and a 1px translate on hover/active.
+- Controls appear only when their handler is provided, in this order:
+  **settings** (gear), **dock** (placement menu), **collapse** (chevron;
+  points up when collapsed), and **close** (X).
+- Settings turns white on hover or keyboard focus. Close takes a danger tint
+  and glow on hover or keyboard focus; dock and collapse keep the primary blue.
+- Use `onSettings` on `WindowControls` or `TitleBar` to open panel settings.
+  `settingsLabel` customizes the accessible label and tooltip (default "Panel settings").
 
 ## Accordions and section headers
 
@@ -151,7 +152,7 @@ Vertical scroll containers should suppress horizontal scrollbars entirely
 | Menu | Floating glass sheet |
 | Console | Dark low-gloss terminal field |
 | Scrollbar | Visible Aqua-inspired glass rail |
-| Window controls | Shared glass icon buttons (collapse + close; close is accent on hover) |
+| Window controls | Shared ghost icon buttons (settings, dock, collapse, close; settings is white on hover) |
 | Accordion | Flat headers with hairline separators |
 
 ## Motion

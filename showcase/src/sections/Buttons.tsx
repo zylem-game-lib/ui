@@ -125,6 +125,7 @@ export function Buttons() {
       <h3>WindowControls</h3>
       <div class="demo-row">
         <WindowControls
+          onSettings={() => {}}
           dock={dock()}
           onDock={setDock}
           onCollapse={() => {}}

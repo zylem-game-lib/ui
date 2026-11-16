@@ -54,6 +54,7 @@ import RotateCcw from 'lucide-solid/icons/rotate-ccw';
 import Scale3d from 'lucide-solid/icons/scale-3d';
 import Scissors from 'lucide-solid/icons/scissors';
 import Search from 'lucide-solid/icons/search';
+import Settings from 'lucide-solid/icons/settings';
 import Shield from 'lucide-solid/icons/shield';
 import Sparkles from 'lucide-solid/icons/sparkles';
 import Spline from 'lucide-solid/icons/spline';
@@ -135,6 +136,7 @@ export const USED_LUCIDE_ICONS: readonly UsedIcon[] = [
   { name: 'scale-3d', label: 'Scale 3d', Icon: Scale3d },
   { name: 'scissors', label: 'Scissors', Icon: Scissors },
   { name: 'search', label: 'Search', Icon: Search },
+  { name: 'settings', label: 'Settings', Icon: Settings },
   { name: 'shield', label: 'Shield', Icon: Shield },
   { name: 'sparkles', label: 'Sparkles', Icon: Sparkles },
   { name: 'spline', label: 'Spline', Icon: Spline },
